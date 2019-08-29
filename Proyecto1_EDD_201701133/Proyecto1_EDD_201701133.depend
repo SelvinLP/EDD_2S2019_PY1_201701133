@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1567043784 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\main.cpp
+	<iostream>
+	<string>
+	<Nodo_Matriz.h>
+
+1567023799 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\nodo_color.cpp
+	"Nodo_Color.h"
+
+1567023809 c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\nodo_color.h
+	<string>
+
+1567043916 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\nodo_matriz.cpp
+	"Nodo_Matriz.h"
+	<string>
+	<stdio.h>
+
+1567043916 c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\nodo_matriz.h
+	<string>
+	<Nodo_Color.h>
+

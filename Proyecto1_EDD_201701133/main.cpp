@@ -1,13 +1,25 @@
 #include <iostream>
-
+#include <string>
+#include <Nodo_Matriz.h>
 using namespace std;
 
 int main()
 {
     int ciclomenu=0;
     cout << "Proyecto 1 de estructura de datos 201701133" << endl;
-    while(ciclomenu==0){
 
+    //temporal
+    Nodo_Matriz *Matriz=new Nodo_Matriz();
+    //Matriz->InsertarCodigo(1,1,"si");
+    //Matriz->InsertarCodigo(1,3,"si3");
+    //Matriz->InsertarCodigo(1,2,"si2");
+    //Matriz->InsertarCodigo(2,3,"no3");
+    //Matriz->InsertarCodigo(5,1,"no");
+    //Matriz->InsertarCodigo(3,1,"no2");
+    //Matriz->mostrartodoy();
+    //Matriz->mostrartodo();
+    //fin temporal
+    while(ciclomenu==0){
         cout << "################# MENU ##################" << endl;
         cout <<"    1.Insertar Imagen"<<endl;
         cout <<"    2.Seleccionar Imagen"<<endl;
