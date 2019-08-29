@@ -6,8 +6,18 @@
 class Nodo_Matriz
 {
     public:
+        //para cada nodo de color
         Nodo_Color *inicio;
-        Nodo_Matriz();
+
+        //para la lista de matrices
+        int Z;
+        std::string NombreDocumento;
+        Nodo_Matriz *siguiente;
+        Nodo_Matriz *anterior;
+
+
+
+        Nodo_Matriz(int z,std::string NombreDoc);
 
         int BuscarX(int x);
         int BuscarY(int y);

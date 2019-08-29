@@ -9,7 +9,7 @@ int main()
     cout << "Proyecto 1 de estructura de datos 201701133" << endl;
 
     //temporal
-    Nodo_Matriz *Matriz=new Nodo_Matriz();
+    //Nodo_Matriz *Matriz=new Nodo_Matriz();
     //Matriz->InsertarCodigo(1,1,"si");
     //Matriz->InsertarCodigo(1,3,"si3");
     //Matriz->InsertarCodigo(1,2,"si2");

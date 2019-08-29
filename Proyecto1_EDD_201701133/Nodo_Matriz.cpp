@@ -1,8 +1,12 @@
 #include "Nodo_Matriz.h"
 #include <string>
 #include <stdio.h>
-Nodo_Matriz::Nodo_Matriz(){
+Nodo_Matriz::Nodo_Matriz(int z,std::string NombreDoc){
     inicio=new Nodo_Color(-1,-1,"RAIZ");
+    this->siguiente=0;
+    this->anterior=0;
+    this->Z=z;
+    this->NombreDocumento=NombreDoc;
 }
 
 Nodo_Matriz::mostrartodo(){

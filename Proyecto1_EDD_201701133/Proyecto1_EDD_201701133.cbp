@@ -34,6 +34,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Lista_Matrices.cpp" />
+		<Unit filename="Lista_Matrices.h" />
 		<Unit filename="Nodo_Color.cpp" />
 		<Unit filename="Nodo_Color.h" />
 		<Unit filename="Nodo_Matriz.cpp" />
