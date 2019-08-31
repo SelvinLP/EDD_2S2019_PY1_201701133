@@ -1,15 +1,22 @@
 #include <iostream>
+#include <stdlib.h>
 #include <string>
+#include <fstream>
+#include <sstream>
+
+
 #include <Nodo_Matriz.h>
+#include<Lista_Matrices.h>
+#include<Arbol.h>
 using namespace std;
 
 int main()
 {
     int ciclomenu=0;
     cout << "Proyecto 1 de estructura de datos 201701133" << endl;
-
+    Arbol *ArbolInicial=new Arbol();
     //temporal
-    //Nodo_Matriz *Matriz=new Nodo_Matriz();
+    //Nodo_Matriz *Matriz=new Nodo_Matriz(1,"hola");
     //Matriz->InsertarCodigo(1,1,"si");
     //Matriz->InsertarCodigo(1,3,"si3");
     //Matriz->InsertarCodigo(1,2,"si2");

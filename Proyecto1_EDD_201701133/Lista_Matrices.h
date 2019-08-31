@@ -11,6 +11,7 @@ class Lista_Matrices
         Lista_Matrices();
 
         InsertarMatrizOrdenado(int z,std::string NombreDoc);
+        MostrarlistadeNodos();
 
         virtual ~Lista_Matrices();
 

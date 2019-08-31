@@ -1,11 +1,19 @@
 #include "Lista_Matrices.h"
-
+#include <string>
+#include <stdio.h>
 Lista_Matrices::Lista_Matrices()
 {
     inicio=0;
     fin=0;
 }
 
+Lista_Matrices::MostrarlistadeNodos(){
+    Nodo_Matriz *tem=inicio;
+    while(tem!=0){
+        printf("Descripcion: %s\n",tem->NombreDocumento.c_str());
+        printf("Profundidad:  %d\n",tem->Z);
+    }
+}
 Lista_Matrices::InsertarMatrizOrdenado(int z,std::string NombreDoc){
     Nodo_Matriz *nuevo=new Nodo_Matriz(z,NombreDoc);
     Nodo_Matriz *tem=inicio;
@@ -19,6 +27,7 @@ Lista_Matrices::InsertarMatrizOrdenado(int z,std::string NombreDoc){
             if(tem2->Z > z){
                 bandera=true;
                 tem=tem2;
+                break;
             }
             tem2=tem2->siguiente;
         }
