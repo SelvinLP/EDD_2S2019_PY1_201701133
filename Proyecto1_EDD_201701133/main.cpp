@@ -38,6 +38,12 @@ int main()
         cout <<"    Seleccione una opcion"<<endl;
         int opcionmenu;
         cin>>opcionmenu;
+        if(opcionmenu==1){
+            cout <<" Ingrese Nombre del Archivo "<<endl;
+            char nombre[150];
+            std::cin >> nombre;
+            ArbolInicial->CargaTotal(nombre);
+        }
         if(opcionmenu==7){
             ciclomenu=1;
         }

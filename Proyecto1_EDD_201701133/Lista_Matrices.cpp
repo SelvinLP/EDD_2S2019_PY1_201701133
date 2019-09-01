@@ -14,8 +14,9 @@ Lista_Matrices::MostrarlistadeNodos(){
         printf("Profundidad:  %d\n",tem->Z);
     }
 }
-Lista_Matrices::InsertarMatrizOrdenado(int z,std::string NombreDoc){
+Lista_Matrices::InsertarMatrizOrdenado(int z,char NombreDoc []){
     Nodo_Matriz *nuevo=new Nodo_Matriz(z,NombreDoc);
+    nuevo->CargaColores(NombreDoc);
     Nodo_Matriz *tem=inicio;
     Nodo_Matriz *tem2=inicio;
     bool bandera=false;
@@ -43,6 +44,7 @@ Lista_Matrices::InsertarMatrizOrdenado(int z,std::string NombreDoc){
         }
 
     }
+
 }
 
 

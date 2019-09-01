@@ -1,6 +1,9 @@
 #ifndef NODO_MATRIZ_H
 #define NODO_MATRIZ_H
+#include <fstream>
 #include <string>
+#include <sstream>
+#include <cstdlib>
 #include <Nodo_Color.h>
 
 class Nodo_Matriz
@@ -26,6 +29,7 @@ class Nodo_Matriz
         InsertarX(Nodo_Color* nuevo);
         InsertarY(Nodo_Color* nuevo);
         InsertarCodigo(int x,int y,std::string color);
+        CargaColores(char ruta[]);
 
         mostrartodo();
         mostrartodoy();

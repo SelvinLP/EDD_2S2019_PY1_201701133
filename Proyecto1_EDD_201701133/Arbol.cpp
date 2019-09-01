@@ -7,7 +7,7 @@ Arbol::Arbol()
 Arbol::CargaTotal(char ruta[]){
     Lista_Matrices *Lista_M=new Lista_Matrices();
     int capa=-1;
-    std::string archivoCapa;
+    char archivoCapa[150];
     int primeralinea=0;
 
 
@@ -29,7 +29,8 @@ Arbol::CargaTotal(char ruta[]){
                         capa=atoi(dato.c_str());
                     }
                     else{
-                        archivoCapa=dato.c_str();
+                        dato.copy(archivoCapa, dato.size() + 1);
+                        archivoCapa[dato.size()] = '\0';
                     }
                 }
 

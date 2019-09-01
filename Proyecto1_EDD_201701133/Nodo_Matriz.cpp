@@ -9,6 +9,31 @@ Nodo_Matriz::Nodo_Matriz(int z,std::string NombreDoc){
     this->NombreDocumento=NombreDoc;
 }
 
+Nodo_Matriz::CargaColores(char ruta[]){
+    int x=0;
+    int y=0;
+    std::fstream archivo(ruta);
+    if(archivo.fail()){
+        printf("El archivo el archivo de colores no se logro abrir \n");
+    }else{
+        printf("El archivo el archivo de colores se abrio Correctamente \n");
+        for (std::string linea; std::getline(archivo, linea); )
+        {
+            std::stringstream registro(linea);
+            for (std::string dato; std::getline(registro, dato, ';'); )
+            {
+                if(dato!="x" && dato!="X"){
+                    InsertarCodigo(x,y,dato);
+                }
+
+                x+=1;
+            }
+            y+=1;
+            x=0;
+        }
+    }
+}
+
 Nodo_Matriz::mostrartodo(){
     Nodo_Color* tem=inicio;
     Nodo_Color* tem2=0;
