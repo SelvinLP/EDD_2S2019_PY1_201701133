@@ -15,8 +15,10 @@ Nodo_Matriz::CargaColores(char ruta[]){
     std::fstream archivo(ruta);
     if(archivo.fail()){
         printf("El archivo el archivo de colores no se logro abrir \n");
+        printf(ruta);
     }else{
         printf("El archivo el archivo de colores se abrio Correctamente \n");
+        printf(ruta);
         for (std::string linea; std::getline(archivo, linea); )
         {
             std::stringstream registro(linea);
@@ -24,6 +26,7 @@ Nodo_Matriz::CargaColores(char ruta[]){
             {
                 if(dato!="x" && dato!="X"){
                     InsertarCodigo(x,y,dato);
+                    printf("Inserta %d\n",x);
                 }
 
                 x+=1;
@@ -34,7 +37,79 @@ Nodo_Matriz::CargaColores(char ruta[]){
     }
 }
 
-Nodo_Matriz::mostrartodo(){
+Nodo_Matriz::GraficarMatriz(){
+    std::ofstream file;
+    file.open("Grafica.dot");
+    Nodo_Color* tem=inicio;
+    Nodo_Color* tem2=0;
+    int a=1;
+    int grup=1;
+
+    std::string CadenaImprimir= "digraph Grafica { \n";
+    CadenaImprimir += "size=\"9,9\" \n";
+    CadenaImprimir += "node[shape=record,style=filled] \n" ;
+    //creacion de nodos
+    while(tem !=0){
+        std::stringstream ss;
+        std::string stconver;
+        ss.str(std::string());
+        ss.clear();
+        ss<<grup;
+        ss>>stconver;
+
+        tem2=tem;
+        CadenaImprimir +=  "\""+ tem->Color+"\"" +"[label ="+"\""+"{";
+        CadenaImprimir +=  tem->Color+ "}\",group = "+stconver+"] \n" ;
+        tem2=tem2->abajo;
+        while(tem2!=0){
+            CadenaImprimir +=  "\""+ tem2->Color+"\"" +"[label ="+"\""+"{";
+            CadenaImprimir +=  tem2->Color+ "}\" ,group = "+stconver+" ] \n" ;
+            tem2=tem2->abajo;
+        }
+        grup+=1;
+        tem=tem->siguiente;
+    }
+    //cracion de relaciones
+    tem=inicio;
+    while(tem!=0){
+        tem2=tem;
+        CadenaImprimir+="{rank = same;";
+        while(tem2!=0){
+            CadenaImprimir+="\""+ tem2->Color+"\";";
+            tem2=tem2->siguiente;
+        }
+        CadenaImprimir+="}\n";
+        tem=tem->abajo;
+    }
+    //fon de posicionamiento
+    tem=inicio;
+    while(tem !=0){
+        tem2=tem;
+        while(tem2!=0){
+            if(tem2->abajo!=0){
+                CadenaImprimir+="\""+ tem2->Color+"\" -> \""+ tem2->abajo->Color+"\""+"\n";
+                CadenaImprimir+="\""+ tem2->Color+"\" -> \""+ tem2->abajo->Color+"\""+"[dir=back]\n";
+            }
+            if(tem2->siguiente!=0){
+                CadenaImprimir+="\""+ tem2->Color+"\" -> \""+ tem2->siguiente->Color+"\""+"\n";
+                CadenaImprimir+="\""+ tem2->Color+"\" -> \""+ tem2->siguiente->Color+"\""+"[dir=back]\n";
+            }
+
+            tem2=tem2->abajo;
+
+        }
+        tem=tem->siguiente;
+    }
+
+
+    CadenaImprimir+="}";
+    file<<CadenaImprimir;
+    file.close();
+    system("dot -Tpng Grafica.dot -o  Grafica.png");
+    system("Start Grafica.png");
+}
+
+Nodo_Matriz::mostrartodox(){
     Nodo_Color* tem=inicio;
     Nodo_Color* tem2=0;
     tem=tem->siguiente;
@@ -90,10 +165,17 @@ Nodo_Matriz::BuscarY(int y){
 }
 
 Nodo_Matriz::CrearColumnaX(int x){
+    std::stringstream ss;
+    std::string stconver;
+    ss.str(std::string());
+    ss.clear();
+    ss<<x;
+    ss>>stconver;
+
     Nodo_Color *RaizColumnaX=inicio;
     Nodo_Color *tem=inicio;
     Nodo_Color *fin=0;
-    Nodo_Color *nuevo=new Nodo_Color(x,-1,"COLUMNA");
+    Nodo_Color *nuevo=new Nodo_Color(x,-1,("COLUMNA: "+stconver));
     bool bandera=false;
     while(RaizColumnaX!=0){
         if(RaizColumnaX->X > x){
@@ -111,6 +193,7 @@ Nodo_Matriz::CrearColumnaX(int x){
         tem->anterior->siguiente=nuevo;
         nuevo->anterior=tem->anterior;
         tem->anterior=nuevo;
+        bandera=false;
     }else{
         fin->siguiente=nuevo;
         nuevo->anterior=fin;
@@ -118,10 +201,17 @@ Nodo_Matriz::CrearColumnaX(int x){
 }
 
 Nodo_Matriz::CrearFilaY(int y){
+    std::stringstream ss;
+    std::string stconver;
+    ss.str(std::string());
+    ss.clear();
+    ss<<y;
+    ss>>stconver;
+
     Nodo_Color* RaizFilaY=inicio;
     Nodo_Color* tem=inicio;
     Nodo_Color* fin=0;
-    Nodo_Color* nuevo=new Nodo_Color(-1,y,"FILA");
+    Nodo_Color* nuevo=new Nodo_Color(-1,y,("Fila: "+stconver));
     bool bandera=false;
     while(RaizFilaY!=0){
         if(RaizFilaY->Y > y){
@@ -202,6 +292,7 @@ Nodo_Matriz::InsertarY(Nodo_Color* nuevo){
         tem->anterior->siguiente=nuevo;
         nuevo->anterior=tem->anterior;
         tem->anterior=nuevo;
+        bandera=false;
     }else{
         fin->siguiente=nuevo;
         nuevo->anterior=fin;

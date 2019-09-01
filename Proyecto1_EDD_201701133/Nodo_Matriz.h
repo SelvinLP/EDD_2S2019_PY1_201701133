@@ -30,8 +30,9 @@ class Nodo_Matriz
         InsertarY(Nodo_Color* nuevo);
         InsertarCodigo(int x,int y,std::string color);
         CargaColores(char ruta[]);
+        GraficarMatriz();
 
-        mostrartodo();
+        mostrartodox();
         mostrartodoy();
 
 

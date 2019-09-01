@@ -15,8 +15,13 @@ Lista_Matrices::MostrarlistadeNodos(){
     }
 }
 Lista_Matrices::InsertarMatrizOrdenado(int z,char NombreDoc []){
+    //creacion de Matriz y envio de datos
     Nodo_Matriz *nuevo=new Nodo_Matriz(z,NombreDoc);
     nuevo->CargaColores(NombreDoc);
+    //nuevo->GraficarMatriz();
+    nuevo->mostrartodox();
+    //creacion de nuevo nodo
+
     Nodo_Matriz *tem=inicio;
     Nodo_Matriz *tem2=inicio;
     bool bandera=false;

@@ -38,9 +38,10 @@ Arbol::CargaTotal(char ruta[]){
             //iteracion para que no tome en cuenta la primera linea
             primeralinea+=1;
             //if para ver si es el archivo de configuracion o no
-            if(capa==0){
+            if(capa==0||capa==-1){
                 //archivo de configuracion
             }else{
+
                 Lista_M->InsertarMatrizOrdenado(capa,archivoCapa);
             }
             //reinicia el contador de capa
