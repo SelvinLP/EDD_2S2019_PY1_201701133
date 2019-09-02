@@ -9,7 +9,7 @@ Lista_Matriz::Lista_Matriz()
 
 Lista_Matriz::InsertarMatrizOrdenado(int z,char NombreDoc []){
     std::string cad="";
-    Nodo_Matriz nuevo=new Nodo_Matriz(z,NombreDoc);
+    Nodo_Matriz *nuevo=new Nodo_Matriz(z,NombreDoc);
     nuevo->CargarColor(NombreDoc);
 
     Nodo_Matriz *tem=inicio;
