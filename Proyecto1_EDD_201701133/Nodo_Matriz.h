@@ -3,42 +3,43 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <cstdlib>
-#include <Nodo_Color.h>
+#include <stdlib.h>
 
+class Nodo_Color{
+    public:
+        int X;//eje x
+        int Y;//eje y
+        std::string Color;
+        Nodo_Color* siguiente;
+        Nodo_Color* anterior;
+        Nodo_Color* arriba;
+        Nodo_Color* abajo;
+        Nodo_Color(int x, int y, std::string color): Color(color),Y(y),X(x),siguiente(0),anterior(0),arriba(0),abajo(0){}
+};
 class Nodo_Matriz
 {
     public:
-        //para cada nodo de color
-        Nodo_Color *inicio;
-
-        //para la lista de matrices
+        //para el cubo
         int Z;
         std::string NombreDocumento;
         Nodo_Matriz *siguiente;
         Nodo_Matriz *anterior;
-
-
-
+        //datos de Nodo
+        Nodo_Color* inicio;
         Nodo_Matriz(int z,std::string NombreDoc);
 
-        int BuscarX(int x);
-        int BuscarY(int y);
-        CrearColumnaX(int x);
-        CrearFilaY(int y);
-        InsertarX(Nodo_Color* nuevo);
-        InsertarY(Nodo_Color* nuevo);
-        InsertarCodigo(int x,int y,std::string color);
-        CargaColores(char ruta[]);
+        MostrarTodo();
+        CargarColor(char ruta[]);
         GraficarMatriz();
 
-        mostrartodox();
-        mostrartodoy();
+        int BuscarY (int valory);
+        int BuscarX (int valorx);
+        CrearFilaY (int valory);
+        CrearColumnaX (int valorx);
+        InsertarenX(Nodo_Color* nuevo);
+        InsertarenY(Nodo_Color* nuevo);
 
-
-
-
-
+        InsertarColor(int y,int x, std::string color);
 
         virtual ~Nodo_Matriz();
 

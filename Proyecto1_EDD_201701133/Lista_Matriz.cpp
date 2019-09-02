@@ -1,26 +1,16 @@
-#include "Lista_Matrices.h"
-#include <string>
-#include <stdio.h>
-Lista_Matrices::Lista_Matrices()
+#include "Lista_Matriz.h"
+
+Lista_Matriz::Lista_Matriz()
 {
-    inicio=0;
-    fin=0;
+    this->fin=0;
+    this->inicio=0;
 }
 
-Lista_Matrices::MostrarlistadeNodos(){
-    Nodo_Matriz *tem=inicio;
-    while(tem!=0){
-        printf("Descripcion: %s\n",tem->NombreDocumento.c_str());
-        printf("Profundidad:  %d\n",tem->Z);
-    }
-}
-Lista_Matrices::InsertarMatrizOrdenado(int z,char NombreDoc []){
-    //creacion de Matriz y envio de datos
-    Nodo_Matriz *nuevo=new Nodo_Matriz(z,NombreDoc);
-    nuevo->CargaColores(NombreDoc);
-    //nuevo->GraficarMatriz();
-    nuevo->mostrartodox();
-    //creacion de nuevo nodo
+
+Lista_Matriz::InsertarMatrizOrdenado(int z,char NombreDoc []){
+    std::string cad="";
+    Nodo_Matriz nuevo=new Nodo_Matriz(z,NombreDoc);
+    nuevo->CargarColor(NombreDoc);
 
     Nodo_Matriz *tem=inicio;
     Nodo_Matriz *tem2=inicio;
@@ -55,7 +45,7 @@ Lista_Matrices::InsertarMatrizOrdenado(int z,char NombreDoc []){
 
 
 
-Lista_Matrices::~Lista_Matrices()
+Lista_Matriz::~Lista_Matriz()
 {
     //dtor
 }

@@ -34,12 +34,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Arbol.cpp" />
-		<Unit filename="Arbol.h" />
-		<Unit filename="Lista_Matrices.cpp" />
-		<Unit filename="Lista_Matrices.h" />
-		<Unit filename="Nodo_Color.cpp" />
-		<Unit filename="Nodo_Color.h" />
+		<Unit filename="Lista_Matriz.cpp" />
+		<Unit filename="Lista_Matriz.h" />
 		<Unit filename="Nodo_Matriz.cpp" />
 		<Unit filename="Nodo_Matriz.h" />
 		<Unit filename="main.cpp" />

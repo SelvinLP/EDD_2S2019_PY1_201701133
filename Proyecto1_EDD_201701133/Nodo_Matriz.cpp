@@ -1,42 +1,15 @@
 #include "Nodo_Matriz.h"
-#include <string>
-#include <stdio.h>
-Nodo_Matriz::Nodo_Matriz(int z,std::string NombreDoc){
+
+Nodo_Matriz::Nodo_Matriz(int z,std::string NombreDoc)
+{
+    //creacion de la raiz
     inicio=new Nodo_Color(-1,-1,"RAIZ");
-    this->siguiente=0;
-    this->anterior=0;
+    //para el cubo o lista
     this->Z=z;
     this->NombreDocumento=NombreDoc;
+    this->anterior=0;
+    this->siguiente=0;
 }
-
-Nodo_Matriz::CargaColores(char ruta[]){
-    int x=0;
-    int y=0;
-    std::fstream archivo(ruta);
-    if(archivo.fail()){
-        printf("El archivo el archivo de colores no se logro abrir \n");
-        printf(ruta);
-    }else{
-        printf("El archivo el archivo de colores se abrio Correctamente \n");
-        printf(ruta);
-        for (std::string linea; std::getline(archivo, linea); )
-        {
-            std::stringstream registro(linea);
-            for (std::string dato; std::getline(registro, dato, ';'); )
-            {
-                if(dato!="x" && dato!="X"){
-                    InsertarCodigo(x,y,dato);
-                    printf("Inserta %d\n",x);
-                }
-
-                x+=1;
-            }
-            y+=1;
-            x=0;
-        }
-    }
-}
-
 Nodo_Matriz::GraficarMatriz(){
     std::ofstream file;
     file.open("Grafica.dot");
@@ -56,6 +29,7 @@ Nodo_Matriz::GraficarMatriz(){
         ss.clear();
         ss<<grup;
         ss>>stconver;
+
 
         tem2=tem;
         CadenaImprimir +=  "\""+ tem->Color+"\"" +"[label ="+"\""+"{";
@@ -95,6 +69,7 @@ Nodo_Matriz::GraficarMatriz(){
                 CadenaImprimir+="\""+ tem2->Color+"\" -> \""+ tem2->siguiente->Color+"\""+"[dir=back]\n";
             }
 
+
             tem2=tem2->abajo;
 
         }
@@ -108,8 +83,31 @@ Nodo_Matriz::GraficarMatriz(){
     system("dot -Tpng Grafica.dot -o  Grafica.png");
     system("Start Grafica.png");
 }
+Nodo_Matriz::CargarColor(char ruta[]){
+    int x=1;
+    int y=1;
+    std::fstream archivo(ruta);
+    if(archivo.fail()){
+        printf("Archivo Color No Cargado");
+    }else{
+        printf("Archivo Color Cargado");
+        for (std::string linea; std::getline(archivo, linea); )
+        {
+            std::stringstream registro(linea);
+            for (std::string dato; std::getline(registro, dato, ';'); )
+            {
+                if(dato!="x" && dato!="X"){
+                    InsertarColor(x,y,dato);
+                }
 
-Nodo_Matriz::mostrartodox(){
+                x+=1;
+            }
+            y+=1;
+            x=1;
+        }
+    }
+}
+Nodo_Matriz::MostrarTodo(){
     Nodo_Color* tem=inicio;
     Nodo_Color* tem2=0;
     tem=tem->siguiente;
@@ -124,105 +122,120 @@ Nodo_Matriz::mostrartodox(){
         tem=tem->siguiente;
     }
 }
-Nodo_Matriz::mostrartodoy(){
+Nodo_Matriz::BuscarY(int valory){
     Nodo_Color* tem=inicio;
-    Nodo_Color* tem2=0;
-    tem=tem->abajo;
     while(tem !=0){
-        tem2=tem;
-        while(tem2!=0){
-            printf("Descripcion: %s\n",tem2->Color.c_str());
-            printf("Fila %d\n",tem2->Y);
-            printf("Columna %d\n",tem2->X);
-            tem2=tem2->siguiente;
+        if(tem->Y==valory){
+            return 1;
         }
         tem=tem->abajo;
     }
+    return 0;
 }
-
-
-
-Nodo_Matriz::BuscarX(int x){
+Nodo_Matriz::BuscarX(int valorx){
     Nodo_Color* tem=inicio;
     while(tem !=0){
-        if(tem->X==x){
+        if(tem->X==valorx){
             return 1;
         }
         tem=tem->siguiente;
     }
     return 0;
 }
-
-Nodo_Matriz::BuscarY(int y){
-    Nodo_Color* tem=inicio;
-    while(tem !=0){
-        if(tem->Y==y){
-            return 1;
-        }
-        tem=tem->abajo;
-    }
-    return 0;
-}
-
-Nodo_Matriz::CrearColumnaX(int x){
+Nodo_Matriz::CrearFilaY (int valory){
     std::stringstream ss;
     std::string stconver;
     ss.str(std::string());
     ss.clear();
-    ss<<x;
+    ss<<valory;
     ss>>stconver;
 
-    Nodo_Color *RaizColumnaX=inicio;
-    Nodo_Color *tem=inicio;
-    Nodo_Color *fin=0;
-    Nodo_Color *nuevo=new Nodo_Color(x,-1,("COLUMNA: "+stconver));
+    Nodo_Color* raizFila=inicio;
+    Nodo_Color* tem=inicio;
+    Nodo_Color* fin=0;
+    Nodo_Color* nuevo=new Nodo_Color(-1,valory,("Fila: "+stconver));
     bool bandera=false;
-    while(RaizColumnaX!=0){
-        if(RaizColumnaX->X > x){
+    while(raizFila!=0){
+        if(raizFila->Y>valory){
             bandera=true;
-            tem=RaizColumnaX;
+            tem=raizFila;
+            break;
         }
-        if(RaizColumnaX->siguiente==0){
-            fin=RaizColumnaX;
+        if(raizFila->abajo==0){
+            fin=raizFila;
         }
-        RaizColumnaX=RaizColumnaX->siguiente;
+        raizFila=raizFila->abajo;
     }
     if(bandera){
         //incertamos valores antes del temporal que es el encontrado
-        nuevo->siguiente=tem;
-        tem->anterior->siguiente=nuevo;
-        nuevo->anterior=tem->anterior;
-        tem->anterior=nuevo;
-        bandera=false;
+        nuevo->abajo=tem;
+        tem->arriba->abajo=nuevo;
+        nuevo->arriba=tem->arriba;
+        tem->arriba=nuevo;
     }else{
-        fin->siguiente=nuevo;
-        nuevo->anterior=fin;
+        fin->abajo=nuevo;
+        nuevo->arriba=fin;
     }
-}
 
-Nodo_Matriz::CrearFilaY(int y){
+}
+Nodo_Matriz::CrearColumnaX (int valorx){
     std::stringstream ss;
     std::string stconver;
     ss.str(std::string());
     ss.clear();
-    ss<<y;
+    ss<<valorx;
     ss>>stconver;
 
-    Nodo_Color* RaizFilaY=inicio;
+    Nodo_Color* raizColumna=inicio;
     Nodo_Color* tem=inicio;
     Nodo_Color* fin=0;
-    Nodo_Color* nuevo=new Nodo_Color(-1,y,("Fila: "+stconver));
+    Nodo_Color* nuevos=new Nodo_Color(valorx,-1,("COL: "+stconver));
     bool bandera=false;
-    while(RaizFilaY!=0){
-        if(RaizFilaY->Y > y){
+    while(raizColumna!=0){
+        if(raizColumna->X > valorx){
             bandera=true;
-            tem=RaizFilaY;
+            tem=raizColumna;
             break;
         }
-        if(RaizFilaY->abajo==0){
-            fin=RaizFilaY;
+        if(raizColumna->siguiente==0){
+            fin=raizColumna;
         }
-        RaizFilaY=RaizFilaY->abajo;
+        raizColumna=raizColumna->siguiente;
+    }
+    if(bandera){
+        //incertamos valores antes del temporal que es el encontrado
+        nuevos->siguiente=tem;
+        tem->anterior->siguiente=nuevos;
+        nuevos->anterior=tem->anterior;
+        tem->anterior=nuevos;
+        bandera=false;
+    }else{
+        fin->siguiente=nuevos;
+        nuevos->anterior=fin;
+    }
+
+}
+Nodo_Matriz::InsertarenX(Nodo_Color* nuevo){
+    bool bandera=false;
+    Nodo_Color* Cabeza=inicio;
+    Nodo_Color* tem=Cabeza;
+    Nodo_Color* fin=0;
+    while(Cabeza!=0){
+        if(Cabeza->X==nuevo->X){
+            if(Cabeza->Y>nuevo->Y){
+                bandera=true;
+                tem=Cabeza;
+                break;
+            }
+            if(Cabeza->abajo==0){
+                fin=Cabeza;
+            }
+            Cabeza=Cabeza->abajo;
+        }else{
+            Cabeza=Cabeza->siguiente;
+        }
+
+
     }
     if(bandera){
         //incertamos valores antes del temporal que es el encontrado
@@ -235,59 +248,30 @@ Nodo_Matriz::CrearFilaY(int y){
         nuevo->arriba=fin;
     }
 }
-
-Nodo_Matriz::InsertarX(Nodo_Color* nuevo){
-    Nodo_Color* RaizColumnaX=inicio;
-    Nodo_Color* tem2=inicio;
-    Nodo_Color* fin=0;
+Nodo_Matriz::InsertarenY(Nodo_Color* nuevo){
     bool bandera=false;
-    while(RaizColumnaX !=0){
-        if(RaizColumnaX->X==nuevo->X){
-            if(RaizColumnaX->Y > nuevo->Y){
+    Nodo_Color* Cabeza=inicio;
+    Nodo_Color* tem=Cabeza;
+    Nodo_Color* fin=0;
+    while(Cabeza!=0){
+        if(Cabeza->Y==nuevo->Y){
+            if(Cabeza->X>nuevo->X){
                 bandera=true;
-                tem2=RaizColumnaX;
+                tem=Cabeza;
                 break;
             }
-            if(RaizColumnaX->abajo==0){
-                fin=RaizColumnaX;
+            if(Cabeza->abajo==0){
+                fin=Cabeza;
             }
-            RaizColumnaX=RaizColumnaX->abajo;
+            Cabeza=Cabeza->siguiente;
         }else{
-            RaizColumnaX=RaizColumnaX->siguiente;
+            Cabeza=Cabeza->abajo;
         }
-    }
-    if(bandera){
-        nuevo->abajo=tem2;
-        tem2->arriba->abajo=nuevo;
-        nuevo->arriba=tem2->arriba;
-        tem2->arriba=nuevo;
-    }else{
-        fin->abajo=nuevo;
-        nuevo->arriba=fin;
-    }
 
-}
-Nodo_Matriz::InsertarY(Nodo_Color* nuevo){
-    Nodo_Color* RaizFilaY=inicio;
-    Nodo_Color* tem=inicio;
-    Nodo_Color* fin=0;
-    bool bandera=false;
-    while(RaizFilaY !=0){
-        if(RaizFilaY->Y==nuevo->Y){
-            if(RaizFilaY->X > nuevo->X){
-                bandera=true;
-                tem=RaizFilaY;
-                break;
-            }
-            if(RaizFilaY->siguiente==0){
-                fin=RaizFilaY;
-            }
-            RaizFilaY=RaizFilaY->siguiente;
-        }else{
-            RaizFilaY=RaizFilaY->abajo;
-        }
+
     }
     if(bandera){
+        //incertamos valores antes del temporal que es el encontrado
         nuevo->siguiente=tem;
         tem->anterior->siguiente=nuevo;
         nuevo->anterior=tem->anterior;
@@ -297,10 +281,9 @@ Nodo_Matriz::InsertarY(Nodo_Color* nuevo){
         fin->siguiente=nuevo;
         nuevo->anterior=fin;
     }
-
 }
-
-Nodo_Matriz::InsertarCodigo(int x,int y, std::string color){
+Nodo_Matriz::InsertarColor(int x,int y,std::string color){
+    //crecion de nuevo nodo con los datos
     Nodo_Color* nuevo=new Nodo_Color(x,y,color);
     int columna=BuscarX(x);
     int fila=BuscarY(y);
@@ -309,31 +292,36 @@ Nodo_Matriz::InsertarCodigo(int x,int y, std::string color){
     if(columna==0 && fila==0){
         CrearColumnaX(x);
         CrearFilaY(y);
-        InsertarX(nuevo);
-        InsertarY(nuevo);
+        InsertarenX(nuevo);
+        InsertarenY(nuevo);
     }else{
         if(columna!=0 && fila==0){
+            //segundo caso si columna existe
             CrearFilaY(y);
-            InsertarX(nuevo);
-            InsertarY(nuevo);
-        }else{
+            InsertarenX(nuevo);
+            InsertarenY(nuevo);
+
+        }
+        else{
             if(columna==0 && fila!=0){
+                //tercer caso si fila existe
                 CrearColumnaX(x);
-                InsertarX(nuevo);
-                InsertarY(nuevo);
+                InsertarenX(nuevo);
+                InsertarenY(nuevo);
+
             }else{
                 if(columna!=0 && fila!=0){
-                    InsertarX(nuevo);
-                    InsertarY(nuevo);
+                    //si los dos existen
+                    InsertarenX(nuevo);
+                    InsertarenY(nuevo);
+
                 }
             }
         }
     }
 }
 
-
-
-
+//no tocar
 Nodo_Matriz::~Nodo_Matriz()
 {
     //dtor

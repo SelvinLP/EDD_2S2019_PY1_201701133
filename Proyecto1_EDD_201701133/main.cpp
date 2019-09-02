@@ -4,28 +4,15 @@
 #include <fstream>
 #include <sstream>
 
-
-#include <Nodo_Matriz.h>
-#include<Lista_Matrices.h>
-#include<Arbol.h>
+#include<Nodo_Matriz.h>
 using namespace std;
 
 int main()
 {
     int ciclomenu=0;
     cout << "Proyecto 1 de estructura de datos 201701133" << endl;
-    Arbol *ArbolInicial=new Arbol();
     //temporal
-    //Nodo_Matriz *Matriz=new Nodo_Matriz(1,"hola");
-    //Matriz->InsertarCodigo(1,1,"si");
-    //Matriz->InsertarCodigo(1,3,"si3");
-    //Matriz->InsertarCodigo(1,2,"si2");
-    //Matriz->InsertarCodigo(2,3,"no3");
-    //Matriz->InsertarCodigo(5,1,"no");
-    //Matriz->InsertarCodigo(3,1,"no2");
-    //Matriz->mostrartodoy();
-    //Matriz->mostrartodo();
-    //fin temporal
+    //Nodo_Matriz* nuevo=new Nodo_Matriz();
     while(ciclomenu==0){
         cout << "################# MENU ##################" << endl;
         cout <<"    1.Insertar Imagen"<<endl;
@@ -42,7 +29,8 @@ int main()
             cout <<" Ingrese Nombre del Archivo "<<endl;
             char nombre[150];
             std::cin >> nombre;
-            ArbolInicial->CargaTotal(nombre);
+            //nuevo->CargarColor(nombre);
+            //nuevo->GraficarMatriz();
         }
         if(opcionmenu==7){
             ciclomenu=1;
