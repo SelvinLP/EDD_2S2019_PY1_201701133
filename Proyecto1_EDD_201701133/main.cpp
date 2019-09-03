@@ -4,7 +4,10 @@
 #include <fstream>
 #include <sstream>
 
-#include<Nodo_Matriz.h>
+#include<Lista_Matriz.h>
+#include<Arbol.h>
+
+
 using namespace std;
 
 int main()
@@ -12,7 +15,13 @@ int main()
     int ciclomenu=0;
     cout << "Proyecto 1 de estructura de datos 201701133" << endl;
     //temporal
-    //Nodo_Matriz* nuevo=new Nodo_Matriz();
+    Arbol*arbol=new Arbol();
+    //Lista_Matriz* lt=new Lista_Matriz();
+    //lt->InsertarMatrizOrdenado(2,"body.csv");
+    //lt->InsertarMatrizOrdenado(1,"hair.csv");
+    //lt->InsertarMatrizOrdenado(5,"shirt.csv");
+    //lt->InsertarMatrizOrdenado(3,"dungarees.csv");
+
     while(ciclomenu==0){
         cout << "################# MENU ##################" << endl;
         cout <<"    1.Insertar Imagen"<<endl;
@@ -29,8 +38,8 @@ int main()
             cout <<" Ingrese Nombre del Archivo "<<endl;
             char nombre[150];
             std::cin >> nombre;
-            //nuevo->CargarColor(nombre);
-            //nuevo->GraficarMatriz();
+            arbol->CargaTotal(nombre);
+
         }
         if(opcionmenu==7){
             ciclomenu=1;

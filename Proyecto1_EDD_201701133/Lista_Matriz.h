@@ -14,6 +14,7 @@ class Lista_Matriz
         Nodo_Matriz *fin;
         Lista_Matriz();
 
+        MostrarLista(int posz);
         InsertarMatrizOrdenado(int z,char NombreDoc[]);
 
 

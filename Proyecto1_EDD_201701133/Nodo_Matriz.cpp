@@ -3,7 +3,7 @@
 Nodo_Matriz::Nodo_Matriz(int z,std::string NombreDoc)
 {
     //creacion de la raiz
-    inicio=new Nodo_Color(-1,-1,"RAIZ");
+    this->inicio=new Nodo_Color(-1,-1,"RAIZ");
     //para el cubo o lista
     this->Z=z;
     this->NombreDocumento=NombreDoc;
@@ -29,14 +29,42 @@ Nodo_Matriz::GraficarMatriz(){
         ss.clear();
         ss<<grup;
         ss>>stconver;
-
+        //para x
+        std::stringstream ssx;
+        std::string stconverx;
+        ssx.str(std::string());
+        ssx.clear();
+        ssx<<tem->X;
+        ssx>>stconverx;
+        //para y
+        std::stringstream ssy;
+        std::string stconvery;
+        ssy.str(std::string());
+        ssy.clear();
+        ssy<<tem->Y;
+        ssy>>stconvery;
 
         tem2=tem;
-        CadenaImprimir +=  "\""+ tem->Color+"\"" +"[label ="+"\""+"{";
+        CadenaImprimir +=  "\""+ tem->Color+stconverx+stconvery+"\"" +"[label ="+"\""+"{";
         CadenaImprimir +=  tem->Color+ "}\",group = "+stconver+"] \n" ;
         tem2=tem2->abajo;
         while(tem2!=0){
-            CadenaImprimir +=  "\""+ tem2->Color+"\"" +"[label ="+"\""+"{";
+            //para x
+            std::stringstream ssx;
+            std::string stconverx;
+            ssx.str(std::string());
+            ssx.clear();
+            ssx<<tem2->X;
+            ssx>>stconverx;
+            //para y
+            std::stringstream ssy;
+            std::string stconvery;
+            ssy.str(std::string());
+            ssy.clear();
+            ssy<<tem2->Y;
+            ssy>>stconvery;
+
+            CadenaImprimir +=  "\""+ tem2->Color+stconverx+stconvery+"\"" +"[label ="+"\""+"{";
             CadenaImprimir +=  tem2->Color+ "}\" ,group = "+stconver+" ] \n" ;
             tem2=tem2->abajo;
         }
@@ -49,7 +77,22 @@ Nodo_Matriz::GraficarMatriz(){
         tem2=tem;
         CadenaImprimir+="{rank = same;";
         while(tem2!=0){
-            CadenaImprimir+="\""+ tem2->Color+"\";";
+            //para x
+            std::stringstream ssx;
+            std::string stconverx;
+            ssx.str(std::string());
+            ssx.clear();
+            ssx<<tem2->X;
+            ssx>>stconverx;
+            //para y
+            std::stringstream ssy;
+            std::string stconvery;
+            ssy.str(std::string());
+            ssy.clear();
+            ssy<<tem2->Y;
+            ssy>>stconvery;
+
+            CadenaImprimir+="\""+ tem2->Color+stconverx+stconvery+"\";";
             tem2=tem2->siguiente;
         }
         CadenaImprimir+="}\n";
@@ -60,13 +103,57 @@ Nodo_Matriz::GraficarMatriz(){
     while(tem !=0){
         tem2=tem;
         while(tem2!=0){
+            //para x
+            std::stringstream ssx;
+            std::string stconverx;
+            ssx.str(std::string());
+            ssx.clear();
+            ssx<<tem2->X;
+            ssx>>stconverx;
+            //para y
+            std::stringstream ssy;
+            std::string stconvery;
+            ssy.str(std::string());
+            ssy.clear();
+            ssy<<tem2->Y;
+            ssy>>stconvery;
+
             if(tem2->abajo!=0){
-                CadenaImprimir+="\""+ tem2->Color+"\" -> \""+ tem2->abajo->Color+"\""+"\n";
-                CadenaImprimir+="\""+ tem2->Color+"\" -> \""+ tem2->abajo->Color+"\""+"[dir=back]\n";
+                //para x
+                std::stringstream ssx2;
+                std::string stconverx2;
+                ssx2.str(std::string());
+                ssx2.clear();
+                ssx2<<tem2->abajo->X;
+                ssx2>>stconverx2;
+                //para y
+                std::stringstream ssy2;
+                std::string stconvery2;
+                ssy2.str(std::string());
+                ssy2.clear();
+                ssy2<<tem2->abajo->Y;
+                ssy2>>stconvery2;
+
+                CadenaImprimir+="\""+ tem2->Color+stconverx+stconvery+"\" -> \""+ tem2->abajo->Color+stconverx2+stconvery2+"\""+"\n";
+                CadenaImprimir+="\""+ tem2->Color+stconverx+stconvery+"\" -> \""+ tem2->abajo->Color+stconverx2+stconvery2+"\""+"[dir=back]\n";
             }
             if(tem2->siguiente!=0){
-                CadenaImprimir+="\""+ tem2->Color+"\" -> \""+ tem2->siguiente->Color+"\""+"\n";
-                CadenaImprimir+="\""+ tem2->Color+"\" -> \""+ tem2->siguiente->Color+"\""+"[dir=back]\n";
+                //para x
+                std::stringstream ssx2;
+                std::string stconverx2;
+                ssx2.str(std::string());
+                ssx2.clear();
+                ssx2<<tem2->siguiente->X;
+                ssx2>>stconverx2;
+                //para y
+                std::stringstream ssy2;
+                std::string stconvery2;
+                ssy2.str(std::string());
+                ssy2.clear();
+                ssy2<<tem2->siguiente->Y;
+                ssy2>>stconvery2;
+                CadenaImprimir+="\""+ tem2->Color+stconverx+stconvery+"\" -> \""+ tem2->siguiente->Color+stconverx2+stconvery2+"\""+"\n";
+                CadenaImprimir+="\""+ tem2->Color+stconverx+stconvery+"\" -> \""+ tem2->siguiente->Color+stconverx2+stconvery2+"\""+"[dir=back]\n";
             }
 
 
