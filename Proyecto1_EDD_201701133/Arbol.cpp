@@ -2,10 +2,45 @@
 
 Arbol::Arbol()
 {
-    //ctor
+    this->Raiz=0;
+}
+Arbol::valor(char ruta[]){
+    std::string abc[27]={"a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"};
+    std::string abc2[27]={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+    int pos=0;
+    while(pos!=27){
+        //printf("Numero: %s\n",abc[pos].c_str());
+        if(abc[pos]==ruta){
+            return pos;
+            break;
+        }else{
+            if(abc2[pos]==ruta){
+                return pos;
+                break;
+            }
+        }
+        pos+=1;
+    }
+    return -1;
+}
+Arbol::InsertarCubo(char ruta[]){
+    Lista_Matriz* Inicio=Raiz;
+    Lista_Matriz *Lista_M=new Lista_Matriz(ruta);
+    int posicion=0;
+    if(Inicio==0){
+        Raiz=Lista_M;
+    }else{
+       // while(Inicio!=0){
+         //   char s[1]=Inicio->NombreCubo;
+           // int Padre=valor(Inicio->NombreCubo.front());
+           // if(){
+
+          //  }
+        //}
+    }
 }
 Arbol::CargaTotal(char ruta[]){
-    Lista_Matriz *Lista_M=new Lista_Matriz();
+    Lista_Matriz *Lista_M=new Lista_Matriz(ruta);
     int capa=-1;
     char archivoCapa[150];
     int primeralinea=0;

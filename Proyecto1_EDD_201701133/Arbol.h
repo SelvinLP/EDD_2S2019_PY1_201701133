@@ -9,8 +9,12 @@
 class Arbol
 {
     public:
+        //raiz del arbol
+        Lista_Matriz* Raiz;
+        int valor(char ruta[]);
         Arbol();
 
+        InsertarCubo(char ruta[]);
         CargaTotal(char ruta[]);
 
         virtual ~Arbol();

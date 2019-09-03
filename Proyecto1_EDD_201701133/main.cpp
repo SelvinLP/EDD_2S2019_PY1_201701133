@@ -16,6 +16,7 @@ int main()
     cout << "Proyecto 1 de estructura de datos 201701133" << endl;
     //temporal
     Arbol*arbol=new Arbol();
+    int a=arbol->valor("2");
     //Lista_Matriz* lt=new Lista_Matriz();
     //lt->InsertarMatrizOrdenado(2,"body.csv");
     //lt->InsertarMatrizOrdenado(1,"hair.csv");
@@ -38,7 +39,7 @@ int main()
             cout <<" Ingrese Nombre del Archivo "<<endl;
             char nombre[150];
             std::cin >> nombre;
-            arbol->CargaTotal(nombre);
+            //arbol->CargaTotal(nombre);
 
         }
         if(opcionmenu==7){

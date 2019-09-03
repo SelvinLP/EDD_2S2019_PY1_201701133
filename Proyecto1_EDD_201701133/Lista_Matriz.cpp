@@ -1,7 +1,12 @@
 #include "Lista_Matriz.h"
 
-Lista_Matriz::Lista_Matriz()
+Lista_Matriz::Lista_Matriz(char nombreC[])
 {
+    //para el arbol
+    this->NombreCubo=nombreC;
+    this->izquierda=0;
+    this->derecha=0;
+    //para el nodo
     this->inicio=new Nodo_Matriz(-1,"INICIO");
 }
 

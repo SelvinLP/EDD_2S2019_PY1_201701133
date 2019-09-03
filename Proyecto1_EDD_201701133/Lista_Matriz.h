@@ -10,9 +10,13 @@
 class Lista_Matriz
 {
     public:
+        //apuntadores para arbol
+        std::string NombreCubo;
+        Lista_Matriz* izquierda;
+        Lista_Matriz* derecha;
+        //apuntadores de la lista
         Nodo_Matriz *inicio;
-        Nodo_Matriz *fin;
-        Lista_Matriz();
+        Lista_Matriz(char nombreC[]);
 
         MostrarLista(int posz);
         InsertarMatrizOrdenado(int z,char NombreDoc[]);
