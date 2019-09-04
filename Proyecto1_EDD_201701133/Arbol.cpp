@@ -4,39 +4,63 @@ Arbol::Arbol()
 {
     this->Raiz=0;
 }
-Arbol::valor(char ruta[]){
-    std::string abc[27]={"a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"};
-    std::string abc2[27]={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
-    int pos=0;
-    while(pos!=27){
-        //printf("Numero: %s\n",abc[pos].c_str());
-        if(abc[pos]==ruta){
-            return pos;
-            break;
-        }else{
-            if(abc2[pos]==ruta){
-                return pos;
-                break;
-            }
-        }
-        pos+=1;
+//empiza metodos para raficar
+Arbol::GraficaInorden(){
+    std::ofstream file;
+    file.open("GraficaArbolINORDEN.dot");
+    Lista_Matriz* tem=Raiz;
+    Lista_Matriz* tem2=0;
+
+    std::string CadenaImprimir= "digraph GraficaINORDEN { \n";
+    CadenaImprimir += "size=\"9,9\" \n";
+    CadenaImprimir += "rankdir=LR \n" ;
+    CadenaImprimir += "node[shape=circle,style=filled] \n" ;
+    //creacion de nodos
+
+
+    CadenaImprimir+="}";
+    file<<CadenaImprimir;
+    file.close();
+    system("dot -Tpng GraficaArbolINORDEN.dot -o  GraficaArbolINORDEN.png");
+    system("Start GraficaArbolINORDEN.png");
+}
+
+
+//termina metodos para graficar
+Arbol::MostrarInorden(Lista_Matriz* lt){
+    if(lt==0){
+        //no imprime nada
+    }else{
+        MostrarInorden(lt->izquierda);
+        printf("Img: %s\n",lt->NombreCubo.c_str());
+        MostrarInorden(lt->derecha);
     }
-    return -1;
 }
 Arbol::InsertarCubo(char ruta[]){
-    Lista_Matriz* Inicio=Raiz;
-    Lista_Matriz *Lista_M=new Lista_Matriz(ruta);
-    int posicion=0;
-    if(Inicio==0){
-        Raiz=Lista_M;
+    Lista_Matriz *nuevo=new Lista_Matriz(ruta);
+    Lista_Matriz *tem=Raiz;
+    if(Raiz==0){
+        Raiz=nuevo;
     }else{
-       // while(Inicio!=0){
-         //   char s[1]=Inicio->NombreCubo;
-           // int Padre=valor(Inicio->NombreCubo.front());
-           // if(){
+        while(tem!=0){
+            if(tem->NombreCubo.compare(ruta)>0){
+                //inserta lado izquierdo
+                if(tem->izquierda==0){
+                    tem->izquierda=nuevo;
+                    break;
+                }
 
-          //  }
-        //}
+                tem=tem->izquierda;
+            }else{
+                //inserta lado derecho
+                if(tem->derecha==0){
+                    tem->derecha=nuevo;
+                    break;
+                }
+                tem=tem->derecha;
+            }
+        }
+
     }
 }
 Arbol::CargaTotal(char ruta[]){

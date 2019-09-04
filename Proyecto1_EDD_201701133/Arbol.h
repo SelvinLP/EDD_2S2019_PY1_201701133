@@ -11,8 +11,13 @@ class Arbol
     public:
         //raiz del arbol
         Lista_Matriz* Raiz;
-        int valor(char ruta[]);
         Arbol();
+
+        MostrarInorden(Lista_Matriz* lt);
+
+        GraficaInorden();
+        GraficaPsorden();
+        GraficaProrden();
 
         InsertarCubo(char ruta[]);
         CargaTotal(char ruta[]);
