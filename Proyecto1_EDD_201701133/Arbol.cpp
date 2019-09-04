@@ -9,23 +9,118 @@ Arbol::GraficaInorden(){
     std::ofstream file;
     file.open("GraficaArbolINORDEN.dot");
     Lista_Matriz* tem=Raiz;
-    Lista_Matriz* tem2=0;
 
-    std::string CadenaImprimir= "digraph GraficaINORDEN { \n";
-    CadenaImprimir += "size=\"9,9\" \n";
-    CadenaImprimir += "rankdir=LR \n" ;
-    CadenaImprimir += "node[shape=circle,style=filled] \n" ;
+    //datos de grafica
+    CadenaGRAFICA = "digraph GraficaINORDEN { \n";
+    CadenaGRAFICA += "size=\"9,9\" \n";
+    CadenaGRAFICA += "rankdir=LR \n" ;
+    CadenaGRAFICA += "node[shape=circle,style=filled]\n" ;
     //creacion de nodos
+    Nomb.clear();
+    DatosGraficaI(Raiz);
+    //creacion de relaciones
+    for(int i=0;i<Nomb.size();i++){
 
-
-    CadenaImprimir+="}";
-    file<<CadenaImprimir;
+        if(i+1<Nomb.size()){
+            CadenaGRAFICA+="\""+Nomb[i]+"\"->";
+        }
+    }
+    CadenaGRAFICA+="\""+Nomb[Nomb.size()-1]+"\"";
+    CadenaGRAFICA+="}";
+    file<<CadenaGRAFICA;
     file.close();
     system("dot -Tpng GraficaArbolINORDEN.dot -o  GraficaArbolINORDEN.png");
     system("Start GraficaArbolINORDEN.png");
 }
+Arbol::DatosGraficaI(Lista_Matriz* lt){
+    if(lt==0){
+        //no imprime nada
+    }else{
+        DatosGraficaI(lt->izquierda);
 
+        CadenaGRAFICA += "\""+ lt->NombreCubo+"\"" +"[label ="+"\""+lt->NombreCubo+ "\"] \n" ;
+        Nomb.push_back(lt->NombreCubo);
+        DatosGraficaI(lt->derecha);
+    }
 
+}
+Arbol::GraficaPsorden(){
+    std::ofstream file;
+    file.open("GraficaArbolPOSORDEN.dot");
+    Lista_Matriz* tem=Raiz;
+
+    //datos de grafica
+    CadenaGRAFICA = "digraph GraficaPOSORDEN { \n";
+    CadenaGRAFICA += "size=\"9,9\" \n";
+    CadenaGRAFICA += "rankdir=LR \n" ;
+    CadenaGRAFICA += "node[shape=circle,style=filled]\n" ;
+    //creacion de nodos
+    Nomb.clear();
+    DatosGraficaPOS(Raiz);
+    //creacion de relaciones
+    for(int i=0;i<Nomb.size();i++){
+
+        if(i+1<Nomb.size()){
+            CadenaGRAFICA+="\""+Nomb[i]+"\"->";
+        }
+    }
+    CadenaGRAFICA+="\""+Nomb[Nomb.size()-1]+"\"";
+    CadenaGRAFICA+="}";
+    file<<CadenaGRAFICA;
+    file.close();
+    system("dot -Tpng GraficaArbolPOSORDEN.dot -o  GraficaArbolPOSORDEN.png");
+    system("Start GraficaArbolPOSORDEN.png");
+}
+Arbol::DatosGraficaPOS(Lista_Matriz* lt){
+    if(lt==0){
+        //no imprime nada
+    }else{
+        DatosGraficaPOS(lt->izquierda);
+        DatosGraficaPOS(lt->derecha);
+        CadenaGRAFICA += "\""+ lt->NombreCubo+"\"" +"[label ="+"\""+lt->NombreCubo+ "\"] \n" ;
+        Nomb.push_back(lt->NombreCubo);
+
+    }
+
+}
+Arbol::GraficaProrden(){
+    std::ofstream file;
+    file.open("GraficaArbolPREORDEN.dot");
+    Lista_Matriz* tem=Raiz;
+
+    //datos de grafica
+    CadenaGRAFICA = "digraph GraficaPRESORDEN { \n";
+    CadenaGRAFICA += "size=\"9,9\" \n";
+    CadenaGRAFICA += "rankdir=LR \n" ;
+    CadenaGRAFICA += "node[shape=circle,style=filled]\n" ;
+    //creacion de nodos
+    Nomb.clear();
+    DatosGraficaPRE(Raiz);
+    //creacion de relaciones
+    for(int i=0;i<Nomb.size();i++){
+
+        if(i+1<Nomb.size()){
+            CadenaGRAFICA+="\""+Nomb[i]+"\"->";
+        }
+    }
+    CadenaGRAFICA+="\""+Nomb[Nomb.size()-1]+"\"";
+    CadenaGRAFICA+="}";
+    file<<CadenaGRAFICA;
+    file.close();
+    system("dot -Tpng GraficaArbolPREORDEN.dot -o  GraficaArbolPREORDEN.png");
+    system("Start GraficaArbolPREORDEN.png");
+}
+Arbol::DatosGraficaPRE(Lista_Matriz* lt){
+    if(lt==0){
+        //no imprime nada
+    }else{
+        CadenaGRAFICA += "\""+ lt->NombreCubo+"\"" +"[label ="+"\""+lt->NombreCubo+ "\"] \n" ;
+        Nomb.push_back(lt->NombreCubo);
+        DatosGraficaPRE(lt->izquierda);
+        DatosGraficaPRE(lt->derecha);
+
+    }
+}
 //termina metodos para graficar
 Arbol::MostrarInorden(Lista_Matriz* lt){
     if(lt==0){

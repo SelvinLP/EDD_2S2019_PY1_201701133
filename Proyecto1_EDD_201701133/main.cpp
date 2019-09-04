@@ -21,11 +21,11 @@ int main()
     //lt->InsertarMatrizOrdenado(1,"hair.csv");
     //lt->InsertarMatrizOrdenado(5,"shirt.csv");
     //lt->InsertarMatrizOrdenado(3,"dungarees.csv");
-    //arbol->MostrarInorden(arbol->Raiz);
     arbol->InsertarCubo("S");
     arbol->InsertarCubo("A");
     arbol->InsertarCubo("B");
     arbol->InsertarCubo("Z");
+
     while(ciclomenu==0){
         cout << "################# MENU ##################" << endl;
         cout <<"    1.Insertar Imagen"<<endl;
@@ -51,34 +51,31 @@ int main()
             arbol->MostrarInorden(arbol->Raiz);
             cout <<" Seleccione una imagen "<<endl;
             char seleccionado;
-            cin>>seleccionado;
+            std::cin>>seleccionado;
         }
-        if(opcionmenu==3){
+        if(opcionmenu==6){
             cout <<"    1.Imported Imagen Report"<<endl;
             cout <<"    2.Image Layer Report"<<endl;
             cout <<"    3.Liner Matriz Report"<<endl;
             cout <<"    4.Traversal Report"<<endl;
             cout <<"    5.Filter Report"<<endl;
             int opcionmenu2;
-            cin>>opcionmenu2;
+            std::cin>>opcionmenu2;
             if(opcionmenu2==4){
-                int menuopc=0;
-                system("cls");
-                while(menuopc!=4){
-                    cout <<"    1.Inorden Traversal"<<endl;
-                    cout <<"    2.Preorden Traversal"<<endl;
-                    cout <<"    3.Postorden Traversal"<<endl;
-                    cout <<"    4.Salir"<<endl;
-                    cin>>menuopc;
-                    if(menuopc==1){
-
-                    }
-                    if(menuopc==2){
-
-                    }
-                    if(menuopc==3){
-
-                    }
+                cout <<"    1.Inorden Traversal"<<endl;
+                cout <<"    2.Preorden Traversal"<<endl;
+                cout <<"    3.Postorden Traversal"<<endl;
+                cout <<"    4.Salir"<<endl;
+                int menuopc;
+                std::cin>>menuopc;
+                if(menuopc==1){
+                    arbol->GraficaInorden();
+                }
+                if(menuopc==2){
+                    arbol->GraficaProrden();
+                }
+                if(menuopc==3){
+                    arbol->GraficaPsorden();
                 }
             }
         }
