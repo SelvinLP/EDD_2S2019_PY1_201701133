@@ -5,6 +5,43 @@ Arbol::Arbol()
     this->Raiz=0;
 }
 //empiza metodos para raficar
+Arbol::GraficarARBOL(){
+        std::ofstream file;
+    file.open("GraficaARBOL.dot");
+    Lista_Matriz* tem=Raiz;
+
+    //datos de grafica
+    CadenaGRAFICA = "digraph GraficaARBOL { \n";
+    CadenaGRAFICA += "size=\"9,9\" \n";
+    CadenaGRAFICA += "rankdir=TB \n" ;
+    CadenaGRAFICA += "node[shape=record,style=filled]\n" ;
+    //creacion de nodos
+    Nomb.clear();
+    DatosGraficaARBOL(Raiz);
+    //creacion de relaciones
+
+    CadenaGRAFICA+="}";
+    file<<CadenaGRAFICA;
+    file.close();
+    system("dot -Tpng GraficaARBOL.dot -o  GraficaARBOL.png");
+    system("Start GraficaARBOL.png");
+}
+Arbol::DatosGraficaARBOL(Lista_Matriz* lt){
+    if(lt->izquierda==0 && lt->derecha==0){
+        CadenaGRAFICA += "\""+ lt->NombreCubo+"\"" +"[label =\"<C0>|<C1>"+lt->NombreCubo+ "|<C2>\"]; \n" ;
+    }else{
+        CadenaGRAFICA += "\""+ lt->NombreCubo+"\"" +"[label =\"<C0>|<C1>"+lt->NombreCubo+ "|<C2>\"]; \n" ;
+    }
+    if(lt->izquierda!=0){
+        DatosGraficaARBOL(lt->izquierda);
+        CadenaGRAFICA += "\""+ lt->NombreCubo+"\":C0->"+"\""+lt->izquierda->NombreCubo+"\"; \n" ;
+    }
+    if(lt->derecha!=0){
+        DatosGraficaARBOL(lt->derecha);
+        CadenaGRAFICA += "\""+ lt->NombreCubo+"\":C2->"+"\""+lt->derecha->NombreCubo+"\"; \n" ;
+    }
+}
+
 Arbol::GraficaInorden(){
     std::ofstream file;
     file.open("GraficaArbolINORDEN.dot");
@@ -131,14 +168,19 @@ Arbol::MostrarInorden(Lista_Matriz* lt){
         MostrarInorden(lt->derecha);
     }
 }
-Arbol::InsertarCubo(char ruta[]){
-    Lista_Matriz *nuevo=new Lista_Matriz(ruta);
+Arbol::InsertarCubo(char Nombre[],char ruta[]){
+    Lista_Matriz *nuevo=new Lista_Matriz(Nombre);
+    char chartem[150];
+    strcpy(chartem,ruta);
+    CargaTotal(nuevo,strcat(strcat(chartem,Nombre),".csv"),ruta);
+
+
     Lista_Matriz *tem=Raiz;
     if(Raiz==0){
         Raiz=nuevo;
     }else{
         while(tem!=0){
-            if(tem->NombreCubo.compare(ruta)>0){
+            if(tem->NombreCubo.compare(Nombre)>0){
                 //inserta lado izquierdo
                 if(tem->izquierda==0){
                     tem->izquierda=nuevo;
@@ -158,14 +200,13 @@ Arbol::InsertarCubo(char ruta[]){
 
     }
 }
-Arbol::CargaTotal(char ruta[]){
-    Lista_Matriz *Lista_M=new Lista_Matriz(ruta);
+Arbol::CargaTotal(Lista_Matriz*nuevo,char rutaA[], char ruta[]){
     int capa=-1;
     char archivoCapa[150];
     int primeralinea=0;
 
 
-    std::fstream archivo(ruta);
+    std::fstream archivo(rutaA);
     if(archivo.fail()){
        printf("El archivo T no se logro abrir \n");
     }else{
@@ -194,8 +235,9 @@ Arbol::CargaTotal(char ruta[]){
             if(capa==0||capa==-1){
                 //archivo de configuracion
             }else{
-
-                Lista_M->InsertarMatrizOrdenado(capa,archivoCapa);
+                char chartem[150];
+                strcpy(chartem,ruta);
+                nuevo->InsertarMatrizOrdenado(capa,strcat(chartem,archivoCapa));
             }
             //reinicia el contador de capa
             capa=-1;
@@ -203,7 +245,7 @@ Arbol::CargaTotal(char ruta[]){
         }
     }
     //temporal
-    //Lista_M->MostrarLista(5);
+    //nuevo->MostrarLista(5);
 
 }
 

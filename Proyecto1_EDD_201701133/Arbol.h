@@ -25,9 +25,13 @@ class Arbol
         GraficaProrden();
         DatosGraficaPRE(Lista_Matriz* lt);
 
+        //graficar arbol completo
+        GraficarARBOL();
+        DatosGraficaARBOL(Lista_Matriz* lt);
 
-        InsertarCubo(char ruta[]);
-        CargaTotal(char ruta[]);
+
+        InsertarCubo(char Nombre[],char ruta[]);
+        CargaTotal(Lista_Matriz* nuevo,char rutaA[],char ruta[]);
 
         virtual ~Arbol();
 

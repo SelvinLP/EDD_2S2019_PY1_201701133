@@ -21,10 +21,10 @@ int main()
     //lt->InsertarMatrizOrdenado(1,"hair.csv");
     //lt->InsertarMatrizOrdenado(5,"shirt.csv");
     //lt->InsertarMatrizOrdenado(3,"dungarees.csv");
-    arbol->InsertarCubo("S");
-    arbol->InsertarCubo("A");
-    arbol->InsertarCubo("B");
-    arbol->InsertarCubo("Z");
+    //arbol->InsertarCubo("Sc","Ss");
+    //arbol->InsertarCubo("Sb","As");
+    //arbol->InsertarCubo("Sa","Bs");
+    //arbol->InsertarCubo("Zd","Zs");
 
     while(ciclomenu==0){
         cout << "################# MENU ##################" << endl;
@@ -43,8 +43,11 @@ int main()
             cout <<" Ingrese Nombre del Archivo "<<endl;
             char nombre[150];
             std::cin >> nombre;
+            cout <<" Ingrese Ruta del Archivo "<<endl;
+            char ruta[150];
+            std::cin >> ruta;
             //arbol->CargaTotal(nombre);
-            arbol->InsertarCubo(nombre);
+            arbol->InsertarCubo(nombre,ruta);
 
         }
         if(opcionmenu==2){
@@ -61,6 +64,9 @@ int main()
             cout <<"    5.Filter Report"<<endl;
             int opcionmenu2;
             std::cin>>opcionmenu2;
+            if(opcionmenu2==1){
+                arbol->GraficarARBOL();
+            }
             if(opcionmenu2==4){
                 cout <<"    1.Inorden Traversal"<<endl;
                 cout <<"    2.Preorden Traversal"<<endl;
