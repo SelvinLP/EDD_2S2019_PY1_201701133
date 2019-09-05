@@ -12,6 +12,11 @@ class Lista_Matriz
     public:
         //apuntadores para arbol
         std::string NombreCubo;
+        int image_width;
+        int image_height;
+        int pixel_width;
+        int pixel_height;
+
         Lista_Matriz* izquierda;
         Lista_Matriz* derecha;
         //apuntadores de la lista
@@ -20,6 +25,7 @@ class Lista_Matriz
 
         MostrarLista(int posz);
         InsertarMatrizOrdenado(int z,char NombreDoc[]);
+        InsertarConfiguracion(char NombreConfig[]);
 
 
         virtual ~Lista_Matriz();

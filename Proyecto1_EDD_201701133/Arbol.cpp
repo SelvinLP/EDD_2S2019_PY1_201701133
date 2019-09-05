@@ -27,10 +27,39 @@ Arbol::GraficarARBOL(){
     system("Start GraficaARBOL.png");
 }
 Arbol::DatosGraficaARBOL(Lista_Matriz* lt){
+    //altura imagen
+    std::stringstream ss;
+    std::string mgh;
+    ss.str(std::string());
+    ss.clear();
+    ss<<lt->image_height;
+    ss>>mgh;
+    //ancho de la imagen
+    std::stringstream ss2;
+    std::string mgwd;
+    ss2.str(std::string());
+    ss2.clear();
+    ss2<<lt->image_width;
+    ss2>>mgwd;
+    //altura pixel
+    std::stringstream ss3;
+    std::string mghp;
+    ss3.str(std::string());
+    ss3.clear();
+    ss3<<lt->pixel_height;
+    ss3>>mghp;
+    //ancho del pixel
+    std::stringstream ss4;
+    std::string mgwdp;
+    ss4.str(std::string());
+    ss4.clear();
+    ss4<<lt->pixel_width;
+    ss4>>mgwdp;
+
     if(lt->izquierda==0 && lt->derecha==0){
-        CadenaGRAFICA += "\""+ lt->NombreCubo+"\"" +"[label =\"<C0>|<C1>"+lt->NombreCubo+ "|<C2>\"]; \n" ;
+        CadenaGRAFICA += "\""+ lt->NombreCubo+"\"" +"[label =\"<C0>|<C1>"+lt->NombreCubo+": Altura y Ancho:Cubo("+mgh+","+ mgwd+") Pixel("+mghp+","+mgwdp+")|<C2>\"]; \n" ;
     }else{
-        CadenaGRAFICA += "\""+ lt->NombreCubo+"\"" +"[label =\"<C0>|<C1>"+lt->NombreCubo+ "|<C2>\"]; \n" ;
+        CadenaGRAFICA += "\""+ lt->NombreCubo+"\"" +"[label =\"<C0>|<C1>"+lt->NombreCubo+": Altura y Ancho:Cubo("+mgh+","+mgwd+ ") Pixel("+mghp+","+mgwdp+")|<C2>\"]; \n" ;
     }
     if(lt->izquierda!=0){
         DatosGraficaARBOL(lt->izquierda);
@@ -234,6 +263,13 @@ Arbol::CargaTotal(Lista_Matriz*nuevo,char rutaA[], char ruta[]){
             //if para ver si es el archivo de configuracion o no
             if(capa==0||capa==-1){
                 //archivo de configuracion
+                if(capa==0){
+                    char chartem[150];
+                    strcpy(chartem,ruta);
+                    nuevo->InsertarConfiguracion(strcat(chartem,archivoCapa));
+
+
+                }
             }else{
                 char chartem[150];
                 strcpy(chartem,ruta);
@@ -246,6 +282,10 @@ Arbol::CargaTotal(Lista_Matriz*nuevo,char rutaA[], char ruta[]){
     }
     //temporal
     //nuevo->MostrarLista(5);
+    //printf("image_heigh: %d\n",nuevo->image_height);
+    //printf("image_width: %d\n",nuevo->image_width);
+    //printf("pixel_height: %d\n",nuevo->pixel_height);
+    //printf("pixel_width: %d\n",nuevo->pixel_width);
 
 }
 

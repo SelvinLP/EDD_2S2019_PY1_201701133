@@ -16,15 +16,6 @@ int main()
     cout << "Proyecto 1 de estructura de datos 201701133" << endl;
     //temporal
     Arbol*arbol=new Arbol();
-    //Lista_Matriz* lt=new Lista_Matriz();
-    //lt->InsertarMatrizOrdenado(2,"body.csv");
-    //lt->InsertarMatrizOrdenado(1,"hair.csv");
-    //lt->InsertarMatrizOrdenado(5,"shirt.csv");
-    //lt->InsertarMatrizOrdenado(3,"dungarees.csv");
-    //arbol->InsertarCubo("Sc","Ss");
-    //arbol->InsertarCubo("Sb","As");
-    //arbol->InsertarCubo("Sa","Bs");
-    //arbol->InsertarCubo("Zd","Zs");
 
     while(ciclomenu==0){
         cout << "################# MENU ##################" << endl;
