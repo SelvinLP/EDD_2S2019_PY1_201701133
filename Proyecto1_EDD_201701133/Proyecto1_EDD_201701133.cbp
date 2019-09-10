@@ -36,6 +36,8 @@
 		</Compiler>
 		<Unit filename="Arbol.cpp" />
 		<Unit filename="Arbol.h" />
+		<Unit filename="Lista_Filtros.cpp" />
+		<Unit filename="Lista_Filtros.h" />
 		<Unit filename="Lista_Matriz.cpp" />
 		<Unit filename="Lista_Matriz.h" />
 		<Unit filename="Nodo_Matriz.cpp" />

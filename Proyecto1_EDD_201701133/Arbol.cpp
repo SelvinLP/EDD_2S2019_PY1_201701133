@@ -197,6 +197,17 @@ Arbol::MostrarInorden(Lista_Matriz* lt){
         MostrarInorden(lt->derecha);
     }
 }
+//metodo para seleccion de arbol
+Arbol::BuscarArbol(int posz,std::string dato, Lista_Matriz*lt){
+    if(lt!=0){
+        BuscarArbol(posz,dato,lt->izquierda);
+        if(dato==lt->NombreCubo){
+            lt->MostrarLista(posz);
+        }
+        BuscarArbol(posz,dato,lt->derecha);
+    }
+}
+
 Arbol::InsertarCubo(char Nombre[],char ruta[]){
     Lista_Matriz *nuevo=new Lista_Matriz(Nombre);
     char chartem[150];

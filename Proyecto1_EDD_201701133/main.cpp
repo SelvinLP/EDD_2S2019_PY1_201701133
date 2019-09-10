@@ -4,8 +4,9 @@
 #include <fstream>
 #include <sstream>
 
-#include<Lista_Matriz.h>
+
 #include<Arbol.h>
+#include<Lista_Filtros.h>
 
 
 using namespace std;
@@ -16,7 +17,7 @@ int main()
     cout << "Proyecto 1 de estructura de datos 201701133" << endl;
     //temporal
     Arbol*arbol=new Arbol();
-
+    Lista_Filtros *Filtro=0;
     while(ciclomenu==0){
         cout << "################# MENU ##################" << endl;
         cout <<"    1.Insertar Imagen"<<endl;
@@ -42,10 +43,67 @@ int main()
 
         }
         if(opcionmenu==2){
+            Filtro=new Lista_Filtros();
             arbol->MostrarInorden(arbol->Raiz);
             cout <<" Seleccione una imagen "<<endl;
-            char seleccionado;
-            std::cin>>seleccionado;
+            string seleccionado;
+            cin>>seleccionado;
+        }
+        if(opcionmenu==3){
+            cout <<"    Seleccione un Filtro"<<endl;
+            cout <<"    1.Negative"<<endl;
+            cout <<"    2.Grayscale"<<endl;
+            cout <<"    3.Mirror"<<endl;
+            cout <<"    4.Collage"<<endl;
+            cout <<"    5.Mosaic"<<endl;
+            int opcionfiltro;
+            cin>>opcionfiltro;
+            if(opcionfiltro==1){
+                cout <<"Se Inserto Negative"<<endl;
+                Filtro->Insertar("Negative");
+                system("pause");
+            }
+            if(opcionfiltro==2){
+                cout <<"Se Inserto Grayscale"<<endl;
+                Filtro->Insertar("Grayscale");
+                system("pause");
+            }
+            if(opcionfiltro==3){
+                cout <<"    1.X-Mirror"<<endl;
+                cout <<"    2.Y-Mirror"<<endl;
+                cout <<"    3.Double-Mirror"<<endl;
+                int opMirror;
+                cin>>opMirror;
+                if(opcionfiltro==1){
+                    //mirror en x
+                    cout <<"Se Inserto X-Mirror"<<endl;
+                    Filtro->Insertar("X-Mirror");
+                    system("pause");
+                }
+                if(opcionfiltro==2){
+                    //mirror en y
+                    cout <<"Se Inserto Y-Mirror"<<endl;
+                    Filtro->Insertar("Y-Mirror");
+                    system("pause");
+                }
+                if(opcionfiltro==3){
+                    //mirror de los dos
+                    cout <<"Se Inserto Double-Mirror"<<endl;
+                    Filtro->Insertar("Double-Mirror");
+                    system("pause");
+                }
+            }
+            if(opcionfiltro==4){
+                cout <<"Se Inserto Collage"<<endl;
+                Filtro->Insertar("Collage");
+                system("pause");
+            }
+            if(opcionfiltro==5){
+                cout <<"Se Inserto Mosaic"<<endl;
+                Filtro->Insertar("Mosaic");
+                system("pause");
+            }
+
         }
         if(opcionmenu==6){
             cout <<"    1.Imported Imagen Report"<<endl;
@@ -56,7 +114,21 @@ int main()
             int opcionmenu2;
             std::cin>>opcionmenu2;
             if(opcionmenu2==1){
+                cout <<"Se Grafico Arbol"<<endl;
                 arbol->GraficarARBOL();
+                system("pause");
+            }
+            if(opcionmenu2==2){
+                cout <<"Escriba el Nombre de la imagen"<<endl;
+                arbol->MostrarInorden(arbol->Raiz);
+                string name;
+                cin>>name;
+                arbol->BuscarArbol(-1,name,arbol->Raiz);
+                cout <<"Ingrese ID de la capa"<<endl;
+                int id;
+                cin>>id;
+                arbol->BuscarArbol(id,name,arbol->Raiz);
+                system("pause");
             }
             if(opcionmenu2==4){
                 cout <<"    1.Inorden Traversal"<<endl;
@@ -66,14 +138,45 @@ int main()
                 int menuopc;
                 std::cin>>menuopc;
                 if(menuopc==1){
+                    cout <<"Se Grafico Inorden Traversal"<<endl;
                     arbol->GraficaInorden();
+                    system("pause");
                 }
                 if(menuopc==2){
+                    cout <<"Se Grafico Preorden Traversal"<<endl;
                     arbol->GraficaProrden();
+                    system("pause");
                 }
                 if(menuopc==3){
+                    cout <<"Se Grafico Postorden Traversal"<<endl;
                     arbol->GraficaPsorden();
+                    system("pause");
                 }
+            }
+            if(opcionmenu2==5){
+                cout <<"    1.All Filter Report"<<endl;
+                cout <<"    2.Individual Filter Report"<<endl;
+                int opcionfiltro;
+                std::cin>>opcionfiltro;
+                if(opcionfiltro==1){
+                    if(Filtro==0){
+                        cout <<"NO HAY IMAGEN SELECCIONADA"<<endl;
+                    }else{
+                        if(Filtro->inicio==0){
+                            cout <<"NO HAY FILTROS AGREGADOS"<<endl;
+                            system("pause");
+                        }else{
+                            cout <<"Se Grafico Lista Doble Filtro"<<endl;
+                            Filtro->GraficarFiltro();
+                            system("pause");
+                        }
+                    }
+                }
+
+                if(opcionfiltro==2){
+
+                }
+
             }
         }
         if(opcionmenu==7){

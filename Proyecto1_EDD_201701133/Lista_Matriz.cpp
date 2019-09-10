@@ -17,11 +17,17 @@ Lista_Matriz::Lista_Matriz(char nombreC[])
 Lista_Matriz::MostrarLista(int posz){
     Nodo_Matriz *tem=inicio;
     while(tem!=0){
-        printf("Descripcion: %s\n",tem->NombreDocumento.c_str());
-        printf("Profundidad:  %d\n",tem->Z);
-        if(tem->Z==posz){
+        if(posz==-1){
+            printf("Profundidad: %d",tem->Z);
+            printf("    Descripcion: %s\n",tem->NombreDocumento.c_str());
+        }else{
+            if(tem->Z==posz){
                 tem->GraficarMatriz();
+            }
         }
+
+
+
         tem=tem->siguiente;
     }
 }

@@ -1,0 +1,14 @@
+digraph GraficaFILTRO { 
+size="9,9" 
+rankdir=LR 
+node[shape=record,style=filled]
+"Negative0"[label =" Negative"]; 
+"Negative0"->"Grayscale1"; 
+"Negative0"->"Grayscale1" [dir=back]; 
+"Grayscale1"[label =" Grayscale"]; 
+"Grayscale1"->"Collage2"; 
+"Grayscale1"->"Collage2"[dir=back]; 
+"Collage2"[label =" Collage"]; 
+"Collage2"->"Negative0"; 
+"Collage2"->"Negative0" [dir=back]; 
+}

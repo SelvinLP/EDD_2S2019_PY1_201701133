@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1567659327 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\main.cpp
+1568091080 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\main.cpp
 	<iostream>
 	<stdlib.h>
 	<string>
 	<fstream>
 	<sstream>
-	<Lista_Matriz.h>
 	<Arbol.h>
+	<Lista_Filtros.h>
 
 1567472921 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\nodo_matriz.cpp
 	"Nodo_Matriz.h"
@@ -17,24 +17,34 @@
 	<sstream>
 	<stdlib.h>
 
-1567663465 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\lista_matriz.cpp
+1568088286 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\lista_matriz.cpp
 	"Lista_Matriz.h"
 
-1567659957 c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\lista_matriz.h
+1568088195 c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\lista_matriz.h
 	<fstream>
 	<string>
 	<sstream>
 	<stdlib.h>
 	<Nodo_Matriz.h>
 
-1567663668 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\arbol.cpp
+1568088324 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\arbol.cpp
 	"Arbol.h"
 
-1567657578 c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\arbol.h
+1568088145 c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\arbol.h
 	<fstream>
 	<string>
 	<sstream>
 	<stdlib.h>
 	<bits/stdc++.h>
 	<Lista_Matriz.h>
+
+1568079186 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\lista_filtros.cpp
+	"Lista_Filtros.h"
+
+1568077966 c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\lista_filtros.h
+	<fstream>
+	<string>
+	<sstream>
+	<stdlib.h>
+	<bits/stdc++.h>
 
