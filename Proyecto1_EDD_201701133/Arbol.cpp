@@ -4,6 +4,21 @@ Arbol::Arbol()
 {
     this->Raiz=0;
 }
+//seleccion de nodo
+Lista_Matriz* Arbol::BuscarSeleccion(std::string dato, Lista_Matriz*lt){
+    if(lt!=0){
+        BuscarSeleccion(dato,lt->izquierda);
+        if(dato==lt->NombreCubo){
+            //se compia el cubo
+            printf("Encontrado");
+            Lista_Matriz*nuevo=lt;
+            return nuevo;
+        }
+        BuscarSeleccion(dato,lt->derecha);
+    }
+}
+
+
 //empiza metodos para raficar
 Arbol::GraficarARBOL(){
         std::ofstream file;

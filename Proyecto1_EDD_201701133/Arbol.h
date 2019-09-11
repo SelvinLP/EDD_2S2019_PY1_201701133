@@ -14,6 +14,9 @@ class Arbol
         Lista_Matriz* Raiz;
         Arbol();
 
+        //copiar seleccion de imagen
+        Lista_Matriz* BuscarSeleccion(std::string dato, Lista_Matriz*lt);
+
         MostrarInorden(Lista_Matriz* lt);
         BuscarArbol(int posz,std::string dato, Lista_Matriz*lt);
 

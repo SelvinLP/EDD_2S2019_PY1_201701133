@@ -1,6 +1,0 @@
-digraph GraficaFILTRO { 
-size="9,9" 
-rankdir=LR 
-node[shape=record,style=filled]
-"Negative0"[label =" Negative"]; 
-}

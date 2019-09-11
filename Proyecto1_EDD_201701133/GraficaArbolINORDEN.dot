@@ -1,9 +1,0 @@
-digraph GraficaINORDEN { 
-size="9,9" 
-rankdir=LR 
-node[shape=circle,style=filled]
-"Link"[label ="Link"] 
-"Luigi"[label ="Luigi"] 
-"Mario"[label ="Mario"] 
-"Peach"[label ="Peach"] 
-"Link"->"Luigi"->"Mario"->"Peach"}

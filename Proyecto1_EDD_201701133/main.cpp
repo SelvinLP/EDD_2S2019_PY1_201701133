@@ -7,6 +7,7 @@
 
 #include<Arbol.h>
 #include<Lista_Filtros.h>
+#include<Lista_Matriz.h>
 
 
 using namespace std;
@@ -44,10 +45,15 @@ int main()
         }
         if(opcionmenu==2){
             Filtro=new Lista_Filtros();
+            Lista_Matriz *Cuboseleccionado;
+
             arbol->MostrarInorden(arbol->Raiz);
             cout <<" Seleccione una imagen "<<endl;
             string seleccionado;
             cin>>seleccionado;
+            Cuboseleccionado=arbol->BuscarSeleccion(seleccionado,arbol->Raiz);
+
+            cout <<" Prueba "<< Cuboseleccionado->NombreCubo<<endl;
         }
         if(opcionmenu==3){
             cout <<"    Seleccione un Filtro"<<endl;
@@ -128,11 +134,6 @@ int main()
                 cout <<"    1.Graficar Capa y Graficar Todos"<<endl;
                 int opciontodos;
                 cin>>opciontodos;
-                //if(opciontodos==1){
-                  //  cout <<"Se Grafico todas las capas"<<endl;
-                   // arbol->BuscarArbol(-2,name,arbol->Raiz);
-                   // system("pause");
-                //}
                 if(opciontodos==1){
                     //variable del ciclo
                     int v=0;
