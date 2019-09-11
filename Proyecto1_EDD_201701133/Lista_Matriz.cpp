@@ -16,14 +16,45 @@ Lista_Matriz::Lista_Matriz(char nombreC[])
 
 Lista_Matriz::MostrarLista(int posz){
     Nodo_Matriz *tem=inicio;
+    tem=tem->siguiente;
+    while(tem!=0){
+        if(posz==-1){
+            printf("Profundidad: %d",tem->Z);
+            printf("    Descripcion: %s\n",tem->NombreDocumento.c_str());
+        }else{
+            if(posz==-2){
+                tem->GraficarMatriz();
+            }else{
+                if(tem->Z==posz){
+                    tem->GraficarMatriz();
+                }
+            }
+
+        }
+
+        tem=tem->siguiente;
+    }
+}
+Lista_Matriz::MostrarListaLineal(int filaycolumna,int posz){
+    Nodo_Matriz *tem=inicio;
+    tem=tem->siguiente;
     while(tem!=0){
         if(posz==-1){
             printf("Profundidad: %d",tem->Z);
             printf("    Descripcion: %s\n",tem->NombreDocumento.c_str());
         }else{
             if(tem->Z==posz){
-                tem->GraficarMatriz();
+                //empieza a graficar
+                if(filaycolumna==1){
+                    //grafica fila
+                    tem->GraficaLinealFila();
+                }
+                if(filaycolumna==2){
+                    //grafica columna
+                    tem->GraficaLinealColumna();
+                }
             }
+
         }
 
 
@@ -31,6 +62,7 @@ Lista_Matriz::MostrarLista(int posz){
         tem=tem->siguiente;
     }
 }
+
 Lista_Matriz::InsertarConfiguracion(char NombreConfig[]){
     int primeralinea=0;
     std::string capa="no";

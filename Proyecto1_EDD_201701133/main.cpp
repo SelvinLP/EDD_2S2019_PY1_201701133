@@ -119,16 +119,80 @@ int main()
                 system("pause");
             }
             if(opcionmenu2==2){
-                cout <<"Escriba el Nombre de la imagen"<<endl;
+                cout <<"Escriba el Nombre de la imagen a seleccionar"<<endl;
                 arbol->MostrarInorden(arbol->Raiz);
                 string name;
                 cin>>name;
-                arbol->BuscarArbol(-1,name,arbol->Raiz);
-                cout <<"Ingrese ID de la capa"<<endl;
-                int id;
-                cin>>id;
-                arbol->BuscarArbol(id,name,arbol->Raiz);
-                system("pause");
+
+                //cout <<"    1.Graficar Todos"<<endl;
+                cout <<"    1.Graficar Capa y Graficar Todos"<<endl;
+                int opciontodos;
+                cin>>opciontodos;
+                //if(opciontodos==1){
+                  //  cout <<"Se Grafico todas las capas"<<endl;
+                   // arbol->BuscarArbol(-2,name,arbol->Raiz);
+                   // system("pause");
+                //}
+                if(opciontodos==1){
+                    //variable del ciclo
+                    int v=0;
+                    while(v==0){
+                        system("cls");
+                        arbol->BuscarArbol(-1,name,arbol->Raiz);
+                        cout <<"Ingrese ID de la capa"<<endl;
+                        int id;
+                        cin>>id;
+                        arbol->BuscarArbol(id,name,arbol->Raiz);
+                        cout <<"    Si desea salir presione -1 "<<endl;
+                        cout <<"    Si NO desea salir presione 0 "<<endl;
+                        int  finCiclo;
+                        cin>>finCiclo;
+                        if(finCiclo==-1){
+                            v=1;
+                            finCiclo=0;
+                        }
+                    }
+                    //fin del ciclo
+                }
+
+            }
+            if(opcionmenu2==3){
+                cout <<"Escriba el Nombre de la imagen a seleccionar"<<endl;
+                arbol->MostrarInorden(arbol->Raiz);
+                string name;
+                cin>>name;
+                                    //variable del ciclo
+                int v=0;
+                while(v==0){
+                    system("cls");
+                    arbol->BuscarArbolLineal(0,-1,name,arbol->Raiz);
+                    cout <<"Ingrese ID de la capa"<<endl;
+                    int id;
+                    cin>>id;
+
+                    cout <<"1. Graficar Linealizacion por Filas"<<endl;
+                    cout <<"2. Graficar Linealizacion por Columnas"<<endl;
+                    int graf;
+                    cin>>graf;
+                    if(graf==1){
+                        arbol->BuscarArbolLineal(1,id,name,arbol->Raiz);
+                    }
+                    if(graf==2){
+                        arbol->BuscarArbolLineal(2,id,name,arbol->Raiz);
+                    }
+
+
+
+                    cout <<"    Si desea salir presione -1 "<<endl;
+                    cout <<"    Si NO desea salir presione 0 "<<endl;
+                    int  finCiclo;
+                    cin>>finCiclo;
+                    if(finCiclo==-1){
+                        v=1;
+                        finCiclo=0;
+                    }
+                }
+                    //fin del ciclo
             }
             if(opcionmenu2==4){
                 cout <<"    1.Inorden Traversal"<<endl;

@@ -207,6 +207,16 @@ Arbol::BuscarArbol(int posz,std::string dato, Lista_Matriz*lt){
         BuscarArbol(posz,dato,lt->derecha);
     }
 }
+//Busqueda para la linealizacion
+Arbol::BuscarArbolLineal(int filaycolumna,int posz,std::string dato, Lista_Matriz*lt){
+    if(lt!=0){
+        BuscarArbolLineal(filaycolumna,posz,dato,lt->izquierda);
+        if(dato==lt->NombreCubo){
+            lt->MostrarListaLineal(filaycolumna,posz);
+        }
+        BuscarArbolLineal(filaycolumna,posz,dato,lt->derecha);
+    }
+}
 
 Arbol::InsertarCubo(char Nombre[],char ruta[]){
     Lista_Matriz *nuevo=new Lista_Matriz(Nombre);

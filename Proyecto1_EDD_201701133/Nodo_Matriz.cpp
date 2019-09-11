@@ -10,8 +10,288 @@ Nodo_Matriz::Nodo_Matriz(int z,std::string NombreDoc)
     this->anterior=0;
     this->siguiente=0;
 }
+//graficas de linealizacion
+Nodo_Matriz::GraficaLinealFila(){
+    std::ofstream file;
+
+    file.open("GraficaLinealFila.dot");
+    Nodo_Color* tem=inicio;
+    Nodo_Color* tem2=0;
+
+    std::string CadenaImprimir= "digraph GraficaLinealFila { \n";
+    CadenaImprimir += "rankdir=LR \n";
+    CadenaImprimir += "size=\"9,9\" \n";
+    CadenaImprimir += "node[shape=record,style=filled] \n" ;
+    CadenaImprimir +=  "\"INICIO\" [label =\"{INICIO}\" ] \n" ;
+    //creacion de nodos
+    tem=tem->abajo;
+    while(tem !=0){
+        //para x
+        std::stringstream ssx;
+        std::string stconverx;
+        ssx.str(std::string());
+        ssx.clear();
+        ssx<<tem->X;
+        ssx>>stconverx;
+        //para y
+        std::stringstream ssy;
+        std::string stconvery;
+        ssy.str(std::string());
+        ssy.clear();
+        ssy<<tem->Y;
+        ssy>>stconvery;
+
+        tem2=tem;
+        tem2=tem2->siguiente;
+
+        while(tem2!=0){
+            //para x
+            std::stringstream ssx;
+            std::string stconverx;
+            ssx.str(std::string());
+            ssx.clear();
+            ssx<<tem2->X;
+            ssx>>stconverx;
+            //para y
+            std::stringstream ssy;
+            std::string stconvery;
+            ssy.str(std::string());
+            ssy.clear();
+            ssy<<tem2->Y;
+            ssy>>stconvery;
+
+            CadenaImprimir +=  "\""+ tem2->Color+stconverx+stconvery+"\"" +"[label ="+"\""+"{("+stconverx+","+stconvery+")";
+            CadenaImprimir +=  tem2->Color+ "}\" ] \n" ;
+
+            tem2=tem2->siguiente;
+        }
+        tem=tem->abajo;
+    }
+
+
+    //creacion de realciones
+    Nodo_Color* tem3=inicio;
+    Nodo_Color* tem4=0;
+    tem3=tem3->abajo;
+    while(tem3 !=0){
+        if(tem3->abajo==0){
+            //validar el fin de la relaciones
+            tem4=tem3;
+            tem4=tem4->siguiente;
+            while(tem4!=0){
+                std::stringstream ssx;
+                std::string stconverx;
+                ssx.str(std::string());
+                ssx.clear();
+                ssx<<tem4->X;
+                ssx>>stconverx;
+                //para y
+                std::stringstream ssy;
+                std::string stconvery;
+                ssy.str(std::string());
+                ssy.clear();
+                ssy<<tem4->Y;
+                ssy>>stconvery;
+
+                if(tem4->siguiente==0){
+                    CadenaImprimir +=  "\""+ tem4->Color+stconverx+stconvery+"\" \n";
+
+                }else{
+                    CadenaImprimir +=  "\""+ tem4->Color+stconverx+stconvery+"\" -> ";
+                }
+                tem4=tem4->siguiente;
+            }
+        }else{
+            tem4=tem3;
+            tem4=tem4->siguiente;
+            while(tem4!=0){
+                std::stringstream ssx;
+                std::string stconverx;
+                ssx.str(std::string());
+                ssx.clear();
+                ssx<<tem4->X;
+                ssx>>stconverx;
+                //para y
+                std::stringstream ssy;
+                std::string stconvery;
+                ssy.str(std::string());
+                ssy.clear();
+                ssy<<tem4->Y;
+                ssy>>stconvery;
+
+                CadenaImprimir +=  "\""+ tem4->Color+stconverx+stconvery+"\" -> ";
+                tem4=tem4->siguiente;
+            }
+        }
+        tem3=tem3->abajo;
+    }
+
+
+
+        std::stringstream ssx;
+        std::string stconverx;
+        ssx.str(std::string());
+        ssx.clear();
+        ssx<<inicio->abajo->siguiente->X;
+        ssx>>stconverx;
+        //para y
+        std::stringstream ssy;
+        std::string stconvery;
+        ssy.str(std::string());
+        ssy.clear();
+        ssy<<inicio->abajo->siguiente->Y;
+        ssy>>stconvery;
+    CadenaImprimir+="\"INICIO\" ->\""+inicio->abajo->siguiente->Color+stconverx+stconvery+"\" \n";
+    CadenaImprimir+="}";
+    file<<CadenaImprimir;
+    file.close();
+    system("dot -Tpng GraficaLinealFila.dot -o  GraficaLinealFila.png");
+    system("Start GraficaLinealFila.png");
+
+}
+
+Nodo_Matriz::GraficaLinealColumna(){
+    std::ofstream file;
+
+    file.open("GraficaLinealColumna.dot");
+    Nodo_Color* tem=inicio;
+    Nodo_Color* tem2=0;
+
+    std::string CadenaImprimir= "digraph GraficaLinealColumna { \n";
+    CadenaImprimir += "rankdir=LR \n";
+    CadenaImprimir += "size=\"9,9\" \n";
+    CadenaImprimir += "node[shape=record,style=filled] \n" ;
+    CadenaImprimir +=  "\"INICIO\" [label =\"{INICIO}\" ] \n" ;
+    //creacion de nodos
+    tem=tem->siguiente;
+    while(tem !=0){
+        //para x
+        std::stringstream ssx;
+        std::string stconverx;
+        ssx.str(std::string());
+        ssx.clear();
+        ssx<<tem->X;
+        ssx>>stconverx;
+        //para y
+        std::stringstream ssy;
+        std::string stconvery;
+        ssy.str(std::string());
+        ssy.clear();
+        ssy<<tem->Y;
+        ssy>>stconvery;
+
+        tem2=tem;
+        tem2=tem2->abajo;
+
+        while(tem2!=0){
+            //para x
+            std::stringstream ssx;
+            std::string stconverx;
+            ssx.str(std::string());
+            ssx.clear();
+            ssx<<tem2->X;
+            ssx>>stconverx;
+            //para y
+            std::stringstream ssy;
+            std::string stconvery;
+            ssy.str(std::string());
+            ssy.clear();
+            ssy<<tem2->Y;
+            ssy>>stconvery;
+
+            CadenaImprimir +=  "\""+ tem2->Color+stconverx+stconvery+"\"" +"[label ="+"\""+"{("+stconverx+","+stconvery+")";
+            CadenaImprimir +=  tem2->Color+ "}\" ] \n" ;
+
+            tem2=tem2->abajo;
+        }
+        tem=tem->siguiente;
+    }
+
+
+    //creacion de realciones
+    Nodo_Color* tem3=inicio;
+    Nodo_Color* tem4=0;
+    tem3=tem3->siguiente;
+    while(tem3 !=0){
+        if(tem3->siguiente==0){
+            //validar el fin de la relaciones
+            tem4=tem3;
+            tem4=tem4->abajo;
+            while(tem4!=0){
+                std::stringstream ssx;
+                std::string stconverx;
+                ssx.str(std::string());
+                ssx.clear();
+                ssx<<tem4->X;
+                ssx>>stconverx;
+                //para y
+                std::stringstream ssy;
+                std::string stconvery;
+                ssy.str(std::string());
+                ssy.clear();
+                ssy<<tem4->Y;
+                ssy>>stconvery;
+
+                if(tem4->abajo==0){
+                    CadenaImprimir +=  "\""+ tem4->Color+stconverx+stconvery+"\" \n";
+
+                }else{
+                    CadenaImprimir +=  "\""+ tem4->Color+stconverx+stconvery+"\" -> ";
+                }
+                tem4=tem4->abajo;
+            }
+        }else{
+            tem4=tem3;
+            tem4=tem4->abajo;
+            while(tem4!=0){
+                std::stringstream ssx;
+                std::string stconverx;
+                ssx.str(std::string());
+                ssx.clear();
+                ssx<<tem4->X;
+                ssx>>stconverx;
+                //para y
+                std::stringstream ssy;
+                std::string stconvery;
+                ssy.str(std::string());
+                ssy.clear();
+                ssy<<tem4->Y;
+                ssy>>stconvery;
+
+                CadenaImprimir +=  "\""+ tem4->Color+stconverx+stconvery+"\" -> ";
+                tem4=tem4->abajo;
+            }
+        }
+        tem3=tem3->siguiente;
+    }
+
+
+
+        std::stringstream ssx;
+        std::string stconverx;
+        ssx.str(std::string());
+        ssx.clear();
+        ssx<<inicio->siguiente->abajo->X;
+        ssx>>stconverx;
+        //para y
+        std::stringstream ssy;
+        std::string stconvery;
+        ssy.str(std::string());
+        ssy.clear();
+        ssy<<inicio->siguiente->abajo->Y;
+        ssy>>stconvery;
+    CadenaImprimir+="\"INICIO\" ->\""+inicio->siguiente->abajo->Color+stconverx+stconvery+"\" \n";
+    CadenaImprimir+="}";
+    file<<CadenaImprimir;
+    file.close();
+    system("dot -Tpng GraficaLinealColumna.dot -o  GraficaLinealColumna.png");
+    system("Start GraficaLinealColumna.png");
+
+}
+
 Nodo_Matriz::GraficarMatriz(){
     std::ofstream file;
+
     file.open("Grafica.dot");
     Nodo_Color* tem=inicio;
     Nodo_Color* tem2=0;
@@ -169,6 +449,7 @@ Nodo_Matriz::GraficarMatriz(){
     file.close();
     system("dot -Tpng Grafica.dot -o  Grafica.png");
     system("Start Grafica.png");
+
 }
 Nodo_Matriz::CargarColor(char ruta[]){
     int x=1;

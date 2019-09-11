@@ -17,6 +17,9 @@ class Arbol
         MostrarInorden(Lista_Matriz* lt);
         BuscarArbol(int posz,std::string dato, Lista_Matriz*lt);
 
+        //para la linealizacion
+        BuscarArbolLineal(int filaycolumna,int posz,std::string dato,Lista_Matriz*lt);
+
         std::string CadenaGRAFICA;
         std::vector <std::string> Nomb;
         GraficaInorden();

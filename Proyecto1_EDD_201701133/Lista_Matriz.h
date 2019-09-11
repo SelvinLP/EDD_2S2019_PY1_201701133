@@ -24,6 +24,8 @@ class Lista_Matriz
         Lista_Matriz(char nombreC[]);
 
         MostrarLista(int posz);
+        MostrarListaLineal(int filaycolumna,int posz);
+
         InsertarMatrizOrdenado(int z,char NombreDoc[]);
         InsertarConfiguracion(char NombreConfig[]);
 

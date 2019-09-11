@@ -28,10 +28,15 @@ class Nodo_Matriz
         Nodo_Color* inicio;
         Nodo_Matriz(int z,std::string NombreDoc);
 
+        //para graficar
         MostrarTodo();
         CargarColor(char ruta[]);
         GraficarMatriz();
 
+        //Linealizacion de la Matriz
+        GraficaLinealFila();
+        GraficaLinealColumna();
+        //metodos de insecion
         int BuscarY (int valory);
         int BuscarX (int valorx);
         CrearFilaY (int valory);
