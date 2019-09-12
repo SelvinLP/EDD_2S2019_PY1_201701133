@@ -10,11 +10,14 @@ class Nodo_Color{
         int X;//eje x
         int Y;//eje y
         std::string Color;
+        int R;
+        int G;
+        int B;
         Nodo_Color* siguiente;
         Nodo_Color* anterior;
         Nodo_Color* arriba;
         Nodo_Color* abajo;
-        Nodo_Color(int x, int y, std::string color): Color(color),Y(y),X(x),siguiente(0),anterior(0),arriba(0),abajo(0){}
+        Nodo_Color(int x, int y, std::string color,int r,int g,int b): Color(color),Y(y),X(x),R(r),G(g),B(b),siguiente(0),anterior(0),arriba(0),abajo(0){}
 };
 class Nodo_Matriz
 {
@@ -44,7 +47,7 @@ class Nodo_Matriz
         InsertarenX(Nodo_Color* nuevo);
         InsertarenY(Nodo_Color* nuevo);
 
-        InsertarColor(int y,int x, std::string color);
+        InsertarColor(int y,int x, std::string color,int r,int g,int b);
 
         virtual ~Nodo_Matriz();
 

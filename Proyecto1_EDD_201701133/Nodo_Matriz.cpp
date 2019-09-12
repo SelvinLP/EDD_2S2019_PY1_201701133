@@ -3,7 +3,7 @@
 Nodo_Matriz::Nodo_Matriz(int z,std::string NombreDoc)
 {
     //creacion de la raiz
-    this->inicio=new Nodo_Color(-1,-1,"RAIZ");
+    this->inicio=new Nodo_Color(-1,-1,"RAIZ",0,0,0);
     //para el cubo o lista
     this->Z=z;
     this->NombreDocumento=NombreDoc;
@@ -454,6 +454,12 @@ Nodo_Matriz::GraficarMatriz(){
 Nodo_Matriz::CargarColor(char ruta[]){
     int x=1;
     int y=1;
+
+    std::string r="";
+    std::string g="";
+    std::string b="";
+
+
     std::fstream archivo(ruta);
     if(archivo.fail()){
         printf("Archivo Color No Cargado");
@@ -465,7 +471,29 @@ Nodo_Matriz::CargarColor(char ruta[]){
             for (std::string dato; std::getline(registro, dato, ';'); )
             {
                 if(dato!="x" && dato!="X"){
-                    InsertarColor(x,y,dato);
+                    //InsertarColor(x,y,dato);
+                    std::stringstream CodigoColor(dato);
+                    //para separarlos por colores rgb
+                    for (std::string datoColor; std::getline(CodigoColor, datoColor, '-'); )
+                    {
+                        if(r==""){
+                            r=datoColor;
+                        }else{
+                            if(g==""){
+                                g=datoColor;
+                            }else{
+                                if(b==""){
+                                    b=datoColor;
+                                }
+                            }
+                        }
+                    }
+                    //inserta los colores
+
+                    InsertarColor(x,y,dato,atoi(r.c_str()),atoi(g.c_str()),atoi(b.c_str()));
+                    r="";
+                    g="";
+                    b="";
                 }
 
                 x+=1;
@@ -521,7 +549,7 @@ Nodo_Matriz::CrearFilaY (int valory){
     Nodo_Color* raizFila=inicio;
     Nodo_Color* tem=inicio;
     Nodo_Color* fin=0;
-    Nodo_Color* nuevo=new Nodo_Color(-1,valory,("Fila: "+stconver));
+    Nodo_Color* nuevo=new Nodo_Color(-1,valory,("Fila: "+stconver),0,0,0);
     bool bandera=false;
     while(raizFila!=0){
         if(raizFila->Y>valory){
@@ -557,7 +585,7 @@ Nodo_Matriz::CrearColumnaX (int valorx){
     Nodo_Color* raizColumna=inicio;
     Nodo_Color* tem=inicio;
     Nodo_Color* fin=0;
-    Nodo_Color* nuevos=new Nodo_Color(valorx,-1,("COL: "+stconver));
+    Nodo_Color* nuevos=new Nodo_Color(valorx,-1,("COL: "+stconver),0,0,0);
     bool bandera=false;
     while(raizColumna!=0){
         if(raizColumna->X > valorx){
@@ -650,11 +678,14 @@ Nodo_Matriz::InsertarenY(Nodo_Color* nuevo){
         nuevo->anterior=fin;
     }
 }
-Nodo_Matriz::InsertarColor(int x,int y,std::string color){
+Nodo_Matriz::InsertarColor(int x,int y,std::string color,int r,int g,int b){
     //crecion de nuevo nodo con los datos
-    Nodo_Color* nuevo=new Nodo_Color(x,y,color);
+    Nodo_Color* nuevo=new Nodo_Color(x,y,color,r,g,b);
     int columna=BuscarX(x);
     int fila=BuscarY(y);
+    //para sobre escribir si tienen la misma direccion
+    Nodo_Color* Cabeza=inicio;
+    bool insertado=false;
     //casos de insercion
     //primer caso columna y fila no existe
     if(columna==0 && fila==0){
@@ -680,8 +711,33 @@ Nodo_Matriz::InsertarColor(int x,int y,std::string color){
             }else{
                 if(columna!=0 && fila!=0){
                     //si los dos existen
-                    InsertarenX(nuevo);
-                    InsertarenY(nuevo);
+                        while(Cabeza!=0){
+                            if(Cabeza->X==nuevo->X){
+                                if(Cabeza->Y==nuevo->Y){
+                                    Cabeza->R=nuevo->R;
+                                    Cabeza->G=nuevo->G;
+                                    Cabeza->B=nuevo->B;
+                                    Cabeza->Color=nuevo->Color;
+                                    insertado=true;
+
+                                    break;
+                                }
+                                Cabeza=Cabeza->abajo;
+                            }else{
+                                Cabeza=Cabeza->siguiente;
+                            }
+
+
+                        }
+
+                        //caso de inserion o sobre escribir daros
+                    if(insertado){
+                        printf("Se modificaron datos");
+                    }else{
+                        InsertarenX(nuevo);
+                        InsertarenY(nuevo);
+                    }
+
 
                 }
             }
