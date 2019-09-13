@@ -3,7 +3,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-
+#include <direct.h>
 
 #include<Arbol.h>
 #include<Lista_Filtros.h>
@@ -19,6 +19,9 @@ int main()
     //temporal
     Arbol*arbol=new Arbol();
     Lista_Filtros *Filtro=0;
+    Lista_Matriz *Cuboseleccionado;
+
+
     while(ciclomenu==0){
         cout << "################# MENU ##################" << endl;
         cout <<"    1.Insertar Imagen"<<endl;
@@ -45,7 +48,7 @@ int main()
         }
         if(opcionmenu==2){
             Filtro=new Lista_Filtros();
-            Lista_Matriz *Cuboseleccionado;
+
 
             arbol->MostrarInorden(arbol->Raiz);
             cout <<" Seleccione una imagen "<<endl;
@@ -53,7 +56,7 @@ int main()
             cin>>seleccionado;
             Cuboseleccionado=arbol->BuscarSeleccion(seleccionado,arbol->Raiz);
 
-            cout <<" Prueba "<< Cuboseleccionado->NombreCubo<<endl;
+            cout <<" Imagen Seleccionada "<< Cuboseleccionado->NombreCubo<<endl;
         }
         if(opcionmenu==3){
             cout <<"    Seleccione un Filtro"<<endl;
@@ -111,6 +114,111 @@ int main()
             }
 
         }
+
+        if(opcionmenu==5){
+
+
+            //creacion de la carpeta con el nombre
+            char rutaImagen[100]="Exports/";
+            strcat(rutaImagen, Cuboseleccionado->NombreCubo.c_str());
+            mkdir(rutaImagen);
+            //creacion del html
+            char rutahtml[100]="Exports/";
+            strcat(rutahtml, Cuboseleccionado->NombreCubo.c_str());
+            strcat(rutahtml, "/");
+            strcat(rutahtml, Cuboseleccionado->NombreCubo.c_str());
+            strcat(rutahtml, ".html");
+
+            std::ofstream filehtml;
+            filehtml.open(rutahtml);
+            //creacion del codigo
+            string cadena;
+            cadena="<!DOCTYPE html> \n";
+            cadena+="<html>\n<head>\n";
+            cadena+="<link rel=\"stylesheet\" href=\""+Cuboseleccionado->NombreCubo +".css\">\n</head> \n";
+            cadena+="<body>\n";
+            cadena+="<div class=\"canvas\">\n";
+            //creacion de todos los divs
+            int numeroPix=Cuboseleccionado->image_width*Cuboseleccionado->image_height;
+            for(int i=1;i<=numeroPix;i++){
+                cadena+="<div class=\"pixel\"></div>\n";
+            }
+            //fin de creacion de todos los divs
+            cadena+="</div>\n";
+            cadena+="</body>\n";
+            cadena+="</html>\n";
+            filehtml<<cadena;
+            filehtml.close();
+
+
+            //creacion del css
+            char rutacss[100]="Exports/";
+            strcat(rutacss, Cuboseleccionado->NombreCubo.c_str());
+            strcat(rutacss, "/");
+            strcat(rutacss, Cuboseleccionado->NombreCubo.c_str());
+            strcat(rutacss, ".css");
+            std::ofstream filecss;
+            filecss.open(rutacss);
+            string cadenacss;
+
+            //creacion de datos
+            int TamPixelW=Cuboseleccionado->image_width*Cuboseleccionado->pixel_width;
+            int TamPixelH=Cuboseleccionado->image_height*Cuboseleccionado->pixel_height;
+            std::stringstream ss;
+            std::string sW;
+            ss.str(std::string());
+            ss.clear();
+            ss<<TamPixelW;
+            ss>>sW;
+            //para el tamaño pixel altura
+            std::stringstream ss2;
+            std::string sH;
+            ss2.str(std::string());
+            ss2.clear();
+            ss2<<TamPixelH;
+            ss2>>sH;
+            //para el tamaño imagen ancho
+            std::stringstream sw;
+            std::string siw;
+            sw.str(std::string());
+            sw.clear();
+            sw<<Cuboseleccionado->pixel_width;
+            sw>>siw;
+            //para el tamaño imagen altura
+            std::stringstream sh;
+            std::string sih;
+            sh.str(std::string());
+            sh.clear();
+            sh<<Cuboseleccionado->pixel_height;
+            sh>>sih;
+
+
+            cadenacss="body {\n";
+            cadenacss+="background-color: rgba(0, 0, 0, 0);\n";
+            cadenacss+="height: 100vh;\n";
+            cadenacss+="display: flex;\n";
+            cadenacss+="justify-content: center;\n";
+            cadenacss+="align-items: center;\n ";
+            cadenacss+="}\n";
+            cadenacss+=".canvas {\n";
+            cadenacss+="width:"+sW+"px;\n";
+            cadenacss+="height:"+sH+"px;\n";
+            cadenacss+="}\n";
+            cadenacss+=".pixel {\n";
+            cadenacss+="width:"+siw+"px;\n";
+            cadenacss+="height:"+sih+"px;\n";
+            cadenacss+="float: left;\n";
+            cadenacss+="}\n";
+            cadenacss+=".pixel:nth-child(1){\n";
+            cadenacss+="background-color: rgba(0, 220, 0, 1);\n";
+            cadenacss+="}\n";
+            cadenacss+="";
+
+            filecss<<cadenacss;
+            filecss.close();
+
+        }
+
         if(opcionmenu==6){
             cout <<"    1.Imported Imagen Report"<<endl;
             cout <<"    2.Image Layer Report"<<endl;

@@ -1,0 +1,19 @@
+body {
+background-color: rgba(0, 0, 0, 0);
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+ }
+.canvas {
+width:480px;
+height:480px;
+}
+.pixel {
+width:30px;
+height:30px;
+float: left;
+}
+.pixel:nth-child(1){
+background-color: rgba(0, 220, 0, 1);
+}

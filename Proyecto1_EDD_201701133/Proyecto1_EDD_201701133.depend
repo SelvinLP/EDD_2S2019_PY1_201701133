@@ -1,15 +1,16 @@
 # depslib dependency file v1.0
-1568173388 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\main.cpp
+1568337434 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\main.cpp
 	<iostream>
 	<stdlib.h>
 	<string>
 	<fstream>
 	<sstream>
+	<direct.h>
 	<Arbol.h>
 	<Lista_Filtros.h>
 	<Lista_Matriz.h>
 
-1568165297 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\nodo_matriz.cpp
+1568338512 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\nodo_matriz.cpp
 	"Nodo_Matriz.h"
 
 1568264182 c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\nodo_matriz.h

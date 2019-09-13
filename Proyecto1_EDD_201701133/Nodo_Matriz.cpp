@@ -59,9 +59,30 @@ Nodo_Matriz::GraficaLinealFila(){
             ssy.clear();
             ssy<<tem2->Y;
             ssy>>stconvery;
+            //para R
+            std::stringstream sr;
+            std::string tr;
+            sr.str(std::string());
+            sr.clear();
+            sr<<tem2->R;
+            sr>>tr;
+            //para G
+            std::stringstream sg;
+            std::string tg;
+            sg.str(std::string());
+            sg.clear();
+            sg<<tem2->G;
+            sg>>tg;
+            //para B
+            std::stringstream sb;
+            std::string tb;
+            sb.str(std::string());
+            sb.clear();
+            sb<<tem2->B;
+            sb>>tb;
 
             CadenaImprimir +=  "\""+ tem2->Color+stconverx+stconvery+"\"" +"[label ="+"\""+"{("+stconverx+","+stconvery+")";
-            CadenaImprimir +=  tem2->Color+ "}\" ] \n" ;
+            CadenaImprimir +=  tr+"-"+tg+"-"+tb+"}\" ] \n" ;
 
             tem2=tem2->siguiente;
         }
@@ -180,6 +201,7 @@ Nodo_Matriz::GraficaLinealColumna(){
         ssy<<tem->Y;
         ssy>>stconvery;
 
+
         tem2=tem;
         tem2=tem2->abajo;
 
@@ -199,8 +221,30 @@ Nodo_Matriz::GraficaLinealColumna(){
             ssy<<tem2->Y;
             ssy>>stconvery;
 
+                //para R
+            std::stringstream sr;
+            std::string tr;
+            sr.str(std::string());
+            sr.clear();
+            sr<<tem2->R;
+            sr>>tr;
+            //para G
+            std::stringstream sg;
+            std::string tg;
+            sg.str(std::string());
+            sg.clear();
+            sg<<tem2->G;
+            sg>>tg;
+            //para B
+            std::stringstream sb;
+            std::string tb;
+            sb.str(std::string());
+            sb.clear();
+            sb<<tem2->B;
+            sb>>tb;
+
             CadenaImprimir +=  "\""+ tem2->Color+stconverx+stconvery+"\"" +"[label ="+"\""+"{("+stconverx+","+stconvery+")";
-            CadenaImprimir +=  tem2->Color+ "}\" ] \n" ;
+            CadenaImprimir +=  tr+"-"+tg+"-"+tb+ "}\" ] \n" ;
 
             tem2=tem2->abajo;
         }
@@ -324,6 +368,7 @@ Nodo_Matriz::GraficarMatriz(){
         ssy<<tem->Y;
         ssy>>stconvery;
 
+
         tem2=tem;
         CadenaImprimir +=  "\""+ tem->Color+stconverx+stconvery+"\"" +"[label ="+"\""+"{";
         CadenaImprimir +=  tem->Color+ "}\",group = "+stconver+"] \n" ;
@@ -344,8 +389,35 @@ Nodo_Matriz::GraficarMatriz(){
             ssy<<tem2->Y;
             ssy>>stconvery;
 
-            CadenaImprimir +=  "\""+ tem2->Color+stconverx+stconvery+"\"" +"[label ="+"\""+"{";
-            CadenaImprimir +=  tem2->Color+ "}\" ,group = "+stconver+" ] \n" ;
+                //para R
+            std::stringstream sr;
+            std::string tr;
+            sr.str(std::string());
+            sr.clear();
+            sr<<tem2->R;
+            sr>>tr;
+            //para G
+            std::stringstream sg;
+            std::string tg;
+            sg.str(std::string());
+            sg.clear();
+            sg<<tem2->G;
+            sg>>tg;
+            //para B
+            std::stringstream sb;
+            std::string tb;
+            sb.str(std::string());
+            sb.clear();
+            sb<<tem2->B;
+            sb>>tb;
+            if(tem2->X==-1){
+                CadenaImprimir +=  "\""+ tem2->Color+stconverx+stconvery+"\"" +"[label ="+"\""+"{";
+                CadenaImprimir +=  tem2->Color+ "}\" ,group = "+stconver+" ] \n" ;
+            }else{
+                CadenaImprimir +=  "\""+ tem2->Color+stconverx+stconvery+"\"" +"[label ="+"\""+"{";
+                CadenaImprimir +=  tr+" "+tg+" "+tb+ "}\" ,group = "+stconver+" ] \n" ;
+            }
+
             tem2=tem2->abajo;
         }
         grup+=1;
@@ -549,7 +621,7 @@ Nodo_Matriz::CrearFilaY (int valory){
     Nodo_Color* raizFila=inicio;
     Nodo_Color* tem=inicio;
     Nodo_Color* fin=0;
-    Nodo_Color* nuevo=new Nodo_Color(-1,valory,("Fila: "+stconver),0,0,0);
+    Nodo_Color* nuevo=new Nodo_Color(-1,valory,("Fila: "+stconver),-1,valory,0);
     bool bandera=false;
     while(raizFila!=0){
         if(raizFila->Y>valory){
@@ -585,7 +657,7 @@ Nodo_Matriz::CrearColumnaX (int valorx){
     Nodo_Color* raizColumna=inicio;
     Nodo_Color* tem=inicio;
     Nodo_Color* fin=0;
-    Nodo_Color* nuevos=new Nodo_Color(valorx,-1,("COL: "+stconver),0,0,0);
+    Nodo_Color* nuevos=new Nodo_Color(valorx,-1,("COL: "+stconver),valorx,-1,0);
     bool bandera=false;
     while(raizColumna!=0){
         if(raizColumna->X > valorx){
