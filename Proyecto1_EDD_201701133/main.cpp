@@ -8,6 +8,7 @@
 #include<Arbol.h>
 #include<Lista_Filtros.h>
 #include<Lista_Matriz.h>
+#include<Nodo_Matriz.h>
 
 
 using namespace std;
@@ -208,10 +209,68 @@ int main()
             cadenacss+="width:"+siw+"px;\n";
             cadenacss+="height:"+sih+"px;\n";
             cadenacss+="float: left;\n";
-            cadenacss+="}\n";
-            cadenacss+=".pixel:nth-child(1){\n";
-            cadenacss+="background-color: rgba(0, 220, 0, 1);\n";
-            cadenacss+="}\n";
+            cadenacss+="box-shadow: 0px 0px 1px #fff; }\n";
+
+            //creacion de los nodos pixeles
+            Nodo_Matriz*matriz=Cuboseleccionado->inicio;
+            matriz=matriz->siguiente;
+            while(matriz!=0){
+                //empieza a pintar por capas
+                Nodo_Color*tem=matriz->inicio;
+                Nodo_Color*tem2;
+                tem=tem->siguiente;
+                while(tem!=0){
+                    tem2=tem;
+                    tem2=tem2->abajo;
+                    while(tem2!=0){
+                        int resultado=((Cuboseleccionado->image_width)*(tem2->Y-1))+tem2->X;
+                        std::stringstream s;
+                        std::string rest;
+                        s.str(std::string());
+                        s.clear();
+                        s<<resultado;
+                        s>>rest;
+
+                        //para R
+                        std::stringstream sr;
+                        std::string tr;
+                        sr.str(std::string());
+                        sr.clear();
+                        sr<<tem2->R;
+                        sr>>tr;
+                        //para G
+                        std::stringstream sg;
+                        std::string tg;
+                        sg.str(std::string());
+                        sg.clear();
+                        sg<<tem2->G;
+                        sg>>tg;
+                        //para B
+                        std::stringstream sb;
+                        std::string tb;
+                        sb.str(std::string());
+                        sb.clear();
+                        sb<<tem2->B;
+                        sb>>tb;
+
+                        cadenacss+=".pixel:nth-child("+rest+"){\n";
+                        cadenacss+="background-color: rgba("+tr+","+tg+","+tb+", 1);\n";
+                        cadenacss+="}\n";
+                        tem2=tem2->abajo;
+                    }
+                    tem=tem->siguiente;
+                }
+
+                matriz=matriz->siguiente;
+            }
+
+
+
+
+
+            //cadenacss+=".pixel:nth-child(1){\n";
+            //cadenacss+="background-color: rgba(0, 220, 0, 1);\n";
+            //cadenacss+="}\n";
             cadenacss+="";
 
             filecss<<cadenacss;
