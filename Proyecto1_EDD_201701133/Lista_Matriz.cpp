@@ -76,7 +76,7 @@ Lista_Matriz::InsertarConfiguracion(char NombreConfig[]){
         for (std::string linea; std::getline(archivo, linea); )
         {
             std::stringstream registro(linea);
-            for (std::string dato; std::getline(registro, dato, ';'); )
+            for (std::string dato; std::getline(registro, dato, ','); )
             {
                 if(primeralinea==0){
 
@@ -142,7 +142,37 @@ Lista_Matriz::InsertarMatrizOrdenado(int z,char NombreDoc []){
 
 }
 
+Lista_Matriz::InsertarMatrizSinCarga(int z,char NombreDoc [],Nodo_Matriz *nuevo){
 
+    Nodo_Matriz* avance=inicio;
+    Nodo_Matriz* tem=inicio;
+    Nodo_Matriz* fin=0;
+    bool bandera=false;
+    while(avance!=0){
+        if(avance->Z > z){
+            bandera=true;
+            tem=avance;
+            break;
+        }
+        if(avance->siguiente==0){
+            fin=avance;
+        }
+        avance=avance->siguiente;
+    }
+    if(bandera){
+        //incertamos valores antes del temporal que es el encontrado
+        nuevo->siguiente=tem;
+        tem->anterior->siguiente=nuevo;
+        nuevo->anterior=tem->anterior;
+        tem->anterior=nuevo;
+        bandera=false;
+    }else{
+        fin->siguiente=nuevo;
+        nuevo->anterior=fin;
+    }
+
+
+}
 
 
 Lista_Matriz::~Lista_Matriz()

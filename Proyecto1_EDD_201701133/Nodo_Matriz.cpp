@@ -10,6 +10,21 @@ Nodo_Matriz::Nodo_Matriz(int z,std::string NombreDoc)
     this->anterior=0;
     this->siguiente=0;
 }
+//para seleccion de cubo
+Nodo_Matriz::CopiarMatriz(Nodo_Matriz *lt){
+    Nodo_Color* tem=inicio;
+    Nodo_Color* tem2=0;
+    tem=tem->abajo;
+    while(tem !=0){
+        tem2=tem;
+        tem2=tem2->siguiente;
+        while(tem2!=0){
+            lt->InsertarColor(tem2->X,tem2->Y,tem2->Color,tem2->R,tem2->G,tem2->B);
+            tem2=tem2->siguiente;
+        }
+        tem=tem->abajo;
+    }
+}
 //graficas de linealizacion
 Nodo_Matriz::GraficaLinealFila(){
     std::ofstream file;
@@ -540,7 +555,7 @@ Nodo_Matriz::CargarColor(char ruta[]){
         for (std::string linea; std::getline(archivo, linea); )
         {
             std::stringstream registro(linea);
-            for (std::string dato; std::getline(registro, dato, ';'); )
+            for (std::string dato; std::getline(registro, dato, ','); )
             {
                 if(dato!="x" && dato!="X"){
                     //InsertarColor(x,y,dato);
@@ -817,6 +832,38 @@ Nodo_Matriz::InsertarColor(int x,int y,std::string color,int r,int g,int b){
     }
 }
 
+Nodo_Matriz::Negativo(){
+    Nodo_Color* tem=inicio;
+    Nodo_Color* tem2=0;
+    tem=tem->siguiente;
+    while(tem !=0){
+        tem2=tem;
+        while(tem2!=0){
+            tem2->R=255-tem2->R;
+            tem2->G=255-tem2->G;
+            tem2->B=255-tem2->B;
+            tem2=tem2->abajo;
+        }
+        tem=tem->siguiente;
+    }
+}
+
+Nodo_Matriz::EscalaGris(){
+    Nodo_Color* tem=inicio;
+    Nodo_Color* tem2=0;
+    tem=tem->siguiente;
+    while(tem !=0){
+        tem2=tem;
+        while(tem2!=0){
+            int cal=(tem2->R+tem2->G+tem2->B)/3;
+            tem2->R=cal;
+            tem2->G=cal;
+            tem2->B=cal;
+            tem2=tem2->abajo;
+        }
+        tem=tem->siguiente;
+    }
+}
 //no tocar
 Nodo_Matriz::~Nodo_Matriz()
 {

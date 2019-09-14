@@ -20,7 +20,7 @@ int main()
     //temporal
     Arbol*arbol=new Arbol();
     Lista_Filtros *Filtro=0;
-    Lista_Matriz *Cuboseleccionado;
+    Lista_Matriz *Cuboseleccionado=0;
 
 
     while(ciclomenu==0){
@@ -50,14 +50,19 @@ int main()
         if(opcionmenu==2){
             Filtro=new Lista_Filtros();
 
-
             arbol->MostrarInorden(arbol->Raiz);
             cout <<" Seleccione una imagen "<<endl;
             string seleccionado;
             cin>>seleccionado;
-            Cuboseleccionado=arbol->BuscarSeleccion(seleccionado,arbol->Raiz);
+            //primero buscar en el arbol
+            Cuboseleccionado=0;
+            Cuboseleccionado=arbol->BuscarSeleccion(seleccionado,arbol->Raiz,Cuboseleccionado);
+            if(Cuboseleccionado!=0){
+                cout <<" Imagen Seleccionada "<< Cuboseleccionado->NombreCubo<<endl;
+            }else{
+                cout <<" Imagen No Encontrada"<<endl;
+            }
 
-            cout <<" Imagen Seleccionada "<< Cuboseleccionado->NombreCubo<<endl;
         }
         if(opcionmenu==3){
             cout <<"    Seleccione un Filtro"<<endl;
@@ -69,11 +74,72 @@ int main()
             int opcionfiltro;
             cin>>opcionfiltro;
             if(opcionfiltro==1){
+                cout <<"    1. Capas"<<endl;
+                cout <<"    2. Imagen Completa"<<endl;
+                int opcionfiltro2;
+                cin>>opcionfiltro2;
+                if(opcionfiltro2==1){
+
+                    Cuboseleccionado->MostrarLista(-1);
+                    cout <<"Seleccione una Capa"<<endl;
+                    int opcionfiltrocapa;
+                    cin>>opcionfiltrocapa;
+
+                    Nodo_Matriz*matriz=Cuboseleccionado->inicio;
+                    matriz=matriz->siguiente;
+                    while(matriz!=0){
+                        if(matriz->Z==opcionfiltrocapa){
+                            matriz->Negativo();
+                            break;
+                        }
+                        matriz=matriz->siguiente;
+                    }
+
+                }
+                if(opcionfiltro2==2){
+                    Nodo_Matriz*matriz=Cuboseleccionado->inicio;
+                    matriz=matriz->siguiente;
+                    while(matriz!=0){
+                        matriz->EscalaGris();
+                        matriz=matriz->siguiente;
+                    }
+                }
+
                 cout <<"Se Inserto Negative"<<endl;
                 Filtro->Insertar("Negative");
                 system("pause");
             }
             if(opcionfiltro==2){
+                cout <<"    1. Capas"<<endl;
+                cout <<"    2. Imagen Completa"<<endl;
+                int opcionfiltro2;
+                cin>>opcionfiltro2;
+                if(opcionfiltro2==1){
+
+                    Cuboseleccionado->MostrarLista(-1);
+                    cout <<"Seleccione una Capa"<<endl;
+                    int opcionfiltrocapa;
+                    cin>>opcionfiltrocapa;
+
+                    Nodo_Matriz*matriz=Cuboseleccionado->inicio;
+                    matriz=matriz->siguiente;
+                    while(matriz!=0){
+                        if(matriz->Z==opcionfiltrocapa){
+                            matriz->EscalaGris();
+                            break;
+                        }
+                        matriz=matriz->siguiente;
+                    }
+
+                }
+                if(opcionfiltro2==2){
+                    Nodo_Matriz*matriz=Cuboseleccionado->inicio;
+                    matriz=matriz->siguiente;
+                    while(matriz!=0){
+                        matriz->EscalaGris();
+                        matriz=matriz->siguiente;
+                    }
+                }
                 cout <<"Se Inserto Grayscale"<<endl;
                 Filtro->Insertar("Grayscale");
                 system("pause");
@@ -116,170 +182,187 @@ int main()
 
         }
 
-        if(opcionmenu==5){
+        if(opcionmenu==4){
+            //edicion manual
+            cout <<"EDICION MANUAL"<<endl;
+            cout <<"    1.Imagen Original"<<endl;
+            cout <<"    2.Filtros"<<endl;
+            int opcionmenu4;
+            std::cin>>opcionmenu4;
+            if(opcionmenu4==1){
 
-
-            //creacion de la carpeta con el nombre
-            char rutaImagen[100]="Exports/";
-            strcat(rutaImagen, Cuboseleccionado->NombreCubo.c_str());
-            mkdir(rutaImagen);
-            //creacion del html
-            char rutahtml[100]="Exports/";
-            strcat(rutahtml, Cuboseleccionado->NombreCubo.c_str());
-            strcat(rutahtml, "/");
-            strcat(rutahtml, Cuboseleccionado->NombreCubo.c_str());
-            strcat(rutahtml, ".html");
-
-            std::ofstream filehtml;
-            filehtml.open(rutahtml);
-            //creacion del codigo
-            string cadena;
-            cadena="<!DOCTYPE html> \n";
-            cadena+="<html>\n<head>\n";
-            cadena+="<link rel=\"stylesheet\" href=\""+Cuboseleccionado->NombreCubo +".css\">\n</head> \n";
-            cadena+="<body>\n";
-            cadena+="<div class=\"canvas\">\n";
-            //creacion de todos los divs
-            int numeroPix=Cuboseleccionado->image_width*Cuboseleccionado->image_height;
-            for(int i=1;i<=numeroPix;i++){
-                cadena+="<div class=\"pixel\"></div>\n";
             }
-            //fin de creacion de todos los divs
-            cadena+="</div>\n";
-            cadena+="</body>\n";
-            cadena+="</html>\n";
-            filehtml<<cadena;
-            filehtml.close();
+            if(opcionmenu4==2){
+
+            }
+        }
+        if(opcionmenu==5){
+            if(Cuboseleccionado==0){
+                cout <<" No se ha seleccionado una imagen "<<endl;
+                }else{
+                                //creacion de la carpeta con el nombre
+                char rutaImagen[100]="Exports/";
+                strcat(rutaImagen, Cuboseleccionado->NombreCubo.c_str());
+                mkdir(rutaImagen);
+                //creacion del html
+                char rutahtml[100]="Exports/";
+                strcat(rutahtml, Cuboseleccionado->NombreCubo.c_str());
+                strcat(rutahtml, "/");
+                strcat(rutahtml, Cuboseleccionado->NombreCubo.c_str());
+                strcat(rutahtml, ".html");
+
+                std::ofstream filehtml;
+                filehtml.open(rutahtml);
+                //creacion del codigo
+                string cadena;
+                cadena="<!DOCTYPE html> \n";
+                cadena+="<html>\n<head>\n";
+                cadena+="<link rel=\"stylesheet\" href=\""+Cuboseleccionado->NombreCubo +".css\">\n</head> \n";
+                cadena+="<body>\n";
+                cadena+="<div class=\"canvas\">\n";
+                //creacion de todos los divs
+                int numeroPix=Cuboseleccionado->image_width*Cuboseleccionado->image_height;
+                for(int i=1;i<=numeroPix;i++){
+                    cadena+="<div class=\"pixel\"></div>\n";
+                }
+                //fin de creacion de todos los divs
+                cadena+="</div>\n";
+                cadena+="</body>\n";
+                cadena+="</html>\n";
+                filehtml<<cadena;
+                filehtml.close();
 
 
-            //creacion del css
-            char rutacss[100]="Exports/";
-            strcat(rutacss, Cuboseleccionado->NombreCubo.c_str());
-            strcat(rutacss, "/");
-            strcat(rutacss, Cuboseleccionado->NombreCubo.c_str());
-            strcat(rutacss, ".css");
-            std::ofstream filecss;
-            filecss.open(rutacss);
-            string cadenacss;
+                //creacion del css
+                char rutacss[100]="Exports/";
+                strcat(rutacss, Cuboseleccionado->NombreCubo.c_str());
+                strcat(rutacss, "/");
+                strcat(rutacss, Cuboseleccionado->NombreCubo.c_str());
+                strcat(rutacss, ".css");
+                std::ofstream filecss;
+                filecss.open(rutacss);
+                string cadenacss;
 
-            //creacion de datos
-            int TamPixelW=Cuboseleccionado->image_width*Cuboseleccionado->pixel_width;
-            int TamPixelH=Cuboseleccionado->image_height*Cuboseleccionado->pixel_height;
-            std::stringstream ss;
-            std::string sW;
-            ss.str(std::string());
-            ss.clear();
-            ss<<TamPixelW;
-            ss>>sW;
-            //para el tamaño pixel altura
-            std::stringstream ss2;
-            std::string sH;
-            ss2.str(std::string());
-            ss2.clear();
-            ss2<<TamPixelH;
-            ss2>>sH;
-            //para el tamaño imagen ancho
-            std::stringstream sw;
-            std::string siw;
-            sw.str(std::string());
-            sw.clear();
-            sw<<Cuboseleccionado->pixel_width;
-            sw>>siw;
-            //para el tamaño imagen altura
-            std::stringstream sh;
-            std::string sih;
-            sh.str(std::string());
-            sh.clear();
-            sh<<Cuboseleccionado->pixel_height;
-            sh>>sih;
+                //creacion de datos
+                int TamPixelW=Cuboseleccionado->image_width*Cuboseleccionado->pixel_width;
+                int TamPixelH=Cuboseleccionado->image_height*Cuboseleccionado->pixel_height;
+                std::stringstream ss;
+                std::string sW;
+                ss.str(std::string());
+                ss.clear();
+                ss<<TamPixelW;
+                ss>>sW;
+                //para el tamaño pixel altura
+                std::stringstream ss2;
+                std::string sH;
+                ss2.str(std::string());
+                ss2.clear();
+                ss2<<TamPixelH;
+                ss2>>sH;
+                //para el tamaño imagen ancho
+                std::stringstream sw;
+                std::string siw;
+                sw.str(std::string());
+                sw.clear();
+                sw<<Cuboseleccionado->pixel_width;
+                sw>>siw;
+                //para el tamaño imagen altura
+                std::stringstream sh;
+                std::string sih;
+                sh.str(std::string());
+                sh.clear();
+                sh<<Cuboseleccionado->pixel_height;
+                sh>>sih;
 
 
-            cadenacss="body {\n";
-            cadenacss+="background-color: rgba(0, 0, 0, 0);\n";
-            cadenacss+="height: 100vh;\n";
-            cadenacss+="display: flex;\n";
-            cadenacss+="justify-content: center;\n";
-            cadenacss+="align-items: center;\n ";
-            cadenacss+="}\n";
-            cadenacss+=".canvas {\n";
-            cadenacss+="width:"+sW+"px;\n";
-            cadenacss+="height:"+sH+"px;\n";
-            cadenacss+="}\n";
-            cadenacss+=".pixel {\n";
-            cadenacss+="width:"+siw+"px;\n";
-            cadenacss+="height:"+sih+"px;\n";
-            cadenacss+="float: left;\n";
-            cadenacss+="box-shadow: 0px 0px 1px #fff; }\n";
+                cadenacss="body {\n";
+                cadenacss+="background-color: rgba(0, 0, 0, 0);\n";
+                cadenacss+="height: 100vh;\n";
+                cadenacss+="display: flex;\n";
+                cadenacss+="justify-content: center;\n";
+                cadenacss+="align-items: center;\n ";
+                cadenacss+="}\n";
+                cadenacss+=".canvas {\n";
+                cadenacss+="width:"+sW+"px;\n";
+                cadenacss+="height:"+sH+"px;\n";
+                cadenacss+="}\n";
+                cadenacss+=".pixel {\n";
+                cadenacss+="width:"+siw+"px;\n";
+                cadenacss+="height:"+sih+"px;\n";
+                cadenacss+="float: left;\n";
+                cadenacss+="box-shadow: 0px 0px 1px #fff; }\n";
 
-            //creacion de los nodos pixeles
-            Nodo_Matriz*matriz=Cuboseleccionado->inicio;
-            matriz=matriz->siguiente;
-            while(matriz!=0){
-                //empieza a pintar por capas
-                Nodo_Color*tem=matriz->inicio;
-                Nodo_Color*tem2;
-                tem=tem->siguiente;
-                while(tem!=0){
-                    tem2=tem;
-                    tem2=tem2->abajo;
-                    while(tem2!=0){
-                        int resultado=((Cuboseleccionado->image_width)*(tem2->Y-1))+tem2->X;
-                        std::stringstream s;
-                        std::string rest;
-                        s.str(std::string());
-                        s.clear();
-                        s<<resultado;
-                        s>>rest;
-
-                        //para R
-                        std::stringstream sr;
-                        std::string tr;
-                        sr.str(std::string());
-                        sr.clear();
-                        sr<<tem2->R;
-                        sr>>tr;
-                        //para G
-                        std::stringstream sg;
-                        std::string tg;
-                        sg.str(std::string());
-                        sg.clear();
-                        sg<<tem2->G;
-                        sg>>tg;
-                        //para B
-                        std::stringstream sb;
-                        std::string tb;
-                        sb.str(std::string());
-                        sb.clear();
-                        sb<<tem2->B;
-                        sb>>tb;
-
-                        cadenacss+=".pixel:nth-child("+rest+"){\n";
-                        cadenacss+="background-color: rgba("+tr+","+tg+","+tb+", 1);\n";
-                        cadenacss+="}\n";
-                        tem2=tem2->abajo;
-                    }
+                //creacion de los nodos pixeles
+                Nodo_Matriz*matriz=Cuboseleccionado->inicio;
+                matriz=matriz->siguiente;
+                while(matriz!=0){
+                    //empieza a pintar por capas
+                    Nodo_Color*tem=matriz->inicio;
+                    Nodo_Color*tem2;
                     tem=tem->siguiente;
+                    while(tem!=0){
+                        tem2=tem;
+                        tem2=tem2->abajo;
+                        while(tem2!=0){
+                            int resultado=((Cuboseleccionado->image_width)*(tem2->Y-1))+tem2->X;
+                            std::stringstream s;
+                            std::string rest;
+                            s.str(std::string());
+                            s.clear();
+                            s<<resultado;
+                            s>>rest;
+
+                            //para R
+                            std::stringstream sr;
+                            std::string tr;
+                            sr.str(std::string());
+                            sr.clear();
+                            sr<<tem2->R;
+                            sr>>tr;
+                            //para G
+                            std::stringstream sg;
+                            std::string tg;
+                            sg.str(std::string());
+                            sg.clear();
+                            sg<<tem2->G;
+                            sg>>tg;
+                            //para B
+                            std::stringstream sb;
+                            std::string tb;
+                            sb.str(std::string());
+                            sb.clear();
+                            sb<<tem2->B;
+                            sb>>tb;
+
+                            cadenacss+=".pixel:nth-child("+rest+"){\n";
+                            cadenacss+="background-color: rgba("+tr+","+tg+","+tb+", 1);\n";
+                            cadenacss+="}\n";
+                            tem2=tem2->abajo;
+                        }
+                        tem=tem->siguiente;
+                    }
+
+                    matriz=matriz->siguiente;
                 }
 
-                matriz=matriz->siguiente;
+
+
+                cadenacss+="";
+
+                filecss<<cadenacss;
+                filecss.close();
+                char cadenaejecucion[200]="start Exports/";
+                strcat(cadenaejecucion, Cuboseleccionado->NombreCubo.c_str());
+                strcat(cadenaejecucion, "/");
+                strcat(cadenaejecucion, Cuboseleccionado->NombreCubo.c_str());
+                strcat(cadenaejecucion, ".html");
+                system(cadenaejecucion);
             }
-
-
-
-
-
-            //cadenacss+=".pixel:nth-child(1){\n";
-            //cadenacss+="background-color: rgba(0, 220, 0, 1);\n";
-            //cadenacss+="}\n";
-            cadenacss+="";
-
-            filecss<<cadenacss;
-            filecss.close();
 
         }
 
         if(opcionmenu==6){
-            cout <<"    1.Imported Imagen Report"<<endl;
+            cout <<"    1.Imorted Imagen Report"<<endl;
             cout <<"    2.Image Layer Report"<<endl;
             cout <<"    3.Liner Matriz Report"<<endl;
             cout <<"    4.Traversal Report"<<endl;
@@ -288,8 +371,13 @@ int main()
             std::cin>>opcionmenu2;
             if(opcionmenu2==1){
                 cout <<"Se Grafico Arbol"<<endl;
-                arbol->GraficarARBOL();
-                system("pause");
+                if(arbol->Raiz==0){
+                    cout <<"No hay imagenes ingresadas"<<endl;
+                }else{
+                    arbol->GraficarARBOL();
+                    system("pause");
+                }
+
             }
             if(opcionmenu2==2){
                 cout <<"Escriba el Nombre de la imagen a seleccionar"<<endl;
@@ -406,7 +494,27 @@ int main()
                 }
 
                 if(opcionfiltro==2){
-
+                    //variable del ciclo
+                    int v=0;
+                    while(v==0){
+                        system("cls");
+                        //arbol->BuscarArbol(-1,name,arbol->Raiz);
+                        Cuboseleccionado->MostrarLista(-1);
+                        cout <<"Ingrese ID de la capa"<<endl;
+                        int id;
+                        cin>>id;
+                        //arbol->BuscarArbol(id,name,arbol->Raiz);
+                        cout <<"    Si desea salir presione -1 "<<endl;
+                        cout <<"    Si NO desea salir presione 0 "<<endl;
+                        Cuboseleccionado->MostrarLista(id);
+                        int  finCiclo;
+                        cin>>finCiclo;
+                        if(finCiclo==-1){
+                            v=1;
+                            finCiclo=0;
+                        }
+                    }
+                    //fin del ciclo
                 }
 
             }

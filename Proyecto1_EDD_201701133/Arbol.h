@@ -7,6 +7,7 @@
 #include<bits/stdc++.h>
 
 #include <Lista_Matriz.h>
+#include<Nodo_Matriz.h>
 class Arbol
 {
     public:
@@ -15,7 +16,7 @@ class Arbol
         Arbol();
 
         //copiar seleccion de imagen
-        Lista_Matriz* BuscarSeleccion(std::string dato, Lista_Matriz*lt);
+        Lista_Matriz* BuscarSeleccion(std::string dato, Lista_Matriz*lt,Lista_Matriz*rt);
 
         MostrarInorden(Lista_Matriz* lt);
         BuscarArbol(int posz,std::string dato, Lista_Matriz*lt);

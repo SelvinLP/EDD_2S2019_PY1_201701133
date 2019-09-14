@@ -22,6 +22,9 @@ class Nodo_Color{
 class Nodo_Matriz
 {
     public:
+        //seleccion de cubo o imagen
+
+        CopiarMatriz(Nodo_Matriz *lt);
         //para el cubo
         int Z;
         std::string NombreDocumento;
@@ -49,6 +52,9 @@ class Nodo_Matriz
 
         InsertarColor(int y,int x, std::string color,int r,int g,int b);
 
+        //cambio de colores
+        Negativo();
+        EscalaGris();
         virtual ~Nodo_Matriz();
 
     protected:

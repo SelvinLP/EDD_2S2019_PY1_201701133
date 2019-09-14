@@ -2,56 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="Lista_Filtros.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1192" topLine="21" />
-		</Cursor>
-	</File>
-	<File name="Lista_Filtros.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="551" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="7957" topLine="134" />
-		</Cursor>
-		<Folding>
-			<Collapse line="38" />
-			<Collapse line="49" />
-			<Collapse line="61" />
-		</Folding>
-	</File>
-	<File name="Arbol.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="318" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="Arbol.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="82" topLine="126" />
-		</Cursor>
-		<Folding>
-			<Collapse line="22" />
-			<Collapse line="43" />
-		</Folding>
-	</File>
-	<File name="Nodo_Matriz.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="10970" topLine="243" />
-		</Cursor>
-		<Folding>
-			<Collapse line="13" />
-		</Folding>
-	</File>
-	<File name="Nodo_Matriz.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="46" topLine="30" />
-		</Cursor>
-	</File>
 	<File name="Lista_Matriz.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1514" topLine="8" />
+			<Cursor1 position="3858" topLine="14" />
 		</Cursor>
 		<Folding>
 			<Collapse line="16" />
@@ -60,9 +13,89 @@
 			<Collapse line="110" />
 		</Folding>
 	</File>
+	<File name="Arbol.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="422" topLine="6" />
+		</Cursor>
+	</File>
 	<File name="Lista_Matriz.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="605" topLine="1" />
+			<Cursor1 position="836" topLine="18" />
 		</Cursor>
+	</File>
+	<File name="Nodo_Matriz.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="24785" topLine="30" />
+		</Cursor>
+		<Folding>
+			<Collapse line="28" />
+			<Collapse line="188" />
+			<Collapse line="350" />
+			<Collapse line="540" />
+			<Collapse line="592" />
+			<Collapse line="607" />
+			<Collapse line="617" />
+			<Collapse line="627" />
+			<Collapse line="663" />
+			<Collapse line="700" />
+			<Collapse line="733" />
+			<Collapse line="767" />
+			<Collapse line="834" />
+			<Collapse line="850" />
+		</Folding>
+	</File>
+	<File name="Arbol.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1215" topLine="17" />
+		</Cursor>
+		<Folding>
+			<Collapse line="48" />
+			<Collapse line="69" />
+			<Collapse line="114" />
+			<Collapse line="141" />
+			<Collapse line="153" />
+			<Collapse line="180" />
+			<Collapse line="192" />
+			<Collapse line="219" />
+			<Collapse line="231" />
+			<Collapse line="241" />
+			<Collapse line="251" />
+			<Collapse line="261" />
+			<Collapse line="294" />
+		</Folding>
+	</File>
+	<File name="Lista_Filtros.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1192" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="Lista_Filtros.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="551" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="Nodo_Matriz.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="645" topLine="26" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1784" topLine="36" />
+		</Cursor>
+		<Folding>
+			<Collapse line="38" />
+			<Collapse line="66" />
+			<Collapse line="75" />
+			<Collapse line="111" />
+			<Collapse line="146" />
+			<Collapse line="184" />
+			<Collapse line="198" />
+			<Collapse line="363" />
+			<Collapse line="371" />
+			<Collapse line="381" />
+			<Collapse line="414" />
+			<Collapse line="452" />
+		</Folding>
 	</File>
 </CodeBlocks_layout_file>

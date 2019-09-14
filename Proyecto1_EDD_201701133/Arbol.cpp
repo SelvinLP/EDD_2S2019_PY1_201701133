@@ -5,19 +5,45 @@ Arbol::Arbol()
     this->Raiz=0;
 }
 //seleccion de nodo
-Lista_Matriz* Arbol::BuscarSeleccion(std::string dato, Lista_Matriz*lt){
-    if(lt!=0){
-        BuscarSeleccion(dato,lt->izquierda);
+Lista_Matriz* Arbol::BuscarSeleccion(std::string dato, Lista_Matriz*lt,Lista_Matriz *rt){
+    if(lt==0){
+
+    }else{
+        rt=BuscarSeleccion(dato,lt->izquierda,rt);
+
+
         if(dato==lt->NombreCubo){
             //se compia el cubo
-            printf("Encontrado");
-            Lista_Matriz*nuevo=lt;
-            return nuevo;
-        }
-        BuscarSeleccion(dato,lt->derecha);
-    }
-}
 
+            Lista_Matriz *nuevo=new Lista_Matriz("Seleccionado");
+            nuevo->image_height=lt->image_height;
+            nuevo->image_width=lt->image_width;
+            nuevo->pixel_height=lt->pixel_height;
+            nuevo->pixel_width=lt->pixel_width;
+            //recorremos la lista y la copiamos
+
+                Nodo_Matriz *tem=lt->inicio;
+                tem=tem->siguiente;
+                while(tem!=0){
+                    char nm[200];
+                    strcpy(nm, tem->NombreDocumento.c_str());
+                    Nodo_Matriz*nuevoNodo=new Nodo_Matriz(tem->Z,nm);
+                    tem->CopiarMatriz(nuevoNodo);
+
+                    nuevo->InsertarMatrizSinCarga(tem->Z,nm,nuevoNodo);
+                    tem=tem->siguiente;
+                }
+            //fin de recorrer la lista
+            printf("Encontrado");
+            rt=nuevo;
+            return rt;
+        }
+
+
+        rt=BuscarSeleccion(dato,lt->derecha,rt);
+    }
+    return rt;
+}
 
 //empiza metodos para raficar
 Arbol::GraficarARBOL(){
@@ -237,7 +263,8 @@ Arbol::InsertarCubo(char Nombre[],char ruta[]){
     Lista_Matriz *nuevo=new Lista_Matriz(Nombre);
     char chartem[150];
     strcpy(chartem,ruta);
-    CargaTotal(nuevo,strcat(strcat(chartem,Nombre),".csv"),ruta);
+    CargaTotal(nuevo,strcat(chartem,"inicial.csv"),ruta);
+    printf("%s\n",chartem);
 
 
     Lista_Matriz *tem=Raiz;
@@ -278,7 +305,7 @@ Arbol::CargaTotal(Lista_Matriz*nuevo,char rutaA[], char ruta[]){
         for (std::string linea; std::getline(archivo, linea); )
         {
             std::stringstream registro(linea);
-            for (std::string dato; std::getline(registro, dato, ';'); )
+            for (std::string dato; std::getline(registro, dato, ','); )
             {
 
                 if(primeralinea==0){

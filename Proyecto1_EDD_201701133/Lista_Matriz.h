@@ -29,7 +29,8 @@ class Lista_Matriz
         InsertarMatrizOrdenado(int z,char NombreDoc[]);
         InsertarConfiguracion(char NombreConfig[]);
 
-
+        //para la seleccion de image
+        InsertarMatrizSinCarga(int z,char NombreDoc[],Nodo_Matriz *nuevo);
         virtual ~Lista_Matriz();
 
     protected:
