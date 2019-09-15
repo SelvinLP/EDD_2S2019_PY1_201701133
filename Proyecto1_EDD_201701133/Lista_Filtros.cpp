@@ -44,58 +44,23 @@ Lista_Filtros::MostrarFiltros(int iterado,Lista_Matriz *Cubo,int posz){
             }
         }
     }
+    //seleccion de opcion
     if(iterado==0){
         int pos=1;
         Nodo_Filtro *tem=inicio;
         if(tamao==1){
             if(tem->Z==-1){
-                 //muestra capas
-                Nodo_Matriz *tem2=Cubo->inicio;
-                tem2=tem2->siguiente;
-                while(tem2!=0){
-                    printf("Profundidad: %d",tem2->Z);
-                    printf("    Descripcion: %s\n",tem2->NombreDocumento.c_str());
-                    tem2=tem2->siguiente;
-                }
-                //fin
+                MostrarFiltros(1,Cubo,tem->Z);
             }else{
-                 //muestra capas
-                Nodo_Matriz *tem2=Cubo->inicio;
-                tem2=tem2->siguiente;
-                while(tem2!=0){
-                        if(tem2->Z==posz){
-                            printf("Profundidad: %d",tem2->Z);
-                            printf("    Descripcion: %s\n",tem2->NombreDocumento.c_str());
-                        }
-                    tem2=tem2->siguiente;
-                }
-
+                MostrarFiltros(1,Cubo,tem->Z);
             }
         }else{
             //primera iteracion
-            if(posz==1){
+            if(posz==pos){
                 if(tem->Z==-1){
-                    //muestra capas
-                    Nodo_Matriz *tem2=Cubo->inicio;
-                    tem2=tem2->siguiente;
-                    while(tem2!=0){
-                        printf("Profundidad: %d",tem2->Z);
-                        printf("    Descripcion: %s\n",tem2->NombreDocumento.c_str());
-                        tem2=tem2->siguiente;
-                    }
-                    //fin
+                    MostrarFiltros(1,Cubo,tem->Z);
                 }else{
-                     //muestra capas
-                    Nodo_Matriz *tem2=Cubo->inicio;
-                    tem2=tem2->siguiente;
-                    while(tem2!=0){
-                            if(tem2->Z==posz){
-                                printf("Profundidad: %d",tem2->Z);
-                                printf("    Descripcion: %s\n",tem2->NombreDocumento.c_str());
-                            }
-                        tem2=tem2->siguiente;
-                    }
-
+                    MostrarFiltros(1,Cubo,tem->Z);
                 }
             }
 
@@ -103,34 +68,38 @@ Lista_Filtros::MostrarFiltros(int iterado,Lista_Matriz *Cubo,int posz){
             while(tem!=inicio){
                 pos+=1;
 
-                            //primera iteracion
                 if(posz==pos){
-                    if(tem->Z==-1){
-                        //muestra capas
-                        Nodo_Matriz *tem2=Cubo->inicio;
-                        tem2=tem2->siguiente;
-                        while(tem2!=0){
-                            printf("Profundidad: %d",tem2->Z);
-                            printf("    Descripcion: %s\n",tem2->NombreDocumento.c_str());
-                            tem2=tem2->siguiente;
-                        }
-                        //fin
+                    if(posz==-1){
+                        MostrarFiltros(1,Cubo,tem->Z);
                     }else{
-                         //muestra capas
-                        Nodo_Matriz *tem2=Cubo->inicio;
-                        tem2=tem2->siguiente;
-                        while(tem2!=0){
-                                if(tem2->Z==posz){
-                                    printf("Profundidad: %d",tem2->Z);
-                                    printf("    Descripcion: %s\n",tem2->NombreDocumento.c_str());
-                                }
-                            tem2=tem2->siguiente;
-                        }
-
+                        MostrarFiltros(1,Cubo,tem->Z);
                     }
                 }
-
                 tem=tem->siguiente;
+            }
+        }
+    }
+    if(iterado==1){
+        if(posz==-1){
+            //muestra capas
+            Nodo_Matriz *tem2=Cubo->inicio;
+            tem2=tem2->siguiente;
+            while(tem2!=0){
+                printf("Profundidad: %d",tem2->Z);
+                printf("    Descripcion: %s\n",tem2->NombreDocumento.c_str());
+                tem2=tem2->siguiente;
+            }
+            //fin
+        }else{
+            //muestra capas
+            Nodo_Matriz *tem2=Cubo->inicio;
+            tem2=tem2->siguiente;
+            while(tem2!=0){
+                if(tem2->Z==posz){
+                    printf("Profundidad: %d",tem2->Z);
+                    printf("    Descripcion: %s\n",tem2->NombreDocumento.c_str());
+                }
+                tem2=tem2->siguiente;
             }
         }
 

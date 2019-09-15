@@ -234,6 +234,7 @@ int main()
                         int filtroselecci;
                         std::cin>>filtroselecci;
                         Filtro->MostrarFiltros(0,Cuboseleccionado,filtroselecci);
+                        cout <<"Nota: Recomendado Colocar nodo ya existente o no crear nodo anterior en Y"<<endl;
                         cout <<"Ingrese ID de la capa"<<endl;
                         int id;
                         cin>>id;
