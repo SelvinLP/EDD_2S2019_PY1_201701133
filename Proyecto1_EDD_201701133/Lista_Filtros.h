@@ -6,15 +6,18 @@
 #include <stdlib.h>
 #include<bits/stdc++.h>
 
+#include<Lista_Matriz.h>
+
 
 
 class Nodo_Filtro {
     public:
         //Lista Doble de filtros
         std::string Actividad;
+        int Z;
         Nodo_Filtro* siguiente;
         Nodo_Filtro* anterior;
-        Nodo_Filtro(std::string act):Actividad(act),siguiente(0),anterior(0) {}
+        Nodo_Filtro(std::string act,int poz):Actividad(act),Z(poz),siguiente(0),anterior(0) {}
 };
 class Lista_Filtros
 {
@@ -25,7 +28,8 @@ class Lista_Filtros
         int tamao=0;
 
 
-        Insertar (std::string  dato);
+        Insertar (std::string  dato,int posz);
+        MostrarFiltros(int iterado,Lista_Matriz *Cubo,int posz);
         GraficarFiltro();
         std::string CadenaGRAFICA;
 

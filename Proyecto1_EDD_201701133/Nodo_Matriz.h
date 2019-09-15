@@ -55,6 +55,7 @@ class Nodo_Matriz
         //cambio de colores
         Negativo();
         EscalaGris();
+        Mosaico();
         virtual ~Nodo_Matriz();
 
     protected:

@@ -95,18 +95,20 @@ int main()
                         matriz=matriz->siguiente;
                     }
 
+                    Filtro->Insertar("Negative",opcionfiltrocapa);
                 }
                 if(opcionfiltro2==2){
                     Nodo_Matriz*matriz=Cuboseleccionado->inicio;
                     matriz=matriz->siguiente;
                     while(matriz!=0){
-                        matriz->EscalaGris();
+                        matriz->Negativo();
                         matriz=matriz->siguiente;
                     }
+                    Filtro->Insertar("Negative",-1);
                 }
 
                 cout <<"Se Inserto Negative"<<endl;
-                Filtro->Insertar("Negative");
+
                 system("pause");
             }
             if(opcionfiltro==2){
@@ -131,6 +133,7 @@ int main()
                         matriz=matriz->siguiente;
                     }
 
+                    Filtro->Insertar("Grayscale",opcionfiltrocapa);
                 }
                 if(opcionfiltro2==2){
                     Nodo_Matriz*matriz=Cuboseleccionado->inicio;
@@ -139,9 +142,10 @@ int main()
                         matriz->EscalaGris();
                         matriz=matriz->siguiente;
                     }
+
+                    Filtro->Insertar("Grayscale",-1);
                 }
                 cout <<"Se Inserto Grayscale"<<endl;
-                Filtro->Insertar("Grayscale");
                 system("pause");
             }
             if(opcionfiltro==3){
@@ -153,30 +157,30 @@ int main()
                 if(opcionfiltro==1){
                     //mirror en x
                     cout <<"Se Inserto X-Mirror"<<endl;
-                    Filtro->Insertar("X-Mirror");
+                    //Filtro->Insertar("X-Mirror");
                     system("pause");
                 }
                 if(opcionfiltro==2){
                     //mirror en y
                     cout <<"Se Inserto Y-Mirror"<<endl;
-                    Filtro->Insertar("Y-Mirror");
+                    //Filtro->Insertar("Y-Mirror");
                     system("pause");
                 }
                 if(opcionfiltro==3){
                     //mirror de los dos
                     cout <<"Se Inserto Double-Mirror"<<endl;
-                    Filtro->Insertar("Double-Mirror");
+                    //Filtro->Insertar("Double-Mirror");
                     system("pause");
                 }
             }
             if(opcionfiltro==4){
                 cout <<"Se Inserto Collage"<<endl;
-                Filtro->Insertar("Collage");
+                //Filtro->Insertar("Collage");
                 system("pause");
             }
             if(opcionfiltro==5){
                 cout <<"Se Inserto Mosaic"<<endl;
-                Filtro->Insertar("Mosaic");
+                //Filtro->Insertar("Mosaic");
                 system("pause");
             }
 
@@ -190,11 +194,71 @@ int main()
             int opcionmenu4;
             std::cin>>opcionmenu4;
             if(opcionmenu4==1){
+                arbol->MostrarInorden(arbol->Raiz);
+                cout <<"Seleccione el nombre de una imagen"<<endl;
+                string seleccionad;
+                cin>>seleccionad;
+                arbol->BuscarArbol(-1,seleccionad,arbol->Raiz);
+                cout <<"Ingrese ID de la capa"<<endl;
+                int id;
+                cin>>id;
+                cout <<"Ingrese Posicion X"<<endl;
+                int idx;
+                cin>>idx;
+                cout <<"Ingrese Posicion Y"<<endl;
+                int idy;
+                cin>>idy;
+                cout <<"Ingrese Color R"<<endl;
+                int idr;
+                cin>>idr;
+                cout <<"Ingrese Color G"<<endl;
+                int idg;
+                cin>>idg;
+                cout <<"Ingrese Color B"<<endl;
+                int idb;
+                cin>>idb;
+                arbol->BuscayModifica(id,seleccionad,arbol->Raiz,idx,idy,idr,idg,idb);
+
 
             }
             if(opcionmenu4==2){
+                if(Filtro==0){
+                    cout <<"NO HAY IMAGEN SELECCIONADA"<<endl;
+                }else{
+                    if(Filtro->inicio==0){
+                        cout <<"NO HAY FILTROS AGREGADOS"<<endl;
+                        system("pause");
+                    }else{
+                        Filtro->MostrarFiltros(-1,Cuboseleccionado,0);
+                        cout <<"Seleccione un filtro"<<endl;
+                        int filtroselecci;
+                        std::cin>>filtroselecci;
+                        Filtro->MostrarFiltros(0,Cuboseleccionado,filtroselecci);
+                        cout <<"Ingrese ID de la capa"<<endl;
+                        int id;
+                        cin>>id;
+                        cout <<"Ingrese Posicion X"<<endl;
+                        int idx;
+                        cin>>idx;
+                        cout <<"Ingrese Posicion Y"<<endl;
+                        int idy;
+                        cin>>idy;
+                        cout <<"Ingrese Color R"<<endl;
+                        int idr;
+                        cin>>idr;
+                        cout <<"Ingrese Color G"<<endl;
+                        int idg;
+                        cin>>idg;
+                        cout <<"Ingrese Color B"<<endl;
+                        int idb;
+                        cin>>idb;
+                        Cuboseleccionado->BuscaryModificarMatriz(id,"Cambio",idx,idy,idr,idg,idb);
 
+                    }
+                }
             }
+
+
         }
         if(opcionmenu==5){
             if(Cuboseleccionado==0){

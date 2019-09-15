@@ -13,7 +13,17 @@ Lista_Matriz::Lista_Matriz(char nombreC[])
     //para el nodo
     this->inicio=new Nodo_Matriz(-1,"INICIO");
 }
-
+//para buscar y modificar
+Lista_Matriz::BuscaryModificarMatriz(int posz,std::string dato,int dx,int dy,int dr,int dg,int db){
+    Nodo_Matriz *tem=inicio;
+    tem=tem->siguiente;
+    while(tem!=0){
+            if(tem->Z==posz){
+                tem->InsertarColor(dx,dy,dato,dr,dg,db);
+            }
+        tem=tem->siguiente;
+    }
+}
 Lista_Matriz::MostrarLista(int posz){
     Nodo_Matriz *tem=inicio;
     tem=tem->siguiente;

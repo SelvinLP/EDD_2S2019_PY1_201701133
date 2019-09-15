@@ -4,6 +4,141 @@ Lista_Filtros::Lista_Filtros()
 {
     //ctor
 }
+//mostrar filtros
+Lista_Filtros::MostrarFiltros(int iterado,Lista_Matriz *Cubo,int posz){
+    if(iterado==-1){
+        int pos=1;
+        Nodo_Filtro *tem=inicio;
+        if(tamao==1){
+            printf("  %d",pos);
+            printf(".");
+            printf(" Filtro:  %s",tem->Actividad.c_str());
+            if(tem->Z==-1){
+                printf("    Capa:  Todas\n");
+            }else{
+                printf("    Capa:  %d\n",tem->Z);
+            }
+        }else{
+            //primera iteracion
+            printf("  %d",pos);
+            printf(".");
+            printf(" Filtro:  %s",tem->Actividad.c_str());
+            if(tem->Z==-1){
+                printf("    Capa:  Todas\n");
+            }else{
+                printf("    Capa:  %d\n",tem->Z);
+            }
+
+            tem=tem->siguiente;
+            while(tem!=inicio){
+                pos+=1;
+                printf("  %d",pos);
+                printf(".");
+                printf(" Filtro:  %s",tem->Actividad.c_str());
+                if(tem->Z==-1){
+                    printf("    Capa:  Todas\n");
+                }else{
+                    printf("    Capa:  %d\n",tem->Z);
+                }
+                tem=tem->siguiente;
+            }
+        }
+    }
+    if(iterado==0){
+        int pos=1;
+        Nodo_Filtro *tem=inicio;
+        if(tamao==1){
+            if(tem->Z==-1){
+                 //muestra capas
+                Nodo_Matriz *tem2=Cubo->inicio;
+                tem2=tem2->siguiente;
+                while(tem2!=0){
+                    printf("Profundidad: %d",tem2->Z);
+                    printf("    Descripcion: %s\n",tem2->NombreDocumento.c_str());
+                    tem2=tem2->siguiente;
+                }
+                //fin
+            }else{
+                 //muestra capas
+                Nodo_Matriz *tem2=Cubo->inicio;
+                tem2=tem2->siguiente;
+                while(tem2!=0){
+                        if(tem2->Z==posz){
+                            printf("Profundidad: %d",tem2->Z);
+                            printf("    Descripcion: %s\n",tem2->NombreDocumento.c_str());
+                        }
+                    tem2=tem2->siguiente;
+                }
+
+            }
+        }else{
+            //primera iteracion
+            if(posz==1){
+                if(tem->Z==-1){
+                    //muestra capas
+                    Nodo_Matriz *tem2=Cubo->inicio;
+                    tem2=tem2->siguiente;
+                    while(tem2!=0){
+                        printf("Profundidad: %d",tem2->Z);
+                        printf("    Descripcion: %s\n",tem2->NombreDocumento.c_str());
+                        tem2=tem2->siguiente;
+                    }
+                    //fin
+                }else{
+                     //muestra capas
+                    Nodo_Matriz *tem2=Cubo->inicio;
+                    tem2=tem2->siguiente;
+                    while(tem2!=0){
+                            if(tem2->Z==posz){
+                                printf("Profundidad: %d",tem2->Z);
+                                printf("    Descripcion: %s\n",tem2->NombreDocumento.c_str());
+                            }
+                        tem2=tem2->siguiente;
+                    }
+
+                }
+            }
+
+            tem=tem->siguiente;
+            while(tem!=inicio){
+                pos+=1;
+
+                            //primera iteracion
+                if(posz==pos){
+                    if(tem->Z==-1){
+                        //muestra capas
+                        Nodo_Matriz *tem2=Cubo->inicio;
+                        tem2=tem2->siguiente;
+                        while(tem2!=0){
+                            printf("Profundidad: %d",tem2->Z);
+                            printf("    Descripcion: %s\n",tem2->NombreDocumento.c_str());
+                            tem2=tem2->siguiente;
+                        }
+                        //fin
+                    }else{
+                         //muestra capas
+                        Nodo_Matriz *tem2=Cubo->inicio;
+                        tem2=tem2->siguiente;
+                        while(tem2!=0){
+                                if(tem2->Z==posz){
+                                    printf("Profundidad: %d",tem2->Z);
+                                    printf("    Descripcion: %s\n",tem2->NombreDocumento.c_str());
+                                }
+                            tem2=tem2->siguiente;
+                        }
+
+                    }
+                }
+
+                tem=tem->siguiente;
+            }
+        }
+
+    }
+
+}
+
+
 Lista_Filtros::GraficarFiltro(){
     int sizes=0;
     std::stringstream ss;
@@ -29,10 +164,29 @@ Lista_Filtros::GraficarFiltro(){
     CadenaGRAFICA += "rankdir=LR \n" ;
     CadenaGRAFICA += "node[shape=record,style=filled]\n" ;
     //creacion de nodos
+    //para z
+    std::stringstream ssz;
+    std::string mz;
+    ssz.str(std::string());
+    ssz.clear();
+    ssz<<tem->Z;
+    ssz>>mz;
+
     if(tamao==1){
-        CadenaGRAFICA += "\""+ tem->Actividad+mgh+"\"" +"[label =\" "+tem->Actividad+"\"]; \n" ;
+        if(tem->Z==-1){
+            CadenaGRAFICA += "\""+ tem->Actividad+mgh+"\"" +"[label =\" "+tem->Actividad+" Capa:Todas"+"\"]; \n" ;
+
+        }else{
+            CadenaGRAFICA += "\""+ tem->Actividad+mgh+"\"" +"[label =\" "+tem->Actividad+" Capa:"+mz+"\"]; \n" ;
+        }
+
     }else{
-        CadenaGRAFICA += "\""+ tem->Actividad+mgh+"\"" +"[label =\" "+tem->Actividad+"\"]; \n" ;
+        if(tem->Z==-1){
+            CadenaGRAFICA += "\""+ tem->Actividad+mgh+"\"" +"[label =\" "+tem->Actividad+" Capa:Todas"+"\"]; \n" ;
+
+        }else{
+            CadenaGRAFICA += "\""+ tem->Actividad+mgh+"\"" +"[label =\" "+tem->Actividad+" Capa:"+mz+"\"]; \n" ;
+        }
         //primer enlace
         CadenaGRAFICA += "\""+ tem->Actividad+mgh+"\"->"+"\""+tem->siguiente->Actividad+mg+"\"; \n" ;
         CadenaGRAFICA += "\""+ tem->Actividad+mgh+"\"->"+"\""+tem->siguiente->Actividad+mg+"\" [dir=back]; \n" ;
@@ -56,7 +210,20 @@ Lista_Filtros::GraficarFiltro(){
             sst<<sizes+1;
             sst>>mg;
 
-            CadenaGRAFICA += "\""+ tem->Actividad+mgh+"\"" +"[label =\" "+tem->Actividad+"\"]; \n" ;
+                //para z
+            std::stringstream ssz;
+            std::string mz;
+            ssz.str(std::string());
+            ssz.clear();
+            ssz<<tem->Z;
+            ssz>>mz;
+
+            if(tem->Z==-1){
+                CadenaGRAFICA += "\""+ tem->Actividad+mgh+"\"" +"[label =\" "+tem->Actividad+" Capa:Todas"+"\"]; \n" ;
+
+            }else{
+                CadenaGRAFICA += "\""+ tem->Actividad+mgh+"\"" +"[label =\" "+tem->Actividad+" Capa:"+mz+"\"]; \n" ;
+            }
             //creacion de enlaces
             if(tem->siguiente==0){
 
@@ -82,8 +249,8 @@ Lista_Filtros::GraficarFiltro(){
     system("Start GraficaFILTRO.png");
 }
 
-Lista_Filtros::Insertar(std::string dato){
-    Nodo_Filtro* nuevo=new Nodo_Filtro(dato);
+Lista_Filtros::Insertar(std::string dato,int posz){
+    Nodo_Filtro* nuevo=new Nodo_Filtro(dato,posz);
     Nodo_Filtro* aux;
     if(inicio==0){
         inicio=nuevo;

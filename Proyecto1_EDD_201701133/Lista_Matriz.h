@@ -31,6 +31,11 @@ class Lista_Matriz
 
         //para la seleccion de image
         InsertarMatrizSinCarga(int z,char NombreDoc[],Nodo_Matriz *nuevo);
+
+        //para modificar datos
+        BuscaryModificarMatriz(int posz,std::string dato,int dx,int dy,int dr,int dg,int db);
+
+
         virtual ~Lista_Matriz();
 
     protected:

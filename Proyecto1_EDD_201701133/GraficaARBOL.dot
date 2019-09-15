@@ -1,8 +1,0 @@
-digraph GraficaARBOL { 
-size="9,9" 
-rankdir=TB 
-node[shape=record,style=filled]
-"Ave"[label ="<C0>|<C1>Ave: Altura y Ancho:Cubo(17,19) Pixel(30,30)|<C2>"]; 
-"corazoncito"[label ="<C0>|<C1>corazoncito: Altura y Ancho:Cubo(12,8) Pixel(30,30)|<C2>"]; 
-"Ave":C2->"corazoncito"; 
-}

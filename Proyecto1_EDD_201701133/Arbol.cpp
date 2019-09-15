@@ -4,6 +4,18 @@ Arbol::Arbol()
 {
     this->Raiz=0;
 }
+//buscar y modificar
+Arbol::BuscayModifica(int posz,std::string dato, Lista_Matriz*lt,int dx,int dy,int dr,int dg,int db){
+    if(lt!=0){
+        BuscayModifica(posz,dato,lt->izquierda,dx,dy,dr,dg,db);
+        if(dato==lt->NombreCubo){
+            printf("Encontrado");
+            lt->BuscaryModificarMatriz(posz,dato,dx,dy,dr,dg,db);
+        }
+        BuscayModifica(posz,dato,lt->derecha,dx,dy,dr,dg,db);
+    }
+}
+
 //seleccion de nodo
 Lista_Matriz* Arbol::BuscarSeleccion(std::string dato, Lista_Matriz*lt,Lista_Matriz *rt){
     if(lt==0){

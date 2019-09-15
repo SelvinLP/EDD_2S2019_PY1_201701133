@@ -14,7 +14,8 @@ class Arbol
         //raiz del arbol
         Lista_Matriz* Raiz;
         Arbol();
-
+        //busca y modifica
+        BuscayModifica(int posz,std::string dato, Lista_Matriz*lt,int dx,int dy,int dr,int dg,int db);
         //copiar seleccion de imagen
         Lista_Matriz* BuscarSeleccion(std::string dato, Lista_Matriz*lt,Lista_Matriz*rt);
 
