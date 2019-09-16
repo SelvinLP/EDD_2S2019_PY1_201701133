@@ -880,6 +880,51 @@ Nodo_Matriz::Mosaico(){
         tem=tem->siguiente;
     }
 }
+
+Nodo_Matriz::Xmirror(Nodo_Matriz *lt,int maxx){
+    int tamanioX=maxx;
+    int minX=0;
+    Nodo_Color* tem=inicio;
+    Nodo_Color* tem2=0;
+        //obtener tamaño en x
+    tem=tem->abajo;
+    while(tem !=0){
+        tem2=tem;
+        tem2=tem2->siguiente;
+        while(tem2!=0){
+            lt->InsertarColor((tamanioX-tem2->X+1),tem2->Y,tem2->Color,tem2->R,tem2->G,tem2->B);
+            tem2=tem2->siguiente;
+        }
+        tem=tem->abajo;
+    }
+}
+
+Nodo_Matriz::Ymirror(Nodo_Matriz *lt,int maxy){
+    int tamanioY=maxy;
+    int minY=0;
+    Nodo_Color* temfin=0;
+    Nodo_Color* tem=inicio;
+    Nodo_Color* tem2=0;
+        //obtener tamaño en y
+    minY=tem->abajo->Y;
+    while(tem!=0){
+        if(tem->abajo==0){
+            temfin=tem;
+        }
+        tem=tem->abajo;
+    }
+    //insercion de datos
+    while(temfin !=inicio){
+        tem2=temfin;
+        tem2=tem2->siguiente;
+        while(tem2!=0){
+            lt->InsertarColor(tem2->X,(tamanioY-tem2->Y+1),tem2->Color,tem2->R,tem2->G,tem2->B);
+            tem2=tem2->siguiente;
+        }
+        temfin=temfin->arriba;
+    }
+}
+
 //no tocar
 Nodo_Matriz::~Nodo_Matriz()
 {

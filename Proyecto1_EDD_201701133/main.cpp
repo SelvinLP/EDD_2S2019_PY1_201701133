@@ -12,7 +12,42 @@
 
 
 using namespace std;
+void RotarImagenCompletaX(Lista_Matriz *Cubo,Nodo_Matriz*matri){
+    if(matri!=0){
+            //inserccion de filtro
+        char nombretem[200];
+        int posz=matri->Z;
+        strcpy(nombretem, matri->NombreDocumento.c_str());
+        //llamamos al metodo recursivo
+        RotarImagenCompletaX(Cubo,matri->siguiente);
+        //creamos un nuevo nodo con los datos de la matriz
+        Nodo_Matriz *nuevo=new Nodo_Matriz(posz,nombretem);
+        matri->Xmirror(nuevo,Cubo->image_width);
+        //eliminamos el nodo de la matrizdispesa
+        Cubo->Eliminar(posz);
+        //insertamos el nuevo nodo
+        Cubo->InsertarMatrizSinCarga(posz,nombretem,nuevo);
 
+    }
+}
+void RotarImagenCompletaY(Lista_Matriz *Cubo,Nodo_Matriz*matri){
+    if(matri!=0){
+            //inserccion de filtro
+        char nombretem[200];
+        int posz=matri->Z;
+        strcpy(nombretem, matri->NombreDocumento.c_str());
+        //llamamos al metodo recursivo
+        RotarImagenCompletaY(Cubo,matri->siguiente);
+        //creamos un nuevo nodo con los datos de la matriz
+        Nodo_Matriz *nuevo=new Nodo_Matriz(posz,nombretem);
+        matri->Ymirror(nuevo,Cubo->image_height);
+        //eliminamos el nodo de la matrizdispesa
+        Cubo->Eliminar(posz);
+        //insertamos el nuevo nodo
+        Cubo->InsertarMatrizSinCarga(posz,nombretem,nuevo);
+
+    }
+}
 int main()
 {
     int ciclomenu=0;
@@ -154,20 +189,164 @@ int main()
                 cout <<"    3.Double-Mirror"<<endl;
                 int opMirror;
                 cin>>opMirror;
-                if(opcionfiltro==1){
+                if(opMirror==1){
                     //mirror en x
+
+                    cout <<"    1. Capas"<<endl;
+                    cout <<"    2. Imagen Completa"<<endl;
+                    int opcionfiltro2;
+                    cin>>opcionfiltro2;
+                    if(opcionfiltro2==1){
+
+                        Cuboseleccionado->MostrarLista(-1);
+                        cout <<"Seleccione una Capa"<<endl;
+                        int opcionfiltrocapa;
+                        cin>>opcionfiltrocapa;
+
+                        Nodo_Matriz*matriz=Cuboseleccionado->inicio;
+                        matriz=matriz->siguiente;
+                        while(matriz!=0){
+                            if(matriz->Z==opcionfiltrocapa){
+                                //nombre
+                                char nombretem[200];
+                                int posz=matriz->Z;
+                                strcpy(nombretem, matriz->NombreDocumento.c_str());
+                                //creamos un nuevo nodo con los datos de la matriz
+                                Nodo_Matriz *nuevo=new Nodo_Matriz(posz,nombretem);
+                                matriz->Xmirror(nuevo,Cuboseleccionado->image_width);
+                                //eliminamos el nodo de la matrizdispesa
+                                Cuboseleccionado->Eliminar(opcionfiltrocapa);
+                                //insertamos el nuevo nodo
+                                Cuboseleccionado->InsertarMatrizSinCarga(posz,nombretem,nuevo);
+
+                                break;
+                            }
+                            matriz=matriz->siguiente;
+                        }
+
+                        Filtro->Insertar("X-Mirror",opcionfiltrocapa);
+                    }
+
+                    if(opcionfiltro2==2){
+                        Nodo_Matriz*matriz=Cuboseleccionado->inicio;
+                        matriz=matriz->siguiente;
+                        //aplicamos el metodo de rotar completa
+                        RotarImagenCompletaX(Cuboseleccionado,matriz);
+
+                        Filtro->Insertar("X-Mirror",-1);
+                    }
+
                     cout <<"Se Inserto X-Mirror"<<endl;
                     //Filtro->Insertar("X-Mirror");
                     system("pause");
                 }
-                if(opcionfiltro==2){
+
+
+                if(opMirror==2){
+                    //mirror en y
+
+                    cout <<"    1. Capas"<<endl;
+                    cout <<"    2. Imagen Completa"<<endl;
+                    int opcionfiltro2;
+                    cin>>opcionfiltro2;
+                    if(opcionfiltro2==1){
+
+                        Cuboseleccionado->MostrarLista(-1);
+                        cout <<"Seleccione una Capa"<<endl;
+                        int opcionfiltrocapa;
+                        cin>>opcionfiltrocapa;
+
+                        Nodo_Matriz*matriz=Cuboseleccionado->inicio;
+                        matriz=matriz->siguiente;
+                        while(matriz!=0){
+                            if(matriz->Z==opcionfiltrocapa){
+                                //nombre
+                                char nombretem[200];
+                                int posz=matriz->Z;
+                                strcpy(nombretem, matriz->NombreDocumento.c_str());
+                                //creamos un nuevo nodo con los datos de la matriz
+                                Nodo_Matriz *nuevo=new Nodo_Matriz(posz,nombretem);
+
+                                matriz->Ymirror(nuevo,Cuboseleccionado->image_height);
+                                printf("Crea  Nuevo nodo");
+                                //eliminamos el nodo de la matrizdispesa
+                                Cuboseleccionado->Eliminar(opcionfiltrocapa);
+                                //insertamos el nuevo nodo
+                                Cuboseleccionado->InsertarMatrizSinCarga(posz,nombretem,nuevo);
+
+                                break;
+                            }
+                            matriz=matriz->siguiente;
+                        }
+
+                        Filtro->Insertar("Y-Mirror",opcionfiltrocapa);
+                    }
+
+                    if(opcionfiltro2==2){
+                        Nodo_Matriz*matriz=Cuboseleccionado->inicio;
+                        matriz=matriz->siguiente;
+                        //aplicamos el metodo de rotar completa
+                        RotarImagenCompletaY(Cuboseleccionado,matriz);
+
+                        Filtro->Insertar("Y-Mirror",-1);
+                    }
+
                     //mirror en y
                     cout <<"Se Inserto Y-Mirror"<<endl;
                     //Filtro->Insertar("Y-Mirror");
                     system("pause");
                 }
-                if(opcionfiltro==3){
+                if(opMirror==3){
                     //mirror de los dos
+
+                    cout <<"    1. Capas"<<endl;
+                    cout <<"    2. Imagen Completa"<<endl;
+                    int opcionfiltro2;
+                    cin>>opcionfiltro2;
+                    if(opcionfiltro2==1){
+
+                        Cuboseleccionado->MostrarLista(-1);
+                        cout <<"Seleccione una Capa"<<endl;
+                        int opcionfiltrocapa;
+                        cin>>opcionfiltrocapa;
+
+                        Nodo_Matriz*matriz=Cuboseleccionado->inicio;
+                        matriz=matriz->siguiente;
+                        while(matriz!=0){
+                            if(matriz->Z==opcionfiltrocapa){
+                                //nombre
+                                char nombretem[200];
+                                int posz=matriz->Z;
+                                strcpy(nombretem, matriz->NombreDocumento.c_str());
+                                //creamos un nuevo nodo con los datos de la matriz
+                                Nodo_Matriz *nuevo=new Nodo_Matriz(posz,nombretem);
+
+                                matriz->Xmirror(nuevo,Cuboseleccionado->image_width);
+                                matriz->Ymirror(nuevo,Cuboseleccionado->image_height);
+                                printf("Crea  Nuevo nodo");
+                                //eliminamos el nodo de la matrizdispesa
+                                Cuboseleccionado->Eliminar(opcionfiltrocapa);
+                                //insertamos el nuevo nodo
+                                Cuboseleccionado->InsertarMatrizSinCarga(posz,nombretem,nuevo);
+
+                                break;
+                            }
+                            matriz=matriz->siguiente;
+                        }
+
+                        Filtro->Insertar("XY-Mirror",opcionfiltrocapa);
+                    }
+
+                    if(opcionfiltro2==2){
+                        Nodo_Matriz*matriz=Cuboseleccionado->inicio;
+                        matriz=matriz->siguiente;
+                        //aplicamos el metodo de rotar completa
+                        RotarImagenCompletaY(Cuboseleccionado,matriz);
+                        RotarImagenCompletaX(Cuboseleccionado,matriz);
+
+                        Filtro->Insertar("XY-Mirror",-1);
+                    }
+
                     cout <<"Se Inserto Double-Mirror"<<endl;
                     //Filtro->Insertar("Double-Mirror");
                     system("pause");

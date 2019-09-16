@@ -184,6 +184,25 @@ Lista_Matriz::InsertarMatrizSinCarga(int z,char NombreDoc [],Nodo_Matriz *nuevo)
 
 }
 
+Lista_Matriz::Eliminar(int z){
+    Nodo_Matriz* avance=inicio;
+    while(avance!=0){
+        if(avance->Z == z){
+            //en caso de que sea el ultimo
+            if(avance->siguiente==0){
+                avance->anterior->siguiente=0;
+            }else{
+                avance->anterior->siguiente=avance->siguiente;
+                avance->siguiente->anterior=avance->anterior;
+                avance->siguiente=0;
+                avance->anterior=0;
+            }
+            break;
+        }
+
+        avance=avance->siguiente;
+    }
+}
 
 Lista_Matriz::~Lista_Matriz()
 {

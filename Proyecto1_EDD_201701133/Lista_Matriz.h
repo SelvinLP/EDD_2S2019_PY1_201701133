@@ -34,6 +34,8 @@ class Lista_Matriz
 
         //para modificar datos
         BuscaryModificarMatriz(int posz,std::string dato,int dx,int dy,int dr,int dg,int db);
+        //para aplicacion de Mirror
+        Eliminar(int z);
 
 
         virtual ~Lista_Matriz();
