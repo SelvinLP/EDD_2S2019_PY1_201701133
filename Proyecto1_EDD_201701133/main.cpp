@@ -48,6 +48,37 @@ void RotarImagenCompletaY(Lista_Matriz *Cubo,Nodo_Matriz*matri){
 
     }
 }
+
+void RotarImagenCompletaXY(Lista_Matriz *Cubo,Nodo_Matriz*matri){
+    if(matri!=0){
+            //inserccion de filtro
+        char nombretem[200];
+        int posz=matri->Z;
+        strcpy(nombretem, matri->NombreDocumento.c_str());
+        //llamamos al metodo recursivo
+        RotarImagenCompletaXY(Cubo,matri->siguiente);
+        //creamos un nuevo nodo con los datos de la matriz
+        Nodo_Matriz *nuevo=new Nodo_Matriz(posz,nombretem);
+        matri->Xmirror(nuevo,Cubo->image_width);
+        //eliminamos el nodo de la matrizdispesa
+        Cubo->Eliminar(posz);
+        //insertamos el nuevo nodo
+        Cubo->InsertarMatrizSinCarga(posz,nombretem,nuevo);
+
+        //para y
+
+        Nodo_Matriz *nuevo2=new Nodo_Matriz(posz,nombretem);
+        nuevo->Ymirror(nuevo2,Cubo->image_height);
+        //eliminamos el nodo de la matrizdispesa
+        Cubo->Eliminar(posz);
+        //insertamos el nuevo nodo
+        Cubo->InsertarMatrizSinCarga(posz,nombretem,nuevo2);
+
+
+    }
+}
+
+
 int main()
 {
     int ciclomenu=0;
@@ -319,15 +350,23 @@ int main()
                                 int posz=matriz->Z;
                                 strcpy(nombretem, matriz->NombreDocumento.c_str());
                                 //creamos un nuevo nodo con los datos de la matriz
+                                //para x
                                 Nodo_Matriz *nuevo=new Nodo_Matriz(posz,nombretem);
-
                                 matriz->Xmirror(nuevo,Cuboseleccionado->image_width);
-                                matriz->Ymirror(nuevo,Cuboseleccionado->image_height);
+
                                 printf("Crea  Nuevo nodo");
                                 //eliminamos el nodo de la matrizdispesa
                                 Cuboseleccionado->Eliminar(opcionfiltrocapa);
                                 //insertamos el nuevo nodo
                                 Cuboseleccionado->InsertarMatrizSinCarga(posz,nombretem,nuevo);
+                                //para y
+                                //para y
+                                Nodo_Matriz *nuevo2=new Nodo_Matriz(posz,nombretem);
+                                nuevo->Ymirror(nuevo2,Cuboseleccionado->image_height);
+
+                                Cuboseleccionado->Eliminar(posz);
+                                //insertamos el nuevo nodo
+                                Cuboseleccionado->InsertarMatrizSinCarga(posz,nombretem,nuevo2);
 
                                 break;
                             }
@@ -341,8 +380,9 @@ int main()
                         Nodo_Matriz*matriz=Cuboseleccionado->inicio;
                         matriz=matriz->siguiente;
                         //aplicamos el metodo de rotar completa
-                        RotarImagenCompletaY(Cuboseleccionado,matriz);
-                        RotarImagenCompletaX(Cuboseleccionado,matriz);
+
+                        RotarImagenCompletaXY(Cuboseleccionado,matriz);
+
 
                         Filtro->Insertar("XY-Mirror",-1);
                     }

@@ -55,10 +55,11 @@ class Nodo_Matriz
         //cambio de colores
         Negativo();
         EscalaGris();
-        Mosaico();
         //metodos de deplazamiento de nodos
         Xmirror(Nodo_Matriz *lt,int maxx);
         Ymirror(Nodo_Matriz *lt,int maxy);
+
+
         virtual ~Nodo_Matriz();
 
     protected:

@@ -865,21 +865,6 @@ Nodo_Matriz::EscalaGris(){
     }
 }
 
-Nodo_Matriz::Mosaico(){
-    Nodo_Color* tem=inicio;
-    Nodo_Color* tem2=0;
-    tem=tem->siguiente;
-    while(tem !=0){
-        tem2=tem;
-        while(tem2!=0){
-            tem2->R=tem2->R/2;
-            tem2->G=tem2->G/2;
-            tem2->B=tem2->B/2;
-            tem2=tem2->abajo;
-        }
-        tem=tem->siguiente;
-    }
-}
 
 Nodo_Matriz::Xmirror(Nodo_Matriz *lt,int maxx){
     int tamanioX=maxx;
@@ -924,6 +909,7 @@ Nodo_Matriz::Ymirror(Nodo_Matriz *lt,int maxy){
         temfin=temfin->arriba;
     }
 }
+
 
 //no tocar
 Nodo_Matriz::~Nodo_Matriz()

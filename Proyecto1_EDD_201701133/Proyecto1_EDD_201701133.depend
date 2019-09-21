@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1568613039 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\main.cpp
+1569032560 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\main.cpp
 	<iostream>
 	<stdlib.h>
 	<string>
@@ -11,10 +11,10 @@
 	<Lista_Matriz.h>
 	<Nodo_Matriz.h>
 
-1568612645 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\nodo_matriz.cpp
+1569031197 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\nodo_matriz.cpp
 	"Nodo_Matriz.h"
 
-1568612635 c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\nodo_matriz.h
+1569031197 c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\nodo_matriz.h
 	<fstream>
 	<string>
 	<sstream>
@@ -30,7 +30,7 @@
 	<stdlib.h>
 	<Nodo_Matriz.h>
 
-1568503184 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\arbol.cpp
+1569029381 source:c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\arbol.cpp
 	"Arbol.h"
 
 1568501419 c:\users\aragon perez\documents\prolemas de c++\edd_2s2019_py1_201701133\proyecto1_edd_201701133\arbol.h

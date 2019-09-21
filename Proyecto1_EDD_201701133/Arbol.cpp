@@ -26,8 +26,9 @@ Lista_Matriz* Arbol::BuscarSeleccion(std::string dato, Lista_Matriz*lt,Lista_Mat
 
         if(dato==lt->NombreCubo){
             //se compia el cubo
-
-            Lista_Matriz *nuevo=new Lista_Matriz("Seleccionado");
+            char name[100];
+            strcpy(name, dato.c_str());
+            Lista_Matriz *nuevo=new Lista_Matriz(name);
             nuevo->image_height=lt->image_height;
             nuevo->image_width=lt->image_width;
             nuevo->pixel_height=lt->pixel_height;
