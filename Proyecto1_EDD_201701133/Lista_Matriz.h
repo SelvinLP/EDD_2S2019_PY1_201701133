@@ -37,6 +37,7 @@ class Lista_Matriz
         //para aplicacion de Mirror
         Eliminar(int z);
 
+        std::string obtenerRGB(int x,int y);
 
         virtual ~Lista_Matriz();
 

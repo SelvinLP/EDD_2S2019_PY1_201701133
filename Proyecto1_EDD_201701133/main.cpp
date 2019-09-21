@@ -78,12 +78,13 @@ void RotarImagenCompletaXY(Lista_Matriz *Cubo,Nodo_Matriz*matri){
     }
 }
 
-
 int main()
 {
     //para filtros y graficar
     int filas=1;
     int columnas=1;
+    //mosaico
+    int VMosaico=0;
 
     int ciclomenu=0;
     cout << "Proyecto 1 de estructura de datos 201701133" << endl;
@@ -121,6 +122,7 @@ int main()
             //limpieza de filtros
             filas=1;
             columnas=1;
+            VMosaico=0;
             Filtro=new Lista_Filtros();
 
             arbol->MostrarInorden(arbol->Raiz);
@@ -421,7 +423,11 @@ int main()
             }
             if(opcionfiltro==5){
                 cout <<"Se Inserto Mosaic"<<endl;
+                VMosaico=1;
+                filas=Cuboseleccionado->image_height;
+                columnas=Cuboseleccionado->image_width;
                 //Filtro->Insertar("Mosaic");
+                Filtro->Insertar("Mosaic",-1);
                 system("pause");
             }
 
@@ -528,9 +534,17 @@ int main()
                 cadena+="<table style=\"margin: 0 auto;\">\n";
 
                 for(int i=1;i<=filas;i+=1){
+                    //cadena+="<tr background-color: rgba(10, 10,100, 1);>\n";
                     cadena+="<tr>\n";
                     for(int i2=1;i2<=columnas;i2+=1){
-                        cadena+="<td>\n";
+                        if(VMosaico==0){
+                            cadena+="<td>\n";
+                        }
+                        if(VMosaico==1){
+                            std::string cad=Cuboseleccionado->obtenerRGB(i2,i);
+                            cadena+="<td "+cad+">\n";
+                        }
+
 
                         cadena+="<body>\n";
                         cadena+="<div class=\"canvas\">\n";
@@ -601,7 +615,10 @@ int main()
 
 
                 cadenacss="body {\n";
-                cadenacss+="background-color: rgba(0, 0, 0, 0);\n";
+                if(VMosaico==0){
+                    cadenacss+="background-color: rgba(0, 0, 0, 0);\n";
+                }
+
                 cadenacss+="height: 100vh;\n";
                 cadenacss+="display: flex;\n";
                 cadenacss+="justify-content: center;\n";

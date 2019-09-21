@@ -2,39 +2,13 @@ digraph GraficaARBOL {
 size="9,9" 
 rankdir=TB 
 node[shape=record,style=filled]
-"Boo"[label ="<C0>|<C1>Boo: Altura y Ancho:Cubo(16,16) Pixel(30,30)|<C2>"]; 
-"deadpool"[label ="<C0>|<C1>deadpool: Altura y Ancho:Cubo(41,23) Pixel(20,20)|<C2>"]; 
-"Goku"[label ="<C0>|<C1>Goku: Altura y Ancho:Cubo(53,27) Pixel(15,15)|<C2>"]; 
-"Link"[label ="<C0>|<C1>Link: Altura y Ancho:Cubo(43,34) Pixel(20,20)|<C2>"]; 
-"Mario"[label ="<C0>|<C1>Mario: Altura y Ancho:Cubo(16,16) Pixel(30,30)|<C2>"]; 
-"Mushroom"[label ="<C0>|<C1>Mushroom: Altura y Ancho:Cubo(16,16) Pixel(30,30)|<C2>"]; 
-"Nike"[label ="<C0>|<C1>Nike: Altura y Ancho:Cubo(8,9) Pixel(30,30)|<C2>"]; 
-"Perry"[label ="<C0>|<C1>Perry: Altura y Ancho:Cubo(16,16) Pixel(30,30)|<C2>"]; 
-"Pikachu"[label ="<C0>|<C1>Pikachu: Altura y Ancho:Cubo(16,16) Pixel(30,30)|<C2>"]; 
-"Pirata"[label ="<C0>|<C1>Pirata: Altura y Ancho:Cubo(46,49) Pixel(15,15)|<C2>"]; 
-"Thor"[label ="<C0>|<C1>Thor: Altura y Ancho:Cubo(25,23) Pixel(30,30)|<C2>"]; 
-"Thor2"[label ="<C0>|<C1>Thor2: Altura y Ancho:Cubo(50,37) Pixel(15,15)|<C2>"]; 
-"Unicorn"[label ="<C0>|<C1>Unicorn: Altura y Ancho:Cubo(46,49) Pixel(15,15)|<C2>"]; 
-"Yoshi"[label ="<C0>|<C1>Yoshi: Altura y Ancho:Cubo(30,27) Pixel(30,30)|<C2>"]; 
-"Unicorn":C2->"Yoshi"; 
-"Thor2":C2->"Unicorn"; 
-"Thor":C2->"Thor2"; 
-"Pirata":C2->"Thor"; 
-"Pikachu":C2->"Pirata"; 
-"Perry":C2->"Pikachu"; 
-"Nike":C2->"Perry"; 
-"Mushroom":C2->"Nike"; 
-"Mario":C2->"Mushroom"; 
-"Link":C2->"Mario"; 
-"Goku":C2->"Link"; 
-"deadpool":C0->"Goku"; 
-"hda"[label ="<C0>|<C1>hda: Altura y Ancho:Cubo(48,62) Pixel(20,20)|<C2>"]; 
-"hulk"[label ="<C0>|<C1>hulk: Altura y Ancho:Cubo(25,17) Pixel(50,50)|<C2>"]; 
-"iroman"[label ="<C0>|<C1>iroman: Altura y Ancho:Cubo(32,32) Pixel(30,30)|<C2>"]; 
 "pokemon"[label ="<C0>|<C1>pokemon: Altura y Ancho:Cubo(37,37) Pixel(30,30)|<C2>"]; 
-"iroman":C2->"pokemon"; 
-"hulk":C2->"iroman"; 
-"hda":C2->"hulk"; 
-"deadpool":C2->"hda"; 
-"Boo":C2->"deadpool"; 
+"Ave"[label ="<C0>|<C1>Ave: Altura y Ancho:Cubo(17,19) Pixel(30,30)|<C2>"]; 
+"Mario"[label ="<C0>|<C1>Mario: Altura y Ancho:Cubo(16,16) Pixel(30,30)|<C2>"]; 
+"Thor2"[label ="<C0>|<C1>Thor2: Altura y Ancho:Cubo(50,37) Pixel(15,15)|<C2>"]; 
+"hulk"[label ="<C0>|<C1>hulk: Altura y Ancho:Cubo(25,17) Pixel(50,50)|<C2>"]; 
+"Thor2":C2->"hulk"; 
+"Mario":C2->"Thor2"; 
+"Ave":C2->"Mario"; 
+"pokemon":C0->"Ave"; 
 }

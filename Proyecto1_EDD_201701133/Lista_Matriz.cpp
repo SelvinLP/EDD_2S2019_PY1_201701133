@@ -204,6 +204,63 @@ Lista_Matriz::Eliminar(int z){
     }
 }
 
+std::string Lista_Matriz::obtenerRGB(int x,int y){
+        std::string cad="";
+    int r=-1;
+    int g=-1;
+    int b=-1;
+    Nodo_Matriz *tem=inicio;
+    tem=tem->siguiente;
+    while(tem!=0){
+        //recorrer la matriz
+        Nodo_Color* tem1=tem->inicio;
+        Nodo_Color* tem2=0;
+        tem1=tem1->abajo;
+        while(tem1 !=0){
+            tem2=tem1;
+            tem2=tem2->siguiente;
+            while(tem2!=0){
+                if(tem2->X==x && tem2->Y==y){
+                    r=tem2->R;
+                    g=tem2->G;
+                    b=tem2->B;
+                }
+                tem2=tem2->siguiente;
+            }
+            tem1=tem1->abajo;
+        }
+
+        tem=tem->siguiente;
+    }
+    if(r==-1||g==-1||b==-1){
+        return cad;
+    }else{
+
+        //para R
+        std::stringstream sr;
+        std::string tr;
+        sr.str(std::string());
+        sr.clear();
+        sr<<r;
+        sr>>tr;
+         //para G
+        std::stringstream sg;
+        std::string tg;
+        sg.str(std::string());
+        sg.clear();
+        sg<<g;
+        sg>>tg;
+        //para B
+        std::stringstream sb;
+        std::string tb;
+        sb.str(std::string());
+        sb.clear();
+        sb<<b;
+        sb>>tb;
+        cad+="style=\"background-color:rgb("+tr+", "+tg+", "+tb+");\"";
+        return cad;
+    }
+}
 Lista_Matriz::~Lista_Matriz()
 {
     //dtor

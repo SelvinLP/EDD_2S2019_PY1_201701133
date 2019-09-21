@@ -2,16 +2,5 @@ digraph GraficaFILTRO {
 size="9,9" 
 rankdir=LR 
 node[shape=record,style=filled]
-"Grayscale0"[label =" Grayscale Capa:Todas"]; 
-"Grayscale0"->"Collage1"; 
-"Grayscale0"->"Collage1" [dir=back]; 
-"Collage1"[label =" Collage Capa:Todas"]; 
-"Collage1"->"XY-Mirror2"; 
-"Collage1"->"XY-Mirror2"[dir=back]; 
-"XY-Mirror2"[label =" XY-Mirror Capa:Todas"]; 
-"XY-Mirror2"->"Collage3"; 
-"XY-Mirror2"->"Collage3"[dir=back]; 
-"Collage3"[label =" Collage Capa:Todas"]; 
-"Collage3"->"Grayscale0"; 
-"Collage3"->"Grayscale0" [dir=back]; 
+"Mosaic0"[label =" Mosaic Capa:Todas"]; 
 }
