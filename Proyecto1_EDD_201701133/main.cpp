@@ -401,10 +401,10 @@ int main()
             }
             if(opcionfiltro==4){
                 cout <<"    Seleccione un Filtro"<<endl;
-                cout <<"    Ingrese Cantidad de Filas (X)"<<endl;
+                cout <<"    Ingrese Cantidad de Filas (Y)"<<endl;
                 int opfilas;
                 cin>>opfilas;
-                cout <<"    Ingrese Cantidad de Columnas (Y)"<<endl;
+                cout <<"    Ingrese Cantidad de Columnas (X)"<<endl;
                 int opcolumnas;
                 cin>>opcolumnas;
                 if(opfilas<=0 || opcolumnas<=0){
@@ -569,8 +569,8 @@ int main()
                 string cadenacss;
 
                 //creacion de datos
-                int TamPixelW=Cuboseleccionado->image_width*Cuboseleccionado->pixel_width;
-                int TamPixelH=Cuboseleccionado->image_height*Cuboseleccionado->pixel_height;
+                int TamPixelW=Cuboseleccionado->image_width*(Cuboseleccionado->pixel_width/columnas);
+                int TamPixelH=Cuboseleccionado->image_height*(Cuboseleccionado->pixel_height/filas);
                 std::stringstream ss;
                 std::string sW;
                 ss.str(std::string());
@@ -589,14 +589,14 @@ int main()
                 std::string siw;
                 sw.str(std::string());
                 sw.clear();
-                sw<<Cuboseleccionado->pixel_width;
+                sw<<(Cuboseleccionado->pixel_width/columnas);
                 sw>>siw;
                 //para el tamaño imagen altura
                 std::stringstream sh;
                 std::string sih;
                 sh.str(std::string());
                 sh.clear();
-                sh<<Cuboseleccionado->pixel_height;
+                sh<<(Cuboseleccionado->pixel_height/filas);
                 sh>>sih;
 
 
