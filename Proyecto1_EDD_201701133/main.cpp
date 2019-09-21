@@ -81,6 +81,10 @@ void RotarImagenCompletaXY(Lista_Matriz *Cubo,Nodo_Matriz*matri){
 
 int main()
 {
+    //para filtros y graficar
+    int filas=1;
+    int columnas=1;
+
     int ciclomenu=0;
     cout << "Proyecto 1 de estructura de datos 201701133" << endl;
     //temporal
@@ -114,6 +118,9 @@ int main()
 
         }
         if(opcionmenu==2){
+            //limpieza de filtros
+            filas=1;
+            columnas=1;
             Filtro=new Lista_Filtros();
 
             arbol->MostrarInorden(arbol->Raiz);
@@ -393,8 +400,23 @@ int main()
                 }
             }
             if(opcionfiltro==4){
+                cout <<"    Seleccione un Filtro"<<endl;
+                cout <<"    Ingrese Cantidad de Filas (X)"<<endl;
+                int opfilas;
+                cin>>opfilas;
+                cout <<"    Ingrese Cantidad de Columnas (Y)"<<endl;
+                int opcolumnas;
+                cin>>opcolumnas;
+                if(opfilas<=0 || opcolumnas<=0){
+                    cout <<"    Cantidades Ingresadas no permitidas"<<endl;
+                }else{
+                    filas=opfilas;
+                    columnas=opcolumnas;
+                }
+
                 cout <<"Se Inserto Collage"<<endl;
                 //Filtro->Insertar("Collage");
+                Filtro->Insertar("Collage",-1);
                 system("pause");
             }
             if(opcionfiltro==5){
@@ -502,16 +524,35 @@ int main()
                 cadena="<!DOCTYPE html> \n";
                 cadena+="<html>\n<head>\n";
                 cadena+="<link rel=\"stylesheet\" href=\""+Cuboseleccionado->NombreCubo +".css\">\n</head> \n";
-                cadena+="<body>\n";
-                cadena+="<div class=\"canvas\">\n";
-                //creacion de todos los divs
-                int numeroPix=Cuboseleccionado->image_width*Cuboseleccionado->image_height;
-                for(int i=1;i<=numeroPix;i++){
-                    cadena+="<div class=\"pixel\"></div>\n";
+                //creacion de la tabla
+                cadena+="<table style=\"margin: 0 auto;\">\n";
+
+                for(int i=1;i<=filas;i+=1){
+                    cadena+="<tr>\n";
+                    for(int i2=1;i2<=columnas;i2+=1){
+                        cadena+="<td>\n";
+
+                        cadena+="<body>\n";
+                        cadena+="<div class=\"canvas\">\n";
+                        //creacion de todos los divs
+                        int numeroPix=Cuboseleccionado->image_width*Cuboseleccionado->image_height;
+                        for(int i=1;i<=numeroPix;i++){
+                            cadena+="<div class=\"pixel\"></div>\n";
+                        }
+                        //fin de creacion de todos los divs
+                        cadena+="</div>\n";
+                        cadena+="</body>\n";
+
+                        cadena+="</td>\n";
+                    }
+
+                    cadena+="</tr>\n";
                 }
-                //fin de creacion de todos los divs
-                cadena+="</div>\n";
-                cadena+="</body>\n";
+
+                //fin de creacion de tabla
+                cadena+="</table>\n";
+
+
                 cadena+="</html>\n";
                 filehtml<<cadena;
                 filehtml.close();

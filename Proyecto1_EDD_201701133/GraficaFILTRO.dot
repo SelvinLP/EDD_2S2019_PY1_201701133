@@ -1,0 +1,11 @@
+digraph GraficaFILTRO { 
+size="9,9" 
+rankdir=LR 
+node[shape=record,style=filled]
+"Collage0"[label =" Collage Capa:Todas"]; 
+"Collage0"->"Collage1"; 
+"Collage0"->"Collage1" [dir=back]; 
+"Collage1"[label =" Collage Capa:Todas"]; 
+"Collage1"->"Collage0"; 
+"Collage1"->"Collage0" [dir=back]; 
+}

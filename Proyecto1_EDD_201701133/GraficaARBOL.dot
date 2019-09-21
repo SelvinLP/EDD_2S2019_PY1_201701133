@@ -2,11 +2,5 @@ digraph GraficaARBOL {
 size="9,9" 
 rankdir=TB 
 node[shape=record,style=filled]
-"pokemon"[label ="<C0>|<C1>pokemon: Altura y Ancho:Cubo(37,37) Pixel(30,30)|<C2>"]; 
-"corazoncito"[label ="<C0>|<C1>corazoncito: Altura y Ancho:Cubo(12,8) Pixel(30,30)|<C2>"]; 
 "Ave"[label ="<C0>|<C1>Ave: Altura y Ancho:Cubo(17,19) Pixel(30,30)|<C2>"]; 
-"corazoncito":C0->"Ave"; 
-"inicial"[label ="<C0>|<C1>inicial: Altura y Ancho:Cubo(12,5) Pixel(50,50)|<C2>"]; 
-"corazoncito":C2->"inicial"; 
-"pokemon":C0->"corazoncito"; 
 }
